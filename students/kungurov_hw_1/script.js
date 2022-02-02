@@ -1,15 +1,20 @@
-var a, b;
-a = Number(prompt());
-b = Number(prompt());
 function plus() {
-    console.log(a + b)
+    var a = Number(prompt());
+    var b = Number(prompt());
+    console.log(a + b).toFixed(6);
 }
 function minus() {
-    console.log(a - b)
+    var a = Number(prompt());
+    var b = Number(prompt());
+    console.log(a - b).toFixed(6);
 }
 function division() {
-    console.log(a / b)
+    var a = Number(prompt());
+    var b = Number(prompt());
+    console.log(a / b).toFixed(6);
 }
 function multiply() {
-    console.log(a * b)
+    var a = Number(prompt());
+    var b = Number(prompt());
+    console.log(a * b).toFixed(6);
 }
