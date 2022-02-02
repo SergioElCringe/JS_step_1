@@ -9,10 +9,10 @@
 <body>
     <article class="calc">
         <div class="calc__keyboard">
-            <button onclick="plus()" class="calc__btn calc__btn_plus">+</button>
-            <button onclick="minus()" class="calc__btn calc__btn_minus">-</button>
-            <button onclick="multiplication()" class="calc__btn calc__btn_multiplication">*</button>
-            <button onclick="division()" class="calc__btn calc__btn_division">/</button>
+            <button onclick="plus()" class="calc__btn">+</button>
+            <button onclick="minus()" class="calc__btn">-</button>
+            <button onclick="multiplication()" class="calc__btn">*</button>
+            <button onclick="division()" class="calc__btn">/</button>
         </div>
     </article>
     <style>
@@ -35,9 +35,6 @@
             height: 500px;
             border: 1px solid salmon;
         }
-        .calc__screen{
-            height: 200px;
-        }
         .calc__keyboard{
             display: flex;
             flex-wrap: wrap;
@@ -48,7 +45,6 @@
             width: 50%;
             height: 50%;
             font-size: 150px;
-
         }
     </style>
     <script>
