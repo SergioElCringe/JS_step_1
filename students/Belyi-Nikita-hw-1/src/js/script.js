@@ -1,8 +1,8 @@
-function sum() {
-let a = +prompt('Enter A');
-let b = +prompt('Enter B');
-let sum = a + b;
-console.log(sum);
+    function sum() {
+    let a = +prompt('Enter A');
+    let b = +prompt('Enter B');
+    let sum = a + b;
+    console.log(sum);
 };
 
 function minus() {
