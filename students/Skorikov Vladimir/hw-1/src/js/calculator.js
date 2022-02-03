@@ -6,7 +6,7 @@ function sum() {
 
   result = firstNumber + secondNumber;
   console.log("Результат сложения " + firstNumber + " + " + secondNumber + " = " + result);
-}
+};
 
 // Функция вычитания
 function subtraction() {
@@ -16,7 +16,7 @@ function subtraction() {
 
   result = firstNumber - secondNumber;
   console.log("Результат вычитания " + firstNumber + " - " + secondNumber + " = " + result);
-}
+};
 
 // Функция умножения
 function multiplication() {
@@ -26,7 +26,7 @@ function multiplication() {
 
   result = firstNumber * secondNumber;
   console.log("Результат умножения " + firstNumber + " * " + secondNumber + " = " + result);
-}
+};
 
 // Функция деления
 function division() {
@@ -36,4 +36,4 @@ function division() {
 
   result = firstNumber / secondNumber;
   console.log("Результат деления " + firstNumber + " / " + secondNumber + " = " + result);
-}
+};
