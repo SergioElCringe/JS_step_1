@@ -8,13 +8,13 @@
 </head>
 <body>
   <button onclick="sayHello()">Say hello</button>
+  <div>
+    <button onclick="sum()">+</button>
+  </div>
+  <div>
+    <button onclick="min()">-</button>
+  </div>
   <!-- <div>
-    <button>+</button>
-  </div>
-  <div>
-    <button>-</button>
-  </div>
-  <div>
     <button>*</button>
   </div>
   <div>
@@ -28,6 +28,24 @@
     function sayHello() {
       let userName = prompt('Enter your name');
       console.log('Hello, ' + userName + '!');
+    };
+
+    function sum() {
+      let a = +prompt('Enter A');
+      let b = +prompt('Enter B');
+
+      const result = a + b;
+
+      console.log('Результат сложения ' + a + ' и ' + b + ' равен ' + result);
+    };
+
+    function min() {
+      let a = +prompt('Enter A');
+      let b = +prompt('Enter B');
+
+      const result = a - b;
+
+      console.log('Результат вычитания ' + a + ' и ' + b + ' равен ' + result);
     };
   </script>
 </body>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    button {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <button onclick="makeOperation(1)">+</button>
+  <button onclick="makeOperation(2)">-</button>
+  <button onclick="makeOperation(3)">*</button>
+  <button onclick="makeOperation(4)">/</button>
+
+  <script>
+    // // ФУНКЦИИ
+    // //
+
+    // function sum(a, b) {
+    //   return a + b;
+    // };
+
+    // function substr(a, b) {
+    //   return a - b;
+    // };
+
+    // function multipl(a, b) {
+    //   return a * b;
+    // };
+
+    // function divide(a, b) {
+    //   //ДЕЛИТЬ НА НОЛЬ НЕЛЬЗЯ
+    //   // return a / b;
+    //   // if (b === 0) {
+    //   //   return 'Деление на ноль!';
+    //   // }
+
+    //   // return a / b;
+
+    //   // if (!b) {
+    //   //   return 'Деление на ноль!';
+    //   // }
+
+    //   // return a / b;
+
+    //   // if (b !== 0) {
+    //   //   return a / b;
+    //   // }
+    //   // return 'Деление на ноль!';
+
+    //   // if (b) {
+    //   //   return a / b;
+    //   // } else {
+    //   //   return 'Деление на ноль!';
+    //   // }
+      
+
+    //   // ТЕРНАРНЫЙ ОПЕРАТОР
+    //   return b ? a / b : 'Деление на ноль!';
+    //   // const result = b ? a / b : 'Деление на ноль!';
+    //   // return result;
+    // };
+
+    // function output(result) {
+    //   // console.log('Результат сложения ' + a + ' и ' + b + ' равен ' + result);
+    //   // console.log(`Результат сложения ${ a } и ${ b } равен ${ result }`); // ШАБЛОННАЯ СТРОКА
+    //   // console.log('Result: ' + result);
+    //   console.log(`Результат: ${ result }`);
+    // };
+
+    // function makeSum() {
+    //   let a = +prompt('Enter A');
+    //   let b = +prompt('Enter B');
+    //   const result = sum(a, b);
+
+    //   output(result);
+    // };
+
+    // // function makeSubstr() {
+    // //   let a = +prompt('Enter A');
+    // //   let b = +prompt('Enter B');
+    // //   const result = subtr(a, b);
+
+    // //   output(result);
+    // // };
+
+    // // function makeMultiply() {
+    // //   let a = +prompt('Enter A');
+    // //   let b = +prompt('Enter B');
+    // //   const result = multipl(a, b);
+
+    // //   output(result);
+    // // };
+
+    // // function makeDivide() {
+    // //   let a = +prompt('Enter A');
+    // //   let b = +prompt('Enter B');
+    // //   const result = divide(a, b);
+
+    // //   output(result);
+    // // };
+
+
+    // // Проверка условия
+    // // Условные операторы (if, else, else if)
+    // // Оператор SWITCH
+    // // условно ТЕРНАРНЫЙ ОПЕРАТОР ***
+
+    // // == и != - нестрогое сравнение (с приведением типов)
+    // // === и !== - строгое (без приведения типов)
+
+    // /**
+    //  * 
+    //  * @param {number} operation \
+    //  * 1 - sum
+    //  * 2 - substr
+    //  * 3 - multipl
+    //  * 4 - divide
+    // */
+    // function makeOperation(operation) { //2
+    //   // && - И 
+    //   // || - ИЛИ
+    //   // ! - НЕ
+
+
+    //   // if (operation === 1 || operation === 2 || operation === 3 || operation === 4) {
+    //   //   let a = +prompt('Enter A');
+    //   //   let b = +prompt('Enter B');
+    //   //   let result;
+
+    //   //   if (operation === 1) {
+    //   //     result = sum(a, b);
+    //   //   } else if (operation === 2) {
+    //   //     result = substr(a, b);
+    //   //   } else if (operation === 3) {
+    //   //     result = multipl(a, b);
+    //   //   } else if (operation === 4) {
+    //   //     result = divide(a, b);
+    //   //   }
+
+    //   //   output(result);
+    //   // } else {
+    //   //   console.log('НЕ ШАЛИ');
+    //   // }
+
+    //     // '+', '-'
+    //   if (operation === 1 || operation === 2 || operation === 3 || operation === 4) {
+    //     let a = +prompt('Enter A');
+    //     let b = +prompt('Enter B');
+    //     let result;
+
+    //     switch (operation) {
+    //       // case '+': {
+    //       case 1: {
+    //         result = sum(a, b);
+    //         break;
+    //       };
+    //       case 2: {
+    //         result = substr(a, b);
+    //         break;
+    //       };
+    //       case 3: {
+    //         result = multipl(a, b);
+    //         break;
+    //       };
+    //       default: {
+    //         result = divide(a, b);
+    //       }
+    //     };
+
+    //     output(result);
+    //   } else {
+    //     console.log('НЕ ШАЛИ');
+    //   }
+    // }
+
+
+    // function recursive(num) {
+    //   if (num >= 0) {
+    //     console.log(num);
+    //     recursive(num - 1);
+    //   }
+    // };
+    
+
+    //Функция, которая принимает функцию в параметре
+
+    // function returnSmth() {
+    //   return 5;
+    // }
+
+    // function testFunction(a, b) {
+    //   console.log(a + b);
+    // } 
+
+    // testFunction(returnSmth(), 5);
+
+    // Функция возвращает другую функцию (ЗАМЫКАНИЕ)
+
+      // function one(a) {
+      //   return function (b) { // АНОНИМНАЯ ФУНКЦИЯ
+      //     console.log(a + b);
+      //   };
+      // };
+
+      // function one(a) {
+      //   return (b) => { // АНОНИМНАЯ ФУНКЦИЯ
+      //     console.log(a + b);
+      //   };
+      // };
+
+      // one(5)(10);
+
+      // const one = a => b => a + b;
+      // console.log(one(2)(4));
+
+      // d(); //not works
+      // var d = function () {
+      //   //
+      //   return false;
+      // };
+
+      // d(); // it works
+
+      // d1();
+
+      // function d1 () {
+      //   //
+      //   return false;
+      // };
+      
+      // const notArrowFunction = function (p1, p2) {
+      //   return p1 + p2;
+      // } 
+
+      // const arrowFunction = (param1, param2) => {
+            // something happens
+      //   return param1 + param2;
+      // };
+
+      // const arrowFunction = (param1, param2) => param1 + param2;
+
+
+      // const test1 = num => num * 10;
+      // function test1_1 (num) {
+      //   return num * 10;
+      // };
+
+
+
+      // 1 - отрефакторить калькулятор
+      // ***2 - Написать игру "камень, ножницы, бумага" 
+      // требования:
+      // 1) кнопка "играть" - это раунд
+      // 2) раунд состоит из: выбираете (1, 2 или 3). компьютер загадывает свое. проводится анализ. выводится результат
+      // 3) 1 нажатие на кнопку = 1 раунд. повторное нажатие - другой раунд
+      // используя 
+        // Math.floor(Math.random());
+        // **3 - (рекурсия) написать функцию stepen(a, b), которая возвращает a в степени b
+        // т.е. stepen(4, 2) === 16
+  </script>
+</body>
+</html>
