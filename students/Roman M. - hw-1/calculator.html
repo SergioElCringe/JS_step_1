@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <main style="border: 3px solid rgb(49, 43, 136); width: 150px; border-radius: 9px;">
+    <p>Calculator</p>
+    <button onclick="plus()">+</button>
+    <script>
+        function plus() {
+            let a = +prompt('Введите число');
+            let b = +prompt('Введите второе число');
+            let sum = a + b;
+            console.log(sum);
+        };
+    </script>
+    <button onclick="minus()">-</button>
+    <script>
+        function minus() {
+            let a = prompt('Введите число');
+            let b = prompt('Введите второе число');
+            let sum = a - b;
+            console.log(sum);
+        };
+    </script>
+    <button onclick="umn()">*</button>
+    <script>
+        function umn() {
+            let a = prompt('Введите число');
+            let b = prompt('Введите второе число');
+            let sum = a * b;
+            console.log(sum);
+        };
+    </script>
+    <button onclick="del()">/</button>
+    <script>
+        function del() {
+            let a = prompt('Введите число');
+            let b = prompt('Введите второе число');
+            let sum = a / b;
+            console.log(sum);
+        };
+    </script>
+    </main>
+</body>
+</html>
