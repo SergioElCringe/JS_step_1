@@ -36,7 +36,6 @@
             transform: translate(-50%, -50%);
             width: 600px;
             height: 200px;
-            border: 1px solid salmon;
         }
 
         .game__controller {
@@ -50,32 +49,56 @@
             height: 200px;
             line-height: 200px;
             font-size: 100px;
+            background: none;
+            outline: none;
+            border: none;
+            transition: font-size 0.3s ease;
+        }
+        .game__btn:hover{
+            font-size: 110px;
+        }
+        .game__btn:active{
+            font-size: 130px;
         }
     </style>
     <script>
         function getResult(num) {
-            const rndm = getrndmInt(1, 4);
-            if(num === rndm){
+            const rndm = getRndmInt(1, 4);
+            const rndmName = namingFunc(rndm);
+            if (num === rndm) {
                 console.log('Draw! Try again!')
+                return;
             }
-            if(num === 1){
+            if (num === 1) {
                 let result = rndm === 2 ? 'You loose!' : 'You win!';
-                console.log(result);
+                console.log(`${result} Your opponent choice was ${rndmName}`);
             }
-            if(num === 2){
+            if (num === 2) {
                 let result = rndm === 1 ? 'You win!' : 'You loose!';
-                console.log(result);
+                console.log(`${result} Your opponent choice was ${rndmName}`);
             }
-            if(num === 3){
+            if (num === 3) {
                 let result = rndm === 1 ? 'You loose!' : 'You win!';
-                console.log(result);
+                console.log(`${result} Your opponent choice was ${rndmName}`);
             }
         };
-        function getrndmInt(min, max) {
+
+        function namingFunc(num) {
+            switch (num) {
+                case 1:
+                    return 'stone';
+                case 2:
+                    return 'paper';
+                case 3:
+                    return 'scissors';
+            }
+        };
+
+        function getRndmInt(min, max) {
             min = Math.ceil(min);
             max = Math.floor(max);
             return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
-        }
+        };
     </script>
 </body>
 
