@@ -11,7 +11,7 @@ function minus() {
 function division() {
     var a = Number(prompt('Введите первое число'));
     var b = Number(prompt('Введите второе чило'));
-    if (b==0){
+    if (!b){
         console.log('На ноль делить нельзя');
     }else{
     console.log(a / b);
