@@ -57,16 +57,13 @@
             return a * b;
         };
         // Выполнение деления
-        function division(a, b) {
-            if (b !== 0) {  // Проверка деления на (0)
-                return a / b;
-            };
-            return 'деление на ноль';
+        function division(a, b) {   // Проверка деления на (0)
+            return b ? a / b : false;
         };
         // Выполнение вывода в консоль результата
         function output(result) {
             // Если делитель не равен (0)
-            if (result !== 'деление на ноль') {
+            if (result) {
                 console.log(`Результат равен ${result}`);
             }
             // Если делитель равен (0)
