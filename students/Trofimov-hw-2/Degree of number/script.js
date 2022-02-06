@@ -1,13 +1,17 @@
-let num1 = prompt('Введите 1ое число:');
-let degr = prompt('Введите 2ое число:');
+function inputNumbers() {
+    let num1 = +prompt('Введите 1ое число:');
+    let degr = +prompt('Введите 2ое число:');
+    console.log('Результат: ' + resultCalculations(num1, degr));
+}
+
 
 function resultCalculations(num1, degr) {
-    if (degr === 0) {
-        return console.log(1);
-    } else {
-        const result = num1 * resultCalculations(num1, degr - 1);
-        return console.log(result);
-    };
-};
+    let result = num1;
 
-resultCalculations(num1, degr);
+    if (!degr) {
+        result = 1;
+    } else {
+        result = result * resultCalculations(num1, degr - 1);
+    };
+    return result;
+};
