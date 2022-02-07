@@ -1,24 +1,51 @@
-function plus() {
-    var a = Number(prompt('Введите первое число'));
-    var b = Number(prompt('Введите второе чило'));
-    console.log(a + b);
+
+function calculator(op) {
+    if (op == 1 || op == 2 || op == 3 || op == 4) {
+        let num1 = Number(prompt('Введите первое число:'));
+        let num2 = Number(prompt('Введите второе число:'));
+        let result;
+        switch (op) {
+            case 1: {
+                result = plus(num1, num2);
+                break;
+            };
+            case 2: {
+                result = minus(num1, num2);
+                break;
+            };
+            case 3: {
+                result = mult(num1, num2);
+                break;
+            };
+            case 4:
+                result = divide(num1, num2);
+                break;
+        };
+        output(result);
+    };
 };
-function minus() {
-    var a = Number(prompt('Введите первое число'));
-    var b = Number(prompt('Введите второе чило'));
-    console.log(a - b);
+function plus(num1, num2) {
+    return num1 + num2;
 };
-function division() {
-    var a = Number(prompt('Введите первое число'));
-    var b = Number(prompt('Введите второе чило'));
-    if (!b){
-        console.log('На ноль делить нельзя');
-    }else{
-    console.log(a / b);
+
+function minus(num1, num2) {
+    return num1 - num2;
+};
+
+function mult(num1, num2) {
+    return num1 * num2;
+};
+
+function divide(num1, num2) {
+    if (num2 == 0) {
+        return 'на ноль делить нельзя'
+    }
+    else {
+        return num1 / num2;
     }
 };
-function multiply() {
-    var a = Number(prompt('Введите первое число'));
-    var b = Number(prompt('Введите второе чило'));
-    console.log(a * b);
-};
+function output(result) {
+    if (result) {
+        console.log(result);
+    }
+}
