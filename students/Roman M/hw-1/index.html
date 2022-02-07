@@ -10,6 +10,9 @@
     <main style="border: 3px solid rgb(49, 43, 136); width: 150px; border-radius: 9px;">
     <p>Calculator</p>
     <button onclick="plus()">+</button>
+    <button onclick="minus()">-</button>
+    <button onclick="umn()">*</button>
+    <button onclick="del()">/</button>
     <script>
         function plus() {
             let a = +prompt('Введите число');
@@ -17,27 +20,18 @@
             let sum = a + b;
             console.log(sum);
         };
-    </script>
-    <button onclick="minus()">-</button>
-    <script>
         function minus() {
             let a = prompt('Введите число');
             let b = prompt('Введите второе число');
             let sum = a - b;
             console.log(sum);
         };
-    </script>
-    <button onclick="umn()">*</button>
-    <script>
         function umn() {
             let a = prompt('Введите число');
             let b = prompt('Введите второе число');
             let sum = a * b;
             console.log(sum);
         };
-    </script>
-    <button onclick="del()">/</button>
-    <script>
         function del() {
             let a = prompt('Введите число');
             let b = prompt('Введите второе число');
