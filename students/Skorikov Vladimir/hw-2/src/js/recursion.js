@@ -7,12 +7,12 @@ function dataEntry() {
 
 // Функция возведения в степень
 function exponentiation(firstNumber, degree) {
-  let result = firstNumber;
-  if (!degree) {
-     firstNumber = 1;
+  if (degree == 1) {
+     return firstNumber;
   }
-  else if (degree > 1) {
-      result = result * exponentiation(firstNumber, degree - 1);
+  else {
+      return firstNumber * exponentiation(firstNumber, degree - 1);
   };
-  return result;
+  // Можно еще так как вариант, короче и без if
+  // return (degree == 1) ? firstNumber : (firstNumber * exponentiation(firstNumber, degree - 1));
 };
