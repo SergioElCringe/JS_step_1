@@ -66,7 +66,7 @@
         const plus = (a, b) => (a + b).toFixed(6);
         const minus = (a, b) => (a - b).toFixed(6);
         const multiplication = (a, b) => (a * b).toFixed(6);
-        const division = (a, b) => b === 0 ? 'The universe is falling apart because of you' : (a / b).toFixed(6);
+        const division = (a, b) => !b ? 'The universe is falling apart because of you' : (a / b).toFixed(6);
 
     </script>
 </body>
