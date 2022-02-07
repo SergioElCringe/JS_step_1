@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style>
+            /* CSS */
+            button {
+                font-size: 15px;
+                padding: 10px;
+                margin: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- HTML -->
+        <button onclick="play()">Играть</button>
+
+        <!-- JS -->
+        <script>
+            const random = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+            const result = (resultFirst, resultSecond, winner) => console.log(`Ваш выбор: ${resultFirst}, выбор компьютера: ${resultSecond}, результат игры: ${winner}`);
+
+            function play() {
+                let playerNumber = +prompt('Введите свой выбор: (1 = Камень, 2 = Ножницы, 3 = Бумага)');
+
+                if (playerNumber === 1 || playerNumber === 2 || playerNumber === 3) {
+                    let computerNumber = random(1, 3);
+                    let playerChoice;
+                    let computerChoice;
+                    let winner;
+
+                    //Назначаю рандомный результат компьютеру
+                    if (computerNumber === 1) {
+                        computerChoice = 'Камень';
+                    } else if (computerNumber === 2) {
+                        computerChoice = 'Ножницы';
+                    } else {
+                        computerChoice = 'Бумага';
+                    };
+
+                    //Назначаю результат игроку
+                    if (playerNumber === 1) {
+                        playerChoice = 'Камень';
+                    } else if (playerNumber === 2) {
+                        playerChoice = 'Ножницы';
+                    } else {
+                        playerChoice = 'Бумага';
+                    };
+
+                    //Алгоритм вывода победителя
+                    if (playerChoice === 'Камень' && computerChoice === 'Камень' || playerChoice === 'Ножницы' && computerChoice === 'Ножницы' || playerChoice === 'Бумага' && computerChoice === 'Бумага') {
+                        winner = 'Ничья!';
+                    } else if (playerChoice === 'Камень' && computerChoice === 'Ножницы' || playerChoice === 'Бумага' && computerChoice === 'Камень' || playerChoice === 'Ножницы' && computerChoice === 'Бумага') {
+                        winner = 'Вы победили!';
+                    } else if (playerChoice === 'Ножницы' && computerChoice === 'Камень' || playerChoice === 'Камень' && computerChoice === 'Бумага' || playerChoice === 'Бумага' && computerChoice === 'Ножницы') {
+                        winner = 'Компьютер победил!';
+                    };
+
+                    //Вывод результата
+                    result(playerChoice, computerChoice, winner);
+                } else {
+                    console.log('Вы пытаетесь играть не по правилам! Для игры требуется выбрать один вариант из трех: камень, ножницы или бумага! (1 = Камень, 2 = Ножницы, 3 = Бумага)');
+                };
+            };
+        </script>
+    </body>
+</html>
