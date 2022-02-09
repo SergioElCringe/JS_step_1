@@ -9,8 +9,7 @@ function dataEntry() {
 function exponentiation(firstNumber, degree) {
   if (degree == 1) {
      return firstNumber;
-  }
-  else {
+  } else {
       return firstNumber * exponentiation(firstNumber, degree - 1);
   };
   // Можно еще так как вариант, короче и без if
