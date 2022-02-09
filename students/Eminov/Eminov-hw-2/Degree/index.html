@@ -14,10 +14,10 @@
         <!-- JS -->
         <script>
             function degree(a, b) {
-                if (b !== 1) {
-                    return a * degree(a, b - 1);
+                if (!b) {
+                    return 1;
                 } else {
-                    return a;
+                    return a * degree(a, --b);
                 };
             };
 
