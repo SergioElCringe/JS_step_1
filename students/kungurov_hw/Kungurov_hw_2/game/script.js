@@ -1,5 +1,5 @@
 var move = 0.5, move1 = 1, i = 0, k = 0;
-var computer, choice;
+var computer, choice= rand();;
 function rand() {
     computer = Math.floor(Math.random() * 3);
     if (computer == 0) {
@@ -9,6 +9,7 @@ function rand() {
     } else {
         choice = 3; //бумага
     };
+    return choice;
 };
 function end() {
     if (move == 0) {
