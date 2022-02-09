@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock paper scissors</title>
+</head>
+
+<body>
+    <article class="game">
+        <div class="game__controller">
+            <button onclick="getResult(1)" class="game__btn">✊</button>
+            <button onclick="getResult(2)" class="game__btn">✋</button>
+            <button onclick="getResult(3)" class="game__btn">✌</button>
+        </div>
+    </article>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            width: 100vw;
+            max-width: 100%;
+            height: 100vh;
+            max-height: 100%;
+        }
+
+        .game {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 200px;
+        }
+
+        .game__controller {
+            display: flex;
+            height: 200px;
+        }
+
+        .game__btn {
+            display: block;
+            width: calc(100% / 3);
+            height: 200px;
+            line-height: 200px;
+            font-size: 100px;
+            background: none;
+            outline: none;
+            border: none;
+            transition: font-size 0.3s ease;
+        }
+        .game__btn:hover{
+            font-size: 110px;
+        }
+        .game__btn:active{
+            font-size: 130px;
+        }
+    </style>
+    <script>
+        function getResult(num) {
+            const rndm = getRndmInt(1, 4);
+            const rndmName = namingFunc(rndm);
+            if (num === rndm) {
+                console.log('Draw! Try again!')
+                return;
+            }
+            if (num === 1) {
+                let result = rndm === 2 ? 'You loose!' : 'You win!';
+                console.log(`${result} Your opponent choice was ${rndmName}`);
+            }
+            if (num === 2) {
+                let result = rndm === 1 ? 'You win!' : 'You loose!';
+                console.log(`${result} Your opponent choice was ${rndmName}`);
+            }
+            if (num === 3) {
+                let result = rndm === 1 ? 'You loose!' : 'You win!';
+                console.log(`${result} Your opponent choice was ${rndmName}`);
+            }
+        };
+
+        function namingFunc(num) {
+            switch (num) {
+                case 1:
+                    return 'stone';
+                case 2:
+                    return 'paper';
+                case 3:
+                    return 'scissors';
+            }
+        };
+
+        function getRndmInt(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
+        };
+    </script>
+</body>
+
+</html>

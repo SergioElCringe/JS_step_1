@@ -9,10 +9,10 @@
 <body>
     <article class="calc">
         <div class="calc__keyboard">
-            <button onclick="plus()" class="calc__btn">+</button>
-            <button onclick="minus()" class="calc__btn">-</button>
-            <button onclick="multiplication()" class="calc__btn">*</button>
-            <button onclick="division()" class="calc__btn">/</button>
+            <button onclick="calculate(plus, getNum)" class="calc__btn">+</button>
+            <button onclick="calculate(minus, getNum)" class="calc__btn">-</button>
+            <button onclick="calculate(multiplication, getNum)" class="calc__btn">*</button>
+            <button onclick="calculate(division, getNum)" class="calc__btn">/</button>
         </div>
     </article>
     <style>
@@ -48,33 +48,26 @@
         }
     </style>
     <script>
-        function plus() {
-            let a = +prompt('Enter first num', 0);
-            let b = +prompt('Enter second num', 0);
-            let result = (a + b).toFixed(6);
+        function calculate(solverFunc, inputFunc) {
+            const a = inputFunc('Enter first num');
+            const b = inputFunc('Enter second num');
+            const result = solverFunc(a,b);
             console.log(result);
         };
 
-        function minus() {
-            let a = +prompt('Enter first num', 0);
-            let b = +prompt('Enter second num', 0);
-            let result = (a - b).toFixed(6);
-            console.log(result);
+        function getNum(str) {
+            let a = +prompt(str, 0);
+            if(!isNaN(a) && isFinite(a)){
+                return a;
+            }
+            return getNum(str);
         };
 
-        function multiplication() {
-            let a = +prompt('Enter first num', 0);
-            let b = +prompt('Enter second num', 0);
-            let result = (a * b).toFixed(6);
-            console.log(result);
-        };
+        const plus = (a, b) => (a + b).toFixed(6);
+        const minus = (a, b) => (a - b).toFixed(6);
+        const multiplication = (a, b) => (a * b).toFixed(6);
+        const division = (a, b) => !b ? 'The universe is falling apart because of you' : (a / b).toFixed(6);
 
-        function division() {
-            let a = +prompt('Enter first num', 0);
-            let b = +prompt('Enter second num', 0);
-            let result = (a / b).toFixed(6);
-            console.log(result);
-        };
     </script>
 </body>
 </html>
