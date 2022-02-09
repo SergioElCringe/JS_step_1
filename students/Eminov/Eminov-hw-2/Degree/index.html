@@ -9,7 +9,7 @@
     </head>
     <body>
         <!-- HTML -->
-        <button onclick="erection()">Возведение числа A в степень B</button>
+        <button onclick="power()">Возведение числа A в степень B</button>
 
         <!-- JS -->
         <script>
@@ -23,14 +23,14 @@
 
             const result = (a, b, c) => console.log(`Результат возведения числа ${a} в степень ${b} равняется ${c}`);
 
-            function erection() {
+            function power() {
                 let a = +prompt('Введите число, возводимое в степень');
                 let b = +prompt('Введите степень');
-                let c;
+                let result;
 
                 if (isNaN(a) === false || isNaN(b) === false) {
-                    c = degree(a, b);
-                    result(a, b, c);
+                    result = degree(a, b);
+                    result(a, b, result);
                 } else {
                     console.log('Вы пытаетесь вычислить нечисловые выражения!');
                 };
