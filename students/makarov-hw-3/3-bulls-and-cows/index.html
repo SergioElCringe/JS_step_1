@@ -33,7 +33,7 @@
             let cows = 0;
             input.forEach((el, index) => {
                 if (secret.indexOf(el) >= 0) {
-                    return secret.indexOf(el) === index ? bulls++ : cows++
+                    return secret.indexOf(el) === index ? bulls++ : cows++;
                 }
             });
             console.log(`Bulls: ${bulls}\nCows: ${cows}`);
@@ -46,25 +46,19 @@
             if (!isNaN(+userInput) && userInput.length === 4) {
                 return userInput.split('').map(el => +el);
             }
-            console.log('Bullshit!');
+            console.log('Invalid input');
         };
 
         /*Creates secret number: an array of 4 unique digits. */
         function getUniques() {
-            const arr = [getRndmInt(0, 10)];
+            const arr = [];
             while (arr.length < 4) {
-                let num = getRndmInt(0, 10);
+                let num = Math.floor(Math.random() * 10);
                 if (!arr.includes(num)) {
                     arr.push(num);
                 }
             }
             return arr;
-        };
-
-        function getRndmInt(min, max) {
-            min = Math.ceil(min);
-            max = Math.floor(max);
-            return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
         };
     </script>
 </body>
