@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button onclick="game()">Play</button>
+
+  <script>
+    function game() {
+      const riddle = getNumber(); // загадал [1, 2, 3, 4]
+      console.log(riddle);
+      let rounds = 10;
+      let play = true;
+
+      while (play) {
+        if (rounds) {
+          let userVariant = [...prompt('Enter...')]; // '1234' >>> ['1', '2', '3', '4']
+          play = check(riddle, userVariant);
+          console.log(play ? `${ --rounds } turns left` : `User wins! ${ riddle }`);
+        } else {
+          console.log(`User lost! ${ riddle }`);
+          play = false;
+        }
+      }
+    };
+
+    function randomize() {
+      return Math.floor(Math.random() * 10);
+    }
+
+    /*
+      *
+      *@returns { Boolean } 
+    */
+    function check(riddle, userVariant) {
+      let bulls = 0;
+      let cows = 0;
+
+      for (let i = 0; i < 4; i++) {
+        if (riddle[i] === +userVariant[i]) {
+          bulls++;
+        } else if (riddle.includes(+userVariant[i])) {
+          cows++;
+        }
+      }
+
+      getHint(bulls, cows, userVariant);
+
+      return bulls === 4 ? false : true;
+    };
+
+    function getHint(bulls, cows, userVariant) {
+      console.log(`
+        User: ${ userVariant }\n
+        bulls: ${ bulls }\n
+        cows: ${ cows }\n
+      `);
+    };
+
+    /*
+      *
+      *@returns { Array } 
+    */
+    function getNumber() {
+      const result = [];
+      while (result.length < 4) {
+        const rndNumber = randomize();
+        if (!result.includes(rndNumber)) {
+          result.push(rndNumber);
+        }
+      }
+      return result;
+    };
+
+    // [1,2,3,4].indexOf(1) === 0
+    // [1,2,3,4].indexOf(4) === 3
+    // [1,2,3,4].indexOf(10) === -1
+
+  </script>
+</body>
+</html>
