@@ -1,14 +1,18 @@
 function primeNumbers() {
     const arr = [];
     for (let i = 2; i <= 100; i++) {
-        if (ifPrime(i)) arr.push(i);
-    }    
+        if (ifPrime(i)) {
+            arr.push(i);
+        }
+    }
     return arr;
 };
 function ifPrime(num) {
     if (num <= 1) return false;
     for (let i = 2; i <= Math.sqrt(num); i++) {
-        if (!(num % i)) return false;
+        if (!(num % i)) {
+            return false;
+        }
     }
     return num;
 };

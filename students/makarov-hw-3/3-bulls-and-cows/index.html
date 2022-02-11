@@ -18,7 +18,7 @@
             for (let i = 0; i < 10; i++) {
                 const input = getInput();
                 console.log(`Remaining attempts ${9 - i}`);
-                let result = checkInput(input, secret);
+                const result = checkInput(input, secret);
                 if (result === 4) {
                     console.log('You win!');
                     return;
@@ -32,7 +32,7 @@
             let bulls = 0;
             let cows = 0;
             input.forEach((el, index) => {
-                if (secret.indexOf(el) >= 0) {
+                if (secret.includes(el)) {
                     return secret.indexOf(el) === index ? bulls++ : cows++;
                 }
             });
@@ -43,17 +43,15 @@
         /*Converts user input into array of numbers*/
         function getInput() {
             let userInput = prompt('Enter your answer');
-            if (!isNaN(+userInput) && userInput.length === 4) {
-                return userInput.split('').map(el => +el);
-            }
-            console.log('Invalid input');
+            console.log(`Your input is ${userInput}`);
+            return [...userInput].map(el => +el);
         };
 
         /*Creates secret number: an array of 4 unique digits. */
         function getUniques() {
             const arr = [];
             while (arr.length < 4) {
-                let num = Math.floor(Math.random() * 10);
+                const num = Math.floor(Math.random() * 10);
                 if (!arr.includes(num)) {
                     arr.push(num);
                 }
