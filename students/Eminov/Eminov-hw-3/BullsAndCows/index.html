@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- HTML -->
+    <button onclick="play()">Start play</button>
+
+    <!-- JS -->
+    <script>
+        const rnd = () => Math.floor(Math.random() * 10);
+        const outputError = () => console.log('You are trying to play by the wrong rules! The answer must contain a maximum of 4 digits.');
+
+        function hiddensValueOfTheСomp() {
+            let skyNet = [];
+            let randomNumber;
+
+            while (skyNet.length < 4) {
+                randomNumber = rnd();
+
+                if (!skyNet.includes(randomNumber)) {
+                    skyNet.push(randomNumber);
+                }
+            };
+
+            return skyNet;
+        };
+
+        function hiddensValueOfThePlayer() {
+            let player = +prompt('Enter your choice');
+            player = Array.from(String(player), Number);
+
+            return player;
+        };
+
+        function checkValues(inputValue, hiddenValue) {
+            let bulls = 0;
+            let cows = 0;
+            let win;
+
+            for (let i = 0; i < 4; i++) {
+                if (hiddenValue[i] === +inputValue[i]) {
+                    bulls++
+                } else if (hiddenValue.includes(+inputValue[i])) {
+                    cows++;
+                };
+            };
+
+            hint(bulls, cows, inputValue);
+
+            return bulls === 4 ? win = true : win = false; 
+        };
+
+        function hint(bulls, cows, playerChoice) {
+            console.log(
+                `Your choice: ${playerChoice}\n
+                Bulls: ${bulls}\n
+                Cows: ${cows}`
+            );
+        };
+
+        function play() {
+            let maxRounds = 10;
+            computerChoice = hiddensValueOfTheСomp();
+
+            for (let i = 1; i <= maxRounds; i++) {
+                playerChoice = hiddensValueOfThePlayer();
+
+                if (playerChoice.length > 4) {
+                    outputError();
+                    break;
+                };
+
+                console.log(`Attempt: ${i}`);
+                result = checkValues(playerChoice, computerChoice);
+
+                if (result) {
+                    console.log(`You win! Applause.`);
+                    break;
+                };
+            };
+
+            if (i = 10 || !result) {
+                console.log(`You lose! The computer choice was ${computerChoice}. Try it next time.`);
+            };
+        };
+    </script>
+</body>
+
+</html>
