@@ -1,45 +1,52 @@
-
-
-
-//не смог решить задачу(
-
-
-
-
-
-
-
-function start() {
-    let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-    let a = Math.floor(Math.random() * 9)
-    let one = arr[a]
-    arr.splice(a, 1);
-
-    a = Math.floor(Math.random() * 8)
-    let two = arr[a]
-    arr.splice(a, 1);
-
-    a = Math.floor(Math.random() * 7)
-    let three = arr[a]
-    arr.splice(a, 1);
-
-    a = Math.floor(Math.random() * 6)
-    let four = arr[a]
-    arr.splice(a, 1);
-    let game = [one, two, three, four];
-}
-function attempt() {
-    let b=0 , y=0;
-    let p = prompt();
-    let arr1 = p.split(" ");
-    console.log(arr1)
-    for (let i = 0; arr1 < arr1.length; i++) {
-        if(arr1[i]==game[i]){
-            b=b++;
-        }else if (arr1[i]==game[1]||arr1[i]==game[2]||arr1[i]==game[3]||arr1[i]==game[4]){
-            y++
-        };
-        
+let bot = botNumber();
+function botNumber() {
+    let a = [1, 2, 3, 4, 5, 7, 8, 9];
+    let c = 8;
+    let arr = []
+    for (let i = 0; i <= 3; i++) {
+        let p = Math.floor(Math.random() * c);
+        arr[i] = a[p];
+        a.splice(p, 1);
+        c--;
     };
-    console.log(b);
-}
+    return arr;
+};
+function input() {
+    const playernum = prompt('Введите число из 4 цифр ,которые не будут повторяться');
+    const player = Array.from(String(playernum), Number);
+    console.log("Ваше число: " + playernum);
+    return player;
+};
+function gameInfo() {
+    let c = 0;
+    let b = 0;
+    const playerNumber = input();
+    for (i = 0; i <= bot.length - 1; i++) {
+        for (j = 0; j <= playerNumber.length - 1; j++) {
+            if (bot[i] == playerNumber[j] && i == j) {
+                b++;
+            }
+            else if (bot[i] == playerNumber[j] && i != j) {
+                c++;
+            }
+        };
+    };
+    console.log(c + ': Коров ' + b + ': Быков');
+    return b;
+};
+function game() {
+    let k = 10;
+    while (k >= 1) {
+        let b = gameInfo();
+        if (b === 4) {
+            bot = botNumber();
+            return console.log('Вы выиграли');
+        };
+        console.log(`у вас осталось ${k - 1} попыток`);
+        k--;
+    };
+    console.log("Компьютер загадал:" + bot);
+    console.log("Вы проиграли");
+    bot = botNumber();
+};
+
