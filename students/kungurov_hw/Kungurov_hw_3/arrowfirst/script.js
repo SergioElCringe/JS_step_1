@@ -6,13 +6,13 @@ function arr() {
     for (let i = 0; i < arr.length; i++) {
         if (arr[i] % 2 == 0) {
             arr1[j] = arr[i];
-            j++
+            j++;
         } else {
             arr2[k] = arr[i];
-            k++
+            k++;
         };
 
     };
-    console.log('четный массив- ' + arr1)
-    console.log('Не четный массив- ' + arr2)
+    console.log('четный массив- ' + arr1);
+    console.log('Не четный массив- ' + arr2);
 };

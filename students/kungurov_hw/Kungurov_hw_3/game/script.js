@@ -2,7 +2,7 @@ let bot = botNumber();
 function botNumber() {
     let a = [1, 2, 3, 4, 5, 7, 8, 9];
     let c = 8;
-    let arr = []
+    let arr = [];
     for (let i = 0; i <= 3; i++) {
         let p = Math.floor(Math.random() * c);
         arr[i] = a[p];
@@ -28,7 +28,7 @@ function gameInfo() {
             }
             else if (bot[i] == playerNumber[j] && i != j) {
                 c++;
-            }
+            };
         };
     };
     console.log(c + ': Коров ' + b + ': Быков');
