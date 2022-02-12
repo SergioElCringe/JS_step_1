@@ -1,81 +1,25 @@
-var move = 0.5, move1 = 1, i = 0, k = 0;
-var computer, choice= rand();
 function rand() {
-    computer = Math.floor(Math.random() * 3);
-    if (computer == 0) {
-        choice = 1; //камень
-    } else if (computer == 1) {
-        choice = 2; //ножницы
-    } else {
-        choice = 3; //бумага
-    };
-    return choice;
+    return Math.floor(Math.random() * 3 + 1);
 };
-function end() {
-    if (move == 0) {
-        console.log('Общий счет за предыдущую игру ваш -' + i + ' компьютер - ' + k);
-        i = 0;
-        k = 0;
+function Func(num) {
+    switch (num) {
+        case 1:
+            return 'Камень';
+        case 2:
+            return 'Бумага';
+        case 3:
+            return 'Ножницы';
     }
 };
-function game() {
-    console.log('начало игры , игра длится 3 раунда');
-    move = 3;
-};
-function rock() {
-    rand();
-    if (move >= move1) {
-        console.log('Ваш выбор камень');
-        move = move - 1;
-        if (choice == 1) {
-            console.log('Выбор компьютера камень - Ничья');
-        } else if (choice == 2) {
-            console.log('Выбор компьютера ножницы - Победа за вами');
-            return i = i + 1;
-        } else {
-            console.log('Выбор компьютера бумага - Вы проиграли');
-            return k = k + 1;
-        };
-    } else {
-        console.log('начните игру');
+function result(num) {
+    const player = Func(num);
+    const comp = rand();
+    const computerName = Func(comp);
+    let winner = ' Вы проиграли,компьютер победил'
+    if ((num === 1 && comp === 2) || (num === 2 && comp === 3) || (num === 3 && comp === 1)) {
+        winner = ' Вы победили ,компьютер проиграл';
+    } else if (num === comp) {
+        winner = ' Ничья'
     };
-    end(k, i);
-};
-function scissors() {
-    rand();
-    if (move >= move1) {
-        console.log('Ваш выбор ножницы');
-        move = move - 1;
-        if (choice == 1) {
-            console.log('Выбор компьютера камень - Вы проиграли');
-            return k = k + 1;
-        } else if (choice == 2) {
-            console.log('Выбор компьютера ножницы - Ничья');
-        } else {
-            console.log('Выбор компьютера бумага - Победа за вами');
-            return i = i + 1;
-        };
-    } else {
-        console.log('начните игру');
-    };
-    end(k, i);
-};
-function paper() {
-    rand();
-    if (move >= move1) {
-        console.log('Ваш выбор бумага');
-        move = move - 1;
-        if (choice == 1) {
-            console.log('Выбор компьютера камень - Победа за вами');
-            return i = i + 1;
-        } else if (choice == 2) {
-            console.log('Выбор компьютера ножницы - Вы проиграли');
-            return k = k + 1;
-        } else {
-            console.log('Выбор компьютера бумага - Ничья');
-        };
-    } else {
-        console.log('начните игру');
-    };
-    end(k, i);
+    console.log('компьютер выбрал ' + computerName + ' ваш выбор ' + player   + winner);
 };

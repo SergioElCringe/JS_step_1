@@ -47,5 +47,7 @@ function divide(num1, num2) {
 function output(result) {
     if (result) {
         console.log(result);
+    } else if (result == 0) {
+        console.log('0');
     }
 }
