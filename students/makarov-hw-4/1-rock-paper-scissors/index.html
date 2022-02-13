@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock paper scissors</title>
+</head>
+
+<body>
+    <article class="game">
+        <div class="game__controller">
+            <button onclick="rps.getResult(1)" class="game__btn">✊</button>
+            <button onclick="rps.getResult(2)" class="game__btn">✋</button>
+            <button onclick="rps.getResult(3)" class="game__btn">✌</button>
+        </div>
+    </article>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            width: 100vw;
+            max-width: 100%;
+            height: 100vh;
+            max-height: 100%;
+        }
+
+        .game {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 200px;
+        }
+
+        .game__controller {
+            display: flex;
+            height: 200px;
+        }
+
+        .game__btn {
+            display: block;
+            width: calc(100% / 3);
+            height: 200px;
+            line-height: 200px;
+            font-size: 100px;
+            background: none;
+            outline: none;
+            border: none;
+            transition: font-size 0.3s ease;
+        }
+
+        .game__btn:hover {
+            font-size: 110px;
+        }
+
+        .game__btn:active {
+            font-size: 130px;
+        }
+    </style>
+    <script>
+        const rps = {
+            getResult(num) {
+                const rndm = Math.floor(Math.random() * 3 + 1);
+                if (num === rndm) {
+                    console.log('Draw! Try again');
+                    return;
+                }
+                if ((num === 1 && rndm === 2) || (num === 2 && rndm === 3) || (num === 3 && rndm === 1)) {
+                    console.log(`You loose! Your opponent choice was ${this.getName(rndm)}`);
+                    return;
+                }
+                console.log(`You win! Your opponent choice was ${this.getName(rndm)}`);
+                return;
+            },
+            getName(num) {
+                switch (num) {
+                    case 1:
+                        return 'stone';
+                    case 2:
+                        return 'paper';
+                    case 3:
+                        return 'scissors';
+                }
+            }
+        };
+    </script>
+</body>
+
+</html>

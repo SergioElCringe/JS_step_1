@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bulls and Cows</title>
+</head>
+
+<body>
+    <button onclick="bullsAndCows.startGame();">🐂🐄</button>
+    <script>
+        const bullsAndCows = {
+            userInput: null,
+            secret: null,
+            bulls: 0,
+            cows: 0,
+            attempts: 0,
+            startGame() {
+                this.getUniques();
+                console.log(this.secret);
+                this.attempts = 9;
+                while (this.attempts > -1) {
+                    this.resetCounters();
+                    this.getInput();
+                    this.checkInput();
+                    console.log(`Remaining attempts ${this.attempts--}\nYour input: ${this.userInput}\nBulls: ${this.bulls}\n Cows: ${this.cows}`);
+                    if (this.bulls === 4) {
+                        console.log('You win!');
+                        return;
+                    }
+                }
+                console.log('You loose!');
+            },
+            /*gets and converts user input into digit array*/
+            getInput() {
+                const userInput = prompt('Enter your answer');
+                this.userInput = [...userInput].map(el => +el);
+            },
+            /*generates the secret number*/
+            getUniques() {
+                const arr = [];
+                while (arr.length < 4) {
+                    const num = Math.floor(Math.random() * 10);
+                    if (!arr.includes(num)) {
+                        arr.push(num);
+                    }
+                }
+                this.secret = arr;
+            },
+            /*counts bulls and cows*/
+            checkInput() {
+                this.userInput.forEach((el, index) => {
+                    if (this.secret.includes(el)) {
+                        this.secret.indexOf(el) === index ? this.bulls++ : this.cows++;
+                    }
+                });
+            },
+            resetCounters() {
+                this.bulls = 0;
+                this.cows = 0;
+            }
+        };
+    </script>
+</body>
+
+</html>
