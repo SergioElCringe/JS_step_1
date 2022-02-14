@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* CSS */
+        button {
+            font-size: 15px;
+            padding: 10px;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- HTML -->
+    <button onclick="play.getWinner()">Играть</button>
+
+    <!-- JS -->
+    <script>
+        const play = {
+            getRandom() {
+                return Math.floor(Math.random() * 3 + 1);
+            },
+            getResult(resultFirst, resultSecond, winner) {
+                console.log(`Ваш выбор: ${resultFirst}, выбор компьютера: ${resultSecond}, результат игры: ${winner}`);
+            },
+            getNumbers(number) {
+                switch (number) {
+                    case 1: {
+                        return 'Камень';
+                    };
+                    case 2: {
+                        return 'Ножницы';
+                    };
+                    case 3: {
+                        return 'Бумага';
+                    };
+                };
+            },
+            getWinner() {
+                let playerNumber = +prompt('Введите свой выбор: (1 = Камень, 2 = Ножницы, 3 = Бумага)');
+                let computerNumber = this.getRandom();
+
+                if (playerNumber === 1 || playerNumber === 2 || playerNumber === 3) {
+                    let computerChoice = this.getNumbers(computerNumber);
+                    let playerChoice = this.getNumbers(playerNumber);
+                    let winner = 'Компьютер победил!';
+
+                    if (playerNumber === 1 && computerNumber === 2 || playerNumber === 3 && computerNumber === 1 || playerNumber === 2 && computerNumber === 3) {
+                        winner = 'Вы победили!';
+                    } else if (playerNumber === computerNumber) {
+                        winner = 'Ничья!';
+                    };
+
+                    this.getResult(playerChoice, computerChoice, winner);
+                } else {
+                    console.log('Вы пытаетесь играть не по правилам! Для игры требуется выбрать один вариант из трех: камень, ножницы или бумага! (1 = Камень, 2 = Ножницы, 3 = Бумага)');
+                };
+            }
+        };
+    </script>
+</body>
+
+</html>
