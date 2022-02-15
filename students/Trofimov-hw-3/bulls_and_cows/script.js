@@ -1,23 +1,56 @@
-function createNum() {
-    let arr_num = [];
+function randomNum() {
+    return Math.floor(Math.random() * 10);
+};
 
-    while (arr_num.length < 4) {
-        let arr_elem = Math.floor(Math.random() * 10)
-        if (arr_num.indexOf(arr_elem) < 0) {
-            arr_num.push(arr_elem);
+function gameProcess() {
+    const computerNumber = computerNum();
+    let rounds = 10;
+    let play = true;
+    console.log(computerNumber);
+
+    while (play) {
+        if (rounds) {
+            let playerNumber = [...prompt('Введите 4 неповторяющиеся цифры:')];
+            play = checkFunc(computerNumber, playerNumber);
+            
+            console.log(play ? `Осталось играть: ${ --rounds } раундов` : `Вы выиграли! Правильный ответ: ${computerNumber}`);
+        } else {
+            console.log('Вы проиграли! Правильный ответ: ' + computerNumber);
+            play = false;
         };
     };
-    
-    console.log('Загаданное компьютером число: ' + arr_num)
-    let user_arr = [];
+};
 
-    for (let i = 1; i < 3; i ++) {
-        let user_num = +prompt('Введите число. Попытка №' + i);
-        
-        let elem1 = Math.floor(user_num / 1000);
-        let elem2 = Math.floor((user_num - elem1*1000) / 100);
-        let elem3 = Math.floor((user_num - elem1*1000 - elem2*100) / 10);
-        let elem4 = (user_num - elem1*1000 - elem2*100 - elem3*10);
+function computerNum() {
+    const result = [];
+    while (result.length < 4) {
+        const randomNumber = randomNum();
+        if (result.indexOf(randomNumber) < 0 ) {
+            result.push(randomNumber);
+        };
     };
-    return arr_num
-}
+    return result;
+};
+
+function checkFunc(computerNumber, playerNumber) {
+    let bulls = 0;
+    let cows = 0;
+
+    for(let i = 0; i < 4; i++) {
+        if (computerNumber[i] === +playerNumber[i]) {
+            bulls++;
+        } else if (computerNumber.includes(+playerNumber[i])) {
+            cows++;
+        };
+    };
+
+    getHint(bulls, cows, playerNumber);
+    return bulls === 4 ? false : true;
+};
+
+function getHint(bulls, cows, playerNumber) {
+    return console.log(`
+    В числе: ${ playerNumber }\n
+    Быки: ${ bulls }\n
+    Коровы: ${ cows }`);
+};
