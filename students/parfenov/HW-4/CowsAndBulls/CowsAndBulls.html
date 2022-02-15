@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button onclick="game.play()">Играть</button>
+    <script>
+
+        const player = {
+            array: [],
+            input() {
+                const playerNumber = prompt('Напишите четырехзначное число.');
+                array = Array.from(String(playerNumber), Number);
+                console.log("Ваше число: " + array);
+                return array;
+            },
+        };
+
+        const bot = {
+            array: [],
+            NumberGenerate() {
+                let numbers = [];
+                while (numbers.length < 4) {
+                    const rnd = Math.floor(Math.random() * 10);
+                    if (!numbers.includes(rnd)) {
+                        numbers.push(rnd);
+                    }
+                };
+                return numbers;
+            },
+
+        };
+
+        const game = {
+            play() {
+                let i = 10;
+                while (i >= 1) {
+                    let bulls = game.bullAndCowsCount();
+                    if (bulls === 4) {
+                        console.log("Компьютер загадал:" + bot.array);
+                        return console.log('Вы выиграли');
+                    };
+                    console.log(`у вас осталось ${i - 1} попыток`);
+                    i--;
+                };
+                console.log("Компьютер загадал:" + bot.array);
+                console.log("Попытки кончились, вы проиграли");
+            },
+
+            bullAndCowsCount() {
+                let cows = 0;
+                let bulls = 0;
+                player.array = player.input();
+                bot.array = bot.NumberGenerate();
+                for (i = 0; i <= bot.array.length - 1; i++) {
+                    for (j = 0; j <= player.array.length - 1; j++) {
+                        if (bot.array[i] == player.array[j] && i == j) {
+                            bulls++;
+                        }
+                        else if (bot.array[i] == player.array[j] && i != j) {
+                            cows++;
+                        }
+                    };
+                };
+                console.log(`Коров :${cows}\n\nБыков: ${bulls}\n\n`)
+                return bulls;
+            },
+        };
+    </script>
+</body>
+
+</html>
