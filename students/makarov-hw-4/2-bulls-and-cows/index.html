@@ -9,59 +9,75 @@
 </head>
 
 <body>
-    <button onclick="bullsAndCows.startGame();">🐂🐄</button>
+    <button onclick="game();">🐂🐄</button>
     <script>
-        const bullsAndCows = {
-            userInput: null,
-            secret: null,
-            bulls: 0,
-            cows: 0,
-            attempts: 0,
-            startGame() {
-                this.getUniques();
-                console.log(this.secret);
-                this.attempts = 9;
-                while (this.attempts > -1) {
-                    this.resetCounters();
-                    this.getInput();
-                    this.checkInput();
-                    console.log(`Remaining attempts ${this.attempts--}\nYour input: ${this.userInput}\nBulls: ${this.bulls}\n Cows: ${this.cows}`);
+        function game() {
+            const bullsAndCows = {
+                userInput: null,
+                secret: null,
+                bulls: 0,
+                cows: 0,
+                attempts: 9,
+                result: null,
+                stop: false,
+                start() {
+                    this.generateSecret();
+                    // console.log(this.secret);
+                    while (!this.stop) {
+                        this.getUserInput();
+                        this.checkInput();
+                        this.getResult();
+                        this.displayOutput();
+                        this.resetCounters();
+                        this.attempts--;
+                    }
+                },
+                generateSecret() {
+                    const arr = [];
+                    while (arr.length < 4) {
+                        const num = Math.floor(Math.random() * 10);
+                        if (!arr.includes(num)) {
+                            arr.push(num);
+                        }
+                    }
+                    this.secret = arr;
+                },
+                getUserInput() {
+                    const userInput = prompt('Enter your answer');
+                    this.userInput = [...userInput].map(el => +el);
+                },
+                checkInput() {
+                    this.userInput.forEach((el, index) => {
+                        if (this.secret.includes(el)) {
+                            this.secret.indexOf(el) === index ? this.bulls++ : this.cows++;
+                        }
+                    });
+                },
+                getResult() {
                     if (this.bulls === 4) {
-                        console.log('You win!');
-                        return;
+                        this.result = 'You win!';
+                        this.stop = true;
+                    } else if (this.attempts < 0) {
+                        this.result = 'You loose!';
+                        this.stop = true;
+                    } else {
+                        this.result = `Bulls: ${this.bulls} Cows: ${this.cows}`;
                     }
+                },
+                displayOutput() {
+                    console.log(this.result);
+                    if(this.attempts > -1 && !this.stop){
+                        console.log(`Remaining attempts ${this.attempts}`);
+                    }
+                },
+                resetCounters() {
+                    this.cows = 0;
+                    this.bulls = 0;
                 }
-                console.log('You loose!');
-            },
-            /*gets and converts user input into digit array*/
-            getInput() {
-                const userInput = prompt('Enter your answer');
-                this.userInput = [...userInput].map(el => +el);
-            },
-            /*generates the secret number*/
-            getUniques() {
-                const arr = [];
-                while (arr.length < 4) {
-                    const num = Math.floor(Math.random() * 10);
-                    if (!arr.includes(num)) {
-                        arr.push(num);
-                    }
-                }
-                this.secret = arr;
-            },
-            /*counts bulls and cows*/
-            checkInput() {
-                this.userInput.forEach((el, index) => {
-                    if (this.secret.includes(el)) {
-                        this.secret.indexOf(el) === index ? this.bulls++ : this.cows++;
-                    }
-                });
-            },
-            resetCounters() {
-                this.bulls = 0;
-                this.cows = 0;
-            }
-        };
+            };
+            bullsAndCows.start();
+        }
+
     </script>
 </body>
 
