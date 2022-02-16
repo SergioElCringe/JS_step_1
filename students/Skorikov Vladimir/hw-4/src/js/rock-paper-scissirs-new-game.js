@@ -1,36 +1,42 @@
 // ROCK GAME 
-const gameRockPaperScissors = {
-  round: 1,
-  play(user) {
-   console.log(this.match(user));
-  },
-  rnd() {
-    return Math.floor(Math.random() * 3 + 1); //1 2 3
-  },
-  match(player) {
-    let winner = 'Bot';
-    const bot = this.rnd();
+function play(num) {
+  const gameRockPaperScissors = {
+    round: 1,
+    pc: null,
+    player: null,
+    winner: null,
+    name: ['Камень', 'Ножницы', 'Бумага'],
 
-    if ((player === 1 && bot === 2) || (player === 2 && bot === 3) || (player === 3 && bot === 1)) {
-      winner = 'Player';
-    } else if (player === bot) {
-      winner = 'Both';
-    }
-
-    return `
-      РАУНД: ${ this.round++ }\n
-      Результат:\n
-      ИГРОК: ${ this.getName(player) }\n
-      Bot: ${ this.getName(bot) }\n
-  
-      Победитель: ${ winner }!
-    `
+    startGame(player) {
+      this.pc = Math.floor(Math.random() * 3 + 1);
+      this.player = player ? player : +prompt("Выберите 1 или 2 или 3");
+      this.match();
+      this.getChampion();
     },
-    getName(val) {
-      switch (val) {
-        case 1: return 'Камень';
-        case 2: return 'Ножницы';
-        case 3: return 'Бумага';
-      };
-    }
+
+    match() {
+      const { pc, player } = this;
+      if ((player === 1 && pc === 2) || (player === 2 && pc === 3) || (player === 3 && pc === 1)) {
+        this.winner = 'Игрок';
+      } else if (player === pc) {
+        this.winner = 'Ничья';
+      } else {
+        this.winner = 'Компьютер'
+      }
+    },
+    
+    getChampion() {
+      const { pc, player, winner, name } = this;
+      console.log(`
+        РАУНД: ${ this.round++ }\n
+        Результат:\n
+        ИГРОК: ${ name[player -1] }\n
+        Bot: ${ name[pc - 1] }\n
+    
+        Победитель: ${ winner }!
+      `)
+    },
+  };
+  
+  gameRockPaperScissors.startGame(num);
 };

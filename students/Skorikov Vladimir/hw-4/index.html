@@ -26,18 +26,22 @@
   <div class="container">
     <p>Игра камень ножницы бумага!</p>
     <div class="row">
-      <button onclick="gameRockPaperScissors.play(1)">✊</button>
-      <button onclick="gameRockPaperScissors.play(2)">✌</button>
-      <button onclick="gameRockPaperScissors.play(3)">✋</button>
+      <button onclick="play(1)">✊</button>
+      <button onclick="play(2)">✌</button>
+      <button onclick="play(3)">✋</button>
     </div>
 
     <p>Игра коровы и быки</p>
     <div>
       <button onclick="bullsAndCows.game()">Начать игру?!</button>
     </div>
+
+    <p>Клонировать объект Olga с помощью рекурсии</p>
+    <button onclick="recursiveClone()">Запуск</button>
   </div>
 
   <script src="src/js/rock-paper-scissirs-new-game.js"></script>
   <script src="src/js/bulls-and-cows-game.js"></script>
+  <script src="src/js/recursive-clone.js"></script>
 </body>
 </html>
