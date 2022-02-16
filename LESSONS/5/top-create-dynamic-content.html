@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    .wrapper {
+      display: flex;
+      flex-direction: column;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      width: 250px;
+    }
+
+    label {
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+    input {
+      max-width: 150px;
+      margin-right: 10px;
+    }
+    span {
+      max-width: 70px;
+    }
+
+    .result {
+      margin-top: 50px;
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      width: 200px;
+      height: 200px;
+      border: 2px solid black;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-right: 20px;
+      margin-bottom: 20px;
+    }
+
+    .card .prop {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="form">
+      <form>
+        <label>
+          <input type="text" id="name"> <span>name</span>
+        </label>
+
+        <label>
+          <input type="text" id="age"> <span>age</span>
+        </label>
+
+        <label>
+          <input type="text" id="hobby"> <span>hobby</span>
+        </label>
+      </form>
+      <button onclick="socialNetwork.add()">Add</button>
+    </div>
+    <div class="result" id="result">
+      
+    </div>
+  </div>
+
+<script>
+  const preData = [
+    {
+      name: 'Ольга',
+      age: '33',
+      hobby: 'to sleep',
+    },
+    {
+      name: 'Алексей',
+      age: '28',
+      hobby: 'to eat',
+    },
+  ];
+
+  const socialNetwork = {
+    container: null,
+    items: [],
+    inputName: null,
+    inputAge: null,
+    inputHobby: null,
+
+    init() {
+      this.container = document.querySelector('#result');
+      this.inputName = document.querySelector('#name');
+      this.inputAge = document.querySelector('#age');
+      this.inputHobby = document.querySelector('#hobby');
+      this.items = preData;
+      this.render();
+    },
+
+    add() {
+      this.items.push({
+        name: this.inputName.value,
+        age: this.inputAge.value,
+        hobby: this.inputHobby.value,
+      });
+
+      this.render();
+    },
+
+    render() {
+      let templateAll = '';
+      this.items.forEach(item => templateAll += this.getTemplate(item));
+      this.container.innerHTML = templateAll;
+    },
+
+    getTemplate(item) {
+      const { name, age, hobby } = item;
+      return `
+        <div class="card">
+          <div>
+            <span class="prop">Name:</span>
+            <span class="value">${ name }</span>
+          </div>
+          <div>
+            <span class="prop">Age:</span>
+            <span class="value">${ age }</span>
+          </div>
+          <div>
+            <span class="prop">Hobby:</span>
+            <span class="value">${ hobby }</span>
+          </div>
+        </div>
+      `;
+    }
+  };
+
+  socialNetwork.init();
+</script>
+</body>
+</html>
