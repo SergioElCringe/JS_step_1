@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bulls and Cows</title>
+</head>
+
+<body>
+    <button onclick="game();">🐂🐄</button>
+    <script>
+        function game() {
+            const bullsAndCows = {
+                userInput: null,
+                secret: null,
+                bulls: 0,
+                cows: 0,
+                attempts: 9,
+                result: null,
+                stop: false,
+                start() {
+                    this.generateSecret();
+                    // console.log(this.secret);
+                    while (!this.stop) {
+                        this.getUserInput();
+                        this.checkInput();
+                        this.getResult();
+                        this.displayOutput();
+                        this.resetCounters();
+                        this.attempts--;
+                    }
+                },
+                generateSecret() {
+                    const arr = [];
+                    while (arr.length < 4) {
+                        const num = Math.floor(Math.random() * 10);
+                        if (!arr.includes(num)) {
+                            arr.push(num);
+                        }
+                    }
+                    this.secret = arr;
+                },
+                getUserInput() {
+                    const userInput = prompt('Enter your answer');
+                    this.userInput = [...userInput].map(el => +el);
+                },
+                checkInput() {
+                    this.userInput.forEach((el, index) => {
+                        if (this.secret.includes(el)) {
+                            this.secret.indexOf(el) === index ? this.bulls++ : this.cows++;
+                        }
+                    });
+                },
+                getResult() {
+                    if (this.bulls === 4) {
+                        this.result = 'You win!';
+                        this.stop = true;
+                    } else if (this.attempts < 0) {
+                        this.result = 'You loose!';
+                        this.stop = true;
+                    } else {
+                        this.result = `Bulls: ${this.bulls} Cows: ${this.cows}`;
+                    }
+                },
+                displayOutput() {
+                    console.log(this.result);
+                    if(this.attempts > -1 && !this.stop){
+                        console.log(`Remaining attempts ${this.attempts}`);
+                    }
+                },
+                resetCounters() {
+                    this.cows = 0;
+                    this.bulls = 0;
+                }
+            };
+            bullsAndCows.start();
+        }
+
+    </script>
+</body>
+
+</html>
