@@ -10,75 +10,79 @@
 
 <body>
     <!-- HTML -->
-    <button onclick="play.getWinner()">Start play</button>
+    <button onclick="game()">Start play</button>
 
     <!-- JS -->
     <script>
-        const play = {
-            getRandom() {
-                return Math.floor(Math.random() * 10);
-            },
-            getHiddensValueOfComp() {
-                let skyNet = [];
-                let randomNumber;
+        function game() {
+            const play = {
+                skyNet: [],
+                randomNumber: null,
+                win: null,
+                maxRounds: 10,
+                play: true,
+                result: null,
 
-                while (skyNet.length < 4) {
-                    randomNumber = this.getRandom();
+                getRandom() {
+                    return Math.floor(Math.random() * 10);
+                },
+                getHiddensValueOfComp() {
+                    while (this.skyNet.length < 4) {
+                        this.randomNumber = this.getRandom();
 
-                    if (!skyNet.includes(randomNumber)) {
-                        skyNet.push(randomNumber);
-                    };
-                };
-
-                return skyNet;
-            },
-            getHint(bulls, cows, playerChoice) {
-                console.log(
-                    `Your choice: ${playerChoice}\n
-                    Bulls: ${bulls}\n
-                    Cows: ${cows}`
-                );
-            },
-            checkValues(inputValue, hiddenValue) {
-                let bulls = 0;
-                let cows = 0;
-                let win;
-
-                for (let i = 0; i < 4; i++) {
-                    if (hiddenValue[i] === +inputValue[i]) {
-                        bulls++
-                    } else if (hiddenValue.includes(+inputValue[i])) {
-                        cows++;
-                    };
-                };
-
-                this.getHint(bulls, cows, inputValue);
-
-                return bulls === 4 ? win = true : win = false;
-            },
-            getWinner() {
-                let maxRounds = 10;
-                computerChoice = this.getHiddensValueOfComp();
-                let play = true;
-                let result;
-
-                for (let i = 1; i <= maxRounds; i++) {
-                    if (play) {
-                        let playerChoice = [...prompt('Enter your choice')];
-                        console.log(`Attempt: ${i}`);
-                        result = this.checkValues(playerChoice, computerChoice);
-
-                        if (result) {
-                            console.log(`You win! Applause.`);
-                            play = false;
+                        if (!this.skyNet.includes(this.randomNumber)) {
+                            this.skyNet.push(this.randomNumber);
                         };
                     };
-                };
 
-                if (i = 10 && !result) {
-                    console.log(`You lose! The computer choice was ${computerChoice}. Try it next time.`);
-                };
-            }
+                    return this.skyNet;
+                },
+                getHint(bulls, cows, playerChoice) {
+                    console.log(
+                        `Your choice: ${playerChoice}\n
+                    Bulls: ${bulls}\n
+                    Cows: ${cows}`
+                    );
+                },
+                checkValues(inputValue, hiddenValue) {
+                    let bulls = 0;
+                    let cows = 0;
+
+                    for (let i = 0; i < 4; i++) {
+                        if (hiddenValue[i] === +inputValue[i]) {
+                            bulls++
+                        } else if (hiddenValue.includes(+inputValue[i])) {
+                            cows++;
+                        };
+                    };
+
+                    this.getHint(bulls, cows, inputValue);
+
+                    return bulls === 4 ? this.win = true : this.win = false;
+                },
+                getWinner() {
+                    computerChoice = this.getHiddensValueOfComp();
+
+                    for (let i = 1; i <= this.maxRounds; i++) {
+                        if (this.play) {
+                            let playerChoice = [...prompt('Enter your choice')];
+                            console.log(`Attempt: ${i}`);
+                            this.result = this.checkValues(playerChoice, computerChoice);
+
+                            if (this.result) {
+                                console.log(`You win! Applause.`);
+                                this.play = false;
+                            };
+                        };
+                    };
+
+                    if (i = 10 && !this.result) {
+                        console.log(`You lose! The computer choice was ${computerChoice}. Try it next time.`);
+                    };
+                }
+            };
+
+            play.getWinner();
         };
     </script>
 </body>
