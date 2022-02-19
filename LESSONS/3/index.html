@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button onclick="play(1)">
+    Rock
+  </button>
+  <button onclick="play(2)">
+    Scisors
+  </button>
+  <button onclick="play(3)">
+    Paper
+  </button>
+  
+  <script>
+    // POWER function
+
+    // function power(val, pow) {
+    //   if (pow >= 0) {
+    //     return !pow ? 1 : val * power(val, --pow);
+    //   }
+
+    //   // if (power >= 0) {
+    //   //   if (!pow) {
+    //   //     return 1;
+    //   //   } else {
+    //   //     return val * power(val, pow - 1);
+    //   //   }
+    //   // }
+    // };
+
+    // console.log(power(2, 3));
+
+    // ИНКРЕМЕНТ
+
+    // let a = 1;
+    // a++; //2 a--
+    // console.log(++a); --a
+
+    //0 5 10 15
+    // let a = 0;
+    // a += 5; //5
+    // a -= 10; // -5
+    // a *= 10; // -50
+
+    // ROCK GAME
+    
+    let round = 1;
+
+    function play(user) {
+      console.log(match(user));
+    };
+
+    function match(player) {
+      const skyNet = rnd();
+      let winner = 'SkyNet';
+
+      if ((player === 1 && skyNet === 2) || (player === 2 && skyNet === 3) || (player === 3 && skyNet === 1)) {
+        winner = 'Player';
+      } else if (player === skyNet) {
+        winner = 'Both';
+      }
+
+      return `
+        РАУНД: ${ round++ }\n
+        Результат:\n
+        ИГРОК: ${ getName(player) };\n
+        SKYNET: ${ getName(skyNet) };\n
+
+        Победитель: ${ winner }!
+      `;
+    };
+
+    function rnd() {
+      return Math.floor(Math.random() * 3 + 1); //1 2 3
+    };
+
+    function getName(val) {
+      switch (val) {
+        case 1: return 'Rock';
+        case 2: return 'Scisors';
+        case 3: return 'Paper';
+      }
+    };
+  </script>
+</body>
+</html>

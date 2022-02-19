@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script>
+    // const header = document.createElement('header');
+    // const h1 = document.createElement('h1');
+
+    // header.appendChild(h1);
+
+    // document.body.appendChild(header);
+
+    // header.innerText = 'Hello';
+    // header.style.color = 'red';
+    // header.style.fontSize = '2em';
+    // // document.body.insertAdjacentHTML('afterbegin', header);
+
+    function createEl(el, text, styles = {}) {
+      const elem = document.createElement(el);
+      elem.innerText = text;
+      
+      Object.keys(styles).forEach(style => {
+        elem.style[style] = styles[style];
+      });
+
+      return elem;
+    };
+
+    const h1 = createEl('h1', 'Здрасьте', { fontSize: '2em', color: '#0053ff' });
+    const h1_1 = createEl('h1', 'Привет', { fontFamily: 'sans-serif' });
+    const h1_2 = createEl('h1', 'Привет222');
+
+    document.body.appendChild(h1);
+    document.body.appendChild(h1_1);
+    document.body.appendChild(h1_2);
+  </script>
+</body>
+</html>

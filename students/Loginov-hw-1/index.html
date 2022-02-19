@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="plus()">+</button>
+    <button onclick="minus()">-</button>
+    <button onclick="multiplication()">*</button>
+    <button onclick="division()">:</button>
+    <script>
+        var a,b,result;
+        function plus() {
+            a = +prompt('Введите первое слогаемое');
+            b = +prompt('Введите второе слогаемое');
+            result = a + b;
+            console.log('Результат сложения ' + a + ' и ' + b + ' = ' + result);
+        };
+        function minus() {
+            a = +prompt('Введите уменьшаемое');
+            b = +prompt('Введите вычитаемое');
+            result = a - b;
+            console.log('Результат вычитания ' + a + ' и ' + b + ' = ' + result)
+        };
+        function multiplication() {
+            a = +prompt('Введите первый множитель');
+            b = +prompt('Введите второй множитель');
+            result = a * b;
+            console.log('Результат умножения ' + a + ' и ' + b + ' = ' + result);
+        };
+        function division() {
+            a = +prompt('Введите делимое');
+            b = +prompt('Введите делитель');
+            result = a / b;
+            console.log('Результат сложения ' + a + ' и ' + b + ' = ' + result);
+        };
+    </script>
+</body>
+</html>
