@@ -6,16 +6,14 @@ function play() {
         c: 0,
         rounds: 10,
         botNumber() {
-            let a = [1, 2, 3, 4, 5, 7, 8, 9];
-            let o = 8;
-            let arr = [];
-            for (let i = 0; i <= 3; i++) {
-                let p = Math.floor(Math.random() * o);
-                arr[i] = a[p];
-                a.splice(p, 1);
-                o--;
-            };
-            this.pc = arr;
+            const result = [];
+            while (result.length < 4) {
+                const rndNumber = Math.floor(Math.random() * 10);
+                if (!result.includes(rndNumber)) {
+                    result.push(rndNumber);
+                }
+            }
+            this.pc = result;
         },
         input() {
             const playernum = prompt('Введите число из 4 цифр ,которые не будут повторяться');

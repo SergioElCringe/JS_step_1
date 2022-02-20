@@ -10,11 +10,20 @@ const olga = {
     changeName(name) {
         this.name = name;
     },
+    recursive: {
+        name: 'olga2',
+        age: 32,
+    },
 };
 function recursive() {
     const olgaCl = {};
     for (let key in olga) {
-        olgaCl[key] = olga[key];
+        if (typeof olga[key] === 'object'){
+            olgaCl[key] = {};
+        }else{
+            olgaCl[key] = olga[key];
+        }
     };
     console.log(olgaCl);
+    console.log(olga);
 };
