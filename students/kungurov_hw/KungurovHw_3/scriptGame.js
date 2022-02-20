@@ -1,16 +1,17 @@
 let bot = botNumber();
-function botNumber() {
-    let a = [1, 2, 3, 4, 5, 7, 8, 9];
-    let c = 8;
-    let arr = [];
-    for (let i = 0; i <= 3; i++) {
-        let p = Math.floor(Math.random() * c);
-        arr[i] = a[p];
-        a.splice(p, 1);
-        c--;
-    };
-    return arr;
-};
+function randomize() {
+    return Math.floor(Math.random() * 10);
+  };
+  function botNumber() {
+    const result = [];
+    while (result.length < 4) {
+      const rndNumber = randomize();
+      if (!result.includes(rndNumber)) {
+        result.push(rndNumber);
+      }
+    }
+    return result;
+  };
 function input() {
     const playernum = prompt('Введите число из 4 цифр ,которые не будут повторяться');
     const player = Array.from(String(playernum), Number);

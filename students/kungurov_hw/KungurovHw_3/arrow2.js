@@ -1,20 +1,20 @@
+let peopleArr = [];
 let i = 0;
-let b = [];
 function rand() {
     do {
-        let c = Math.floor(Math.random() * 100 + 1);
+        let rand = Math.floor(Math.random() * 100 + 1);
         let flag = true;
-        for (let i = 2; i < c; i++) {
-            if (c % i == 0) {
+        for (let i = 2; i < rand; i++) {
+            if (!(rand % i)) {
                 flag = false;
                 break;
             };
         };
-        if (flag === true) {
-            b[i] = c;
+        if (flag) {
+            peopleArr.push(rand);
             i++;
-            console.log(b);
-            return b;
+            console.log(peopleArr);
+            return peopleArr;
         };
-    } while (!b[i]);
+    } while (!peopleArr[i]);
 };
