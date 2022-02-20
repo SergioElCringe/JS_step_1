@@ -34,7 +34,7 @@ const bullsAndCows = {
   
     this.getHint(bulls, cows, userVariant);
   
-    return bulls === 4 ? false : true;
+    return bulls === 4;
   },
   getHint(bulls, cows, userVariant) {
     console.log(`
