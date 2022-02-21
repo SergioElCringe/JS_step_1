@@ -1,0 +1,53 @@
+* {
+    box-sizing: border-box;
+}
+  
+html {
+    font-size: 16px;
+    font-weight: 400;
+    color:#000000;
+    line-height: 1.5;
+    width: 1349px;
+}
+  
+body {
+    margin: 0;
+}
+  
+p, ul, ol {
+    margin: 0 0 10px 0;
+}
+  
+* + p, * + ul, * + ol {
+    margin-top: 10px;
+}
+  
+h1, h2, h3, h4, h5, h6 {
+    margin: 0 0 0.67em 0;
+}
+  
+* + h1, * + h2, * + h3, * + h4, * + h5, * + h6 {
+    margin-top: 0.67em;
+}
+   
+.container {
+    box-sizing: content-box;
+    width: 950px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+img {
+    width: 100%;
+    object-fit: cover;
+    height: auto;
+}
+
+a {
+    text-decoration: none;
+}
+
+figure {
+    margin: 0;
+    padding: 0;
+}
