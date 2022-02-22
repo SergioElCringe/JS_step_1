@@ -1,3 +1,5 @@
+const PRODUCTS_API = 'https://raw.githubusercontent.com/SergioElCringe/JS_step_1/main/TEST_FTP/static/products';
+
 const ENUMS = {
   category: {
     1: 'new',
@@ -69,11 +71,9 @@ const catalog = {
 
   createTemplate(item) {
     const { imgUrl, name, price, category } = item;
-    // const extra = this.getProductExtraTemplate(category);
-    // console.log(extra)
     return `
     <div class="product">
-      <div class="product_image"><img src="${ imgUrl }" alt=""></div>
+      <div class="product_image"><img src="${ PRODUCTS_API + imgUrl }" alt=""></div>
       ${ this.getProductExtraTemplate(category) }
       <div class="product_content">
         <div class="product_title"><a href="product.html">${ name }</a></div>
