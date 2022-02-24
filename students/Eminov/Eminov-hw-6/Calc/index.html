@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./src/css/style.css">
+    <title>Calculator</title>
+</head>
+
+<body>
+    <div class="calculator">
+        <div class="outputs">
+            <button id="history"></button>
+            <button id="output"></button>
+        </div>
+        <div class="agregats" id="agregats">
+            <button onclick="calculator.getOnePercentOfNumber()">%</button>
+            <button onclick="calculator.clearAll()">CЕ</button>
+            <button onclick="calculator.clearLastNumber(calculator.a, calculator.b)">С</button>
+            <button onclick="calculator.check()">-</button>
+            <button>7</button>
+            <button>8</button>
+            <button>9</button>
+            <button onclick="calculator.check()">/</button>
+            <button>4</button>
+            <button>5</button>
+            <button>6</button>
+            <button onclick="calculator.check()">Х</button>
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <button onclick="calculator.check()">+</button>
+            <button onclick="calculator.changeSign(calculator.a, calculator.b)">+/-</button>
+            <button>0</button>
+            <button onclick="calculator.getDot(calculator.a, calculator.b)">.</button>
+            <button onclick="calculator.check()">=</button>
+        </div>
+    </div>
+
+    <script>
+        const calculator = {
+            container: null,
+            a: '',
+            b: '',
+            sign: '',
+            output: '',
+            history: '',
+            numbers: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-'],
+            operators: ['+', '-', 'Х', '/', '='],
+            value: '',
+
+            init() {
+                this.output = document.querySelector('#output');
+                this.container = document.querySelector('#agregats');
+                this.history = document.querySelector('#history');
+
+                this.handleEvents();
+            },
+
+            handleEvents() {
+                this.container.addEventListener('click', this.addNumber.bind(this));
+            },
+
+            addNumber(event) {
+                if (this.numbers.includes(event.target.textContent) || this.operators.includes(event.target.textContent)) {
+                    this.value = event.target.textContent;
+
+                    if (this.operators.includes(this.value)) {
+                        this.sign = this.value;
+                        return;
+                    };
+
+                    if (this.numbers.includes(this.value)) {
+                        if (this.b === '' && (this.sign === '' || this.sign === '=')) {
+                            this.a += this.value;
+                            this.output.textContent = this.a;
+                        } else if (this.a !== '' && this.sign !== '') {
+                            this.b += this.value;
+                            this.output.textContent = this.b;
+                        } else if (this.b === '') {
+                            this.b += this.value;
+                            this.output.textContent = this.a;
+                        };
+
+                        this.history.textContent = this.a + this.sign + this.b;
+                        return;
+                    };
+                };
+            },
+
+            check() {
+                if (this.sign === '+' || this.sign === '-' || this.sign === 'Х' || this.sign === '/') {
+                    switch (this.sign) {
+                        case '+':
+                            {
+                                this.a = (+this.a) + (+this.b);
+                                this.output.textContent = this.a;
+                                this.b = '';
+                                break;
+                            };
+
+                        case '-':
+                            {
+                                this.a = this.a - this.b;
+                                this.output.textContent = this.a;
+                                this.b = '';
+                                break;
+                            };
+
+                        case 'Х':
+                            {
+                                this.a = this.a * this.b;
+                                this.output.textContent = this.a;
+                                this.b = '';
+                                break;
+                            };
+
+                        case '/':
+                            {
+                                this.a = this.a / this.b;
+                                this.output.textContent = this.a;
+                                this.b = '';
+                                break;
+                            };
+
+                    };
+                    return this.a;
+                };
+            },
+
+            clearAll() {
+                this.a = '';
+                this.b = '';
+                this.sign = '';
+                this.output.textContent = '';
+                this.history.textContent = '';
+            },
+
+            clearLastNumber(a, b) {
+                if (a !== '' && b === '') {
+                    this.a = Number(this.a.toString().slice(0, -1));
+
+                    if (!this.a) {
+                        this.a = '';
+                    };
+
+                    this.output.textContent = this.a;
+                } else if (this.a !== '' && this.b !== '') {
+                    this.b = this.b.slice(0, -1);
+                    this.output.textContent = this.b;
+                };
+            },
+
+            changeSign(a, b) {
+                if (a !== '' && b === '') {
+                    this.a = -(this.a);
+                    this.output.textContent = this.a;
+                } else if (this.a !== '' && this.b !== '') {
+                    this.b = -(this.b);
+                    this.output.textContent = this.b;
+                };
+            },
+
+            getDot(a, b) {
+                let dot = '.';
+
+                if (a !== '' && b === '') {
+                    this.a += dot;
+                    this.output.textContent = this.a;
+                } else if (this.a !== '' && this.b !== '') {
+                    this.b += dot;
+                    this.output.textContent = this.b;
+                };
+
+                return this.a;
+            },
+
+            getOnePercentOfNumber() {
+                this.a = (this.a / 100);
+                this.output.textContent = this.a;
+            },
+        };
+
+        calculator.init();
+    </script>
+</body>
