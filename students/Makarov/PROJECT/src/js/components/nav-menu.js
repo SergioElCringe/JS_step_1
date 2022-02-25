@@ -1,63 +1,113 @@
+const MENU_DATA = [
+    {
+        text: 'Home',
+        link: 'index.html',
+        items: [
+            {
+                text: 'Categories',
+                link: 'categories.html',
+            },
+            {
+                text: 'Product',
+                link: 'product.html',
+            },
+            {
+                text: 'Cart',
+                link: 'cart.html',
+            },
+            {
+                text: 'Check out',
+                link: 'checkout.html',
+            },
+            {
+                text: 'Contact',
+                link: 'contact.html',
+            },
+        ]
+    },
+    {
+        text: 'Categories',
+        link: 'categories.html',
+        items: [
+            {
+                text: 'Category',
+                link: 'categories.html',
+            },
+            {
+                text: 'Category',
+                link: 'categories.html',
+            },
+            {
+                text: 'Category',
+                link: 'categories.html',
+            },
+            {
+                text: 'Category',
+                link: 'categories.html',
+            },
+            {
+                text: 'Category',
+                link: 'categories.html',
+            },
+        ]
+    },
+    {
+        text: 'Accessories',
+        link: '#',
+    },
+    {
+        text: 'Offers',
+        link: '#',
+    },
+    {
+        text: 'Contact',
+        link: 'contact.html'
+    }
+];
+
 const navMenu = {
+    menuData : [],
     container: null,
-    ADDRESSES: ['index.html', 'categories.html', '#accessories', '#offers', 'contact.html'],
-    TITLES: ['Home', 'Categories', 'Accessories', 'Offers', 'Contact'],
-    isActive: [true, false, false, false, false],
-    dropdownData: [
-        {
-            addresses: ["categories.html", "product.html", "cart.html", "checkout.html", "contact.html"],
-            titles: ["Categories", "Product", "Cart", "Check out", "Contact"]
-        },
-        {
-            addresses: ["categories.html", "categories.html", "categories.html", "categories.html", "categories.html"],
-            titles: ["Category", "Category", "Category", "Category", "Category"]
-        },
-        '',
-        '',
-        ''
-    ],
+
     init() {
-        this.container = document.querySelector('.main_nav');
+        this.menuData = MENU_DATA;
+        this.container = document.querySelector('#main_nav');
         this.render();
     },
-    render() {
-        let result = '';
-        for (let i = 0; i < this.TITLES.length; i++) {
-            result += this.createMenuItem(this.ADDRESSES[i], this.TITLES[i], this.isActive[i], this.dropdownData[i]);
-        }
 
-        this.container.innerHTML = `
-                <ul> 
-                    ${result}   
-                </ul>
-        `;
-    },
-    createMenuItem(address, title, isActive, dropdownData) {
-        const activeStyle = isActive ? 'active' : '';
-        let dropdownStyle = '';
-        let dropdownContent = '';
-        if (dropdownData) {
-            dropdownStyle = 'hassubs';
-            dropdownContent = `
-                <ul>
-                    ${this.createDropdownContent(dropdownData.addresses, dropdownData.titles)}
-                </ul>
+    createItem(item) {
+        const { text, link, items } = item;
+        const hasSubMenu = !!item.items?.length || false;
+        if (!hasSubMenu) {
+            return `<li><a href="${ link }">${ text }</a></li>`;
+        } else {
+            return `
+                <li class='hassubs'>
+                    <a href="${ link }">${ text }</a>
+                    ${this.createSubMenu(items)}
+                </li>
             `;
         }
-        return `
-            <li class="${dropdownStyle} ${activeStyle}">
-                <a href="${address}">${title}</a>
-                ${dropdownContent}
-            </li>
-        `;
-    },
-    createDropdownContent(addresses, titles) {
-        let content = '';
-        for (let i = 0; i < addresses.length; i++) {
-            content += `<li><a href="${addresses[i]}">${titles[i]}</a></li>`;
-        }
-        return content;
     },
 
-};
+    createSubMenu(items) {
+        const subMenuContent = items.reduce((accum, current) => {
+            accum += `<li><a href="${current.link}">${current.text}</a></li>`
+            return accum;
+        }, '');
+        return `<ul>${subMenuContent}</ul>`;
+    },
+
+    render() {
+        const result = this.menuData.reduce((accum, current) => {
+            accum += this.createItem(current);
+            return accum;
+        },'');
+        console.log(result);
+
+        this.container.innerHTML = `<ul>${result}</ul>`
+
+    }
+}
+
 navMenu.init();
