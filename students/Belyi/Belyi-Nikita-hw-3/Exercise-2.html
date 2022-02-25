@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+
+
+<script>
+
+function createArray() {
+    let result = true;
+    let primeNumber = [];
+    for (let i = 2; i <= 100; i++) {
+        for (let j = 2; j < i; j++) {
+            if (i % j == 0) {
+            result = false
+            }
+        }
+        if (result) {
+        primeNumber.push(i);
+        }
+        result = true
+    } 
+    console.log(primeNumber)
+}
+    console.log(createArray())  
+
+
+</script>
+</body>
+</html>
