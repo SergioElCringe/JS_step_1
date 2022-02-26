@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="game__controller">
+    <button onclick="play(1)" class="game__btn">✊</button>
+    <button onclick="play(2)" class="game__btn">✌</button>
+    <button onclick="play(3)" class="game__btn">✋</button>
+  </div>
+
+  <script>
+    function play(num) {
+      const rps = {
+        winner: null,
+        pc: null,
+        player: null,
+        names: ['stone', 'scissors', 'paper'],
+
+        start(player) {
+          this.pc = Math.floor(Math.random() * 3 + 1);
+          this.player = player ? player : +prompt('Enter 1 or 2 or 3');
+          this.check();
+          this.getWinner();
+        },
+
+        check() {
+          const { pc, player } = this;
+          if (pc === player) {
+            this.winner = 'Both';
+          } else if ((pc === 1 && player === 2) || (pc === 2 && player === 3) || (pc === 3 && player === 1)) {
+            this.winner = 'PC';
+          } else {
+            this.winner = 'User';
+          }
+        },
+
+        getWinner() {
+          const { winner, player, pc, names } = this;
+          console.log(`
+            ${ winner } wins!\n
+            Player: ${ names[player - 1] }\n
+            PC: ${ names[pc - 1] }\n
+          `)
+        },
+      };
+
+      rps.start(num);
+    };
+
+    
+  </script>
+</body>
+
+</html>
