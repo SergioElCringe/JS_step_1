@@ -83,8 +83,6 @@ const nav = {
             hassubs = 'class="hassubs"';
         };
 
-        // if (document.querySelector)
-
         return `<li ${hassubs}>
             <a href="${url}">${name}</a>
             ${this.checkSubCategories(subCategories)}
