@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>HW #2</title>
+
+        <!-- CSS -->
+        <style>
+            button {
+                width: 50px;
+                height: 50px;
+                size: 10px;
+                text-align: center;
+                margin: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- HTML -->
+        <button onclick="makeOperation(1)">+</button>
+        <button onclick="makeOperation(2)">-</button>
+        <button onclick="makeOperation(3)">*</button>
+        <button onclick="makeOperation(4)">/</button>
+
+        <!-- JS -->
+        <script>
+            const sum = (a, b) => a + b;
+            const subtraction = (a, b) => a - b;
+            const multiplication = (a, b) => a * b;
+            const division = (a, b) => b ? a / b : 'Деление на ноль невозможно!';
+
+            const output = result => console.log(`Результат: ${result}`);
+
+            function makeOperation(operation) {
+                if (operation === 1 || operation === 2 || operation === 3 || operation === 4) {
+                    let a = +prompt('Enter first number');
+                    let b = +prompt('Enter second number');
+                    let result;
+
+                    if (isNaN(a) === false && isNaN(b) === false) {
+                        switch (operation) {
+                            case 1: {
+                                result = sum(a, b);
+                                break;
+                            };
+
+                            case 2: {
+                                result = subtraction(a, b);
+                                break;
+                            };
+
+                            case 3: {
+                                result = multiplication(a, b);
+                                break;
+                            };
+
+                            default: {
+                                result = division(a, b);
+                            };
+                        };
+
+                        output(result);
+                    } else {
+                        console.log('Для того, чтобы произвести калькуляцию, нужно ввести значения!');
+                    };
+                } else {
+                    console.log('Атата :)');
+                };
+            };
+        </script>
+    </body>
+</html>

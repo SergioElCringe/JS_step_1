@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button onclick="getPrimes()"></button>
+
+  <script>
+    function getPrimes() {
+      let primes = [2];
+      let num = 3;
+
+      for (num; num <= 100; num++) {
+        if (check(num, primes)) {
+          primes.push(num);
+        }
+      }
+
+      // for 1-lovers
+      //primes.unshift(1);
+
+      console.log(primes);
+    };
+
+    function check(num, primes) {
+      let flag = true;
+
+      primes.forEach(prime => {
+        if (!(num % prime)) {
+          flag = false;
+        }
+      });
+
+      return flag;
+    };
+  </script>
+</body>
+</html>

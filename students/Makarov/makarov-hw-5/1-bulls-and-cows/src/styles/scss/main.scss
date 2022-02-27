@@ -1,0 +1,126 @@
+$bg: #1e1e1e;
+$text: #cccccc;
+$form-bg: #3c3c3c;
+$button-bg: #0e639c;
+$acive-button-bg: #1278bd;
+$outline: #007fd4;
+$yellow: #dccd79;
+$light-blue: #9cdcfe;
+$olive: #b5cea8;
+$white: #d4d4d4;
+*{
+    box-sizing: border-box;
+    font-family: monospace, 'Monaco';
+}
+
+.overall-wrapper {
+    width: 100vw;
+    max-width: 100%;
+    min-height: 100vh;
+    background-color: $bg;
+}
+.game {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 400px;
+    padding: 16px;
+}
+.form {
+    margin-bottom: 1.2em;
+    &__wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+    &__title {
+        width: 100%;
+        margin-bottom: 20px;
+        text-align: center;
+        font-size: 1.2em;
+        color: $white;
+    }
+    &__input {
+        display: block;
+        width: calc(100% - 75px);
+        height: 32px;
+        padding-left: 8px;
+        background-color: $form-bg;
+        outline: none;
+        border: 1px solid $form-bg;
+        color: $text;
+        &:focus {
+            border: 1px solid $outline;
+        }
+    }
+    &__button {
+        display: block;
+        width: 75px;
+        height: 2em;
+        font-size: 1em;
+        background-color: $button-bg;
+        border: none;
+        color: white;
+        &:hover {
+            background-color: $acive-button-bg;
+        }
+    }
+}
+.result{
+    color: $white;
+    margin-bottom: 1.2em;
+}
+.history {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column-reverse;
+    width: 100%;
+    min-height: 3.6em;
+    padding-left: 2em;
+    padding-top: 1.2em;
+    &::before {
+        content: '[';
+        position: absolute;
+        top: 0;
+        left: 0;
+        color: $white;
+    }
+    &::after {
+        content: '];';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        color: $white;
+    }
+    &_hidden{
+        display: none;
+    }
+}
+
+.card {
+    width: 100%;
+    margin-bottom: 1.2em;
+    &__list{
+        &-header{
+            line-height: 1.2em;
+        }
+        &-footer{
+            line-height: 1.2em;
+        }
+        &-text{
+            line-height: 1.2em;
+            text-indent: 2em;
+            color: $light-blue;
+        }
+    }
+}
+
+.light-blue-text{
+    color: $light-blue;
+}
+.white-text {
+    color: $white;
+}
+.olive-text {
+    color: $olive;
+}

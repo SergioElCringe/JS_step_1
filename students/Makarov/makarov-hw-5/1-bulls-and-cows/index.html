@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./src/styles/css/reset.css">
+    <link rel="stylesheet" href="./src/styles/css/main.css">
+    <title>Bulls and Cows</title>
+</head>
+
+<body>
+    <div class="overall-wrapper">
+        <article class="game">
+            <form class="form">
+                <fieldset class="form__wrapper">
+                    <legend class="form__title">Bulls & Cows</legend>
+                    <input class="form__input" type="text" placeholder="Enter 4 digits">
+                    <button type="button" class="form__button">Submit</button>
+                </fieldset>
+            </form>
+            <div class="result"></div>
+            <div class="history history_hidden"></div>
+        </article>
+    </div>
+    <script>
+        (function () {
+            const bullsAndCows = {
+                result: {},
+                attempts: 9,
+                secret: [],
+                history: [],
+                init() {
+                    this.generateSecret();
+                    console.log('secret: ' + this.secret);
+                },
+                run() {
+                    const attempt = this.attempts;
+                    this.result = {
+                        attempt: attempt,
+                        answer: null,
+                        bulls: 0,
+                        cows: 0,
+                    };
+                    this.attempts--;
+                    this.getUserInput();
+                    this.checkInput();
+                    this.saveMove();
+                    this.checkEnd();
+                    this.displayHistory();
+                },
+                generateSecret() {
+                    while (this.secret.length < 4) {
+                        const num = Math.floor(Math.random() * 10);
+                        if (!this.secret.includes(num)) {
+                            this.secret.push(num);
+                        }
+                    }
+                },
+                getUserInput() {
+                    const userInput = document.querySelector('.form__input').value;
+                    this.result.answer = [...userInput].map(el => +el);
+                    userInput.value = null;
+                },
+                checkInput() {
+                    this.result.answer.forEach((el, index) => {
+                        if (this.secret.includes(el)) {
+                            this.secret.indexOf(el) === index ? this.result.bulls++ : this.result.cows++;
+                        }
+                    });
+                },
+                saveMove() {
+                    this.history.push(this.result);
+                },
+                displayHistory() {
+                    const historyContainer = document.querySelector('.history');
+                    historyContainer.classList.remove('history_hidden');
+                    const str = this.history.reduce((accum, current) => {
+                        const { attempt, answer, bulls, cows } = current;
+                        const template = `
+                            <div class="card">
+                                <ul class="card__list">
+                                    <li class="card__list-header">
+                                        <span class="white-text">{</span>
+                                    </li>
+                                    <li class="card__list-text">
+                                        <span class="light-blue-text">remaining attempts:</span>
+                                        <span class="olive-text">${attempt}</span><span class="white-text">,</span>
+                                    </li>
+                                    <li class="card__list-text">
+                                        <span class="light-blue-text">answer:</span>
+                                        <span class="olive-text">${answer.join('')}</span><span class="white-text">,</span>
+                                    </li>
+                                    <li class="card__list-text">
+                                        <span class="light-blue-text">bulls:</span>
+                                        <span class="olive-text">${bulls}</span><span class="white-text">,</span>
+                                    </li>
+                                    <li class="card__list-text">
+                                        <span class="light-blue-text">cows:</span>
+                                        <span class="olive-text">${cows}</span>
+                                    </li>
+                                    <li class="card__list-footer">
+                                        <span class="white-text">},</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        `;
+                        return accum + template;
+                    }, '');
+                    historyContainer.innerHTML = str;
+                },
+                checkEnd() {
+                    if (this.result.bulls === 4) {
+                        document.querySelector('.result').innerText = 'You win!';
+                        document.querySelector('.form__input').style.display = 'none';
+                        document.querySelector('.form__button').style.display = 'none';
+
+                    } else if (this.attempts < 0) {
+                        document.querySelector('.result').innerText = 'You loose!';
+                        document.querySelector('.form__input').style.display = 'none';
+                        document.querySelector('.form__button').style.display = 'none';
+                    }
+                }
+
+            };
+            bullsAndCows.init();
+            document.querySelector('.form__button').onclick = () => bullsAndCows.run();
+        })();
+
+    </script>
+</body>
+
+</html>
