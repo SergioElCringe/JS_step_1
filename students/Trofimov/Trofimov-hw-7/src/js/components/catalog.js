@@ -9,53 +9,45 @@ const ENUMS = {
 };
 
 const PRODUCTS = [
-{
-    imgUrl: '/product_1.jpg',
-    name: 'Smart Phone',
-    price: 670,
-    category: 1
+{ imgUrl: '/product_1.jpg',
+  name: 'Smart Phone',
+  price: 670,
+  category: 1,
 },
-{
-    imgUrl: '/product_2.jpg',
-    name: 'Smart Phone',
-    price: 670,
-    category: null
+{ imgUrl: '/product_2.jpg',
+  name: 'Speaker',
+  price: 70,
+  category: null,
 },
-{
-    imgUrl: '/product_3.jpg',
-    name: 'Smart Phone',
-    price: 670,
-    category: null
+{ imgUrl: '/product_3.jpg',
+  name: 'Charging wire',
+  price: 30,
+  category: null,
 },
-{
-    imgUrl: '/product_4.jpg',
-    name: 'Smart Phone',
-    price: 670,
-    category: 1
+{ imgUrl: '/product_4.jpg',
+  name: 'Laptop',
+  price: 1670,
+  category: 1,
 },
-{
-    imgUrl: '/product_5.jpg',
-    name: 'Smart Phone',
-    price: 670,
-    category: 2
+{ imgUrl: '/product_5.jpg',
+  name: 'Headphones',
+  price: 220,
+  category: null,
 },
-{
-    imgUrl: '/product_6.jpg',
-    name: 'Smart Phone',
-    price: 670,
-    category: null
+{ imgUrl: '/product_6.jpg',
+  name: 'Tablet',
+  price: 790,
+  category: 2,
 },
-{
-    imgUrl: '/product_7.jpg',
-    name: 'Smart Phone',
-    price: 670,
-    category:null
+{ imgUrl: '/product_7.jpg',
+  name: 'Camera',
+  price: 450,
+  category: null,
 },
-{
-    imgUrl: '/product_8.jpg',
-    name: 'Smart Phone',
-    price: 670,
-    category: 3
+{ imgUrl: '/product_8.jpg',
+  name: 'Keyboard',
+  price: 150,
+  category: 3,
 },
 ];
 
@@ -112,7 +104,7 @@ const catalog = {
         className = 'product_sale';
         text = 'Sale';
       }
-    };
+    }
     return { className, text };
   },
 

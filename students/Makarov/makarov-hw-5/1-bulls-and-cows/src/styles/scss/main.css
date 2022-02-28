@@ -1,0 +1,143 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: monospace, 'Monaco';
+}
+
+.overall-wrapper {
+  width: 100vw;
+  max-width: 100%;
+  min-height: 100vh;
+  background-color: #1e1e1e;
+}
+
+.game {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 400px;
+  padding: 16px;
+}
+
+.form {
+  margin-bottom: 1.2em;
+}
+
+.form__wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  width: 100%;
+}
+
+.form__title {
+  width: 100%;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 1.2em;
+  color: #d4d4d4;
+}
+
+.form__input {
+  display: block;
+  width: calc(100% - 75px);
+  height: 32px;
+  padding-left: 8px;
+  background-color: #3c3c3c;
+  outline: none;
+  border: 1px solid #3c3c3c;
+  color: #cccccc;
+}
+
+.form__input:focus {
+  border: 1px solid #007fd4;
+}
+
+.form__button {
+  display: block;
+  width: 75px;
+  height: 2em;
+  font-size: 1em;
+  background-color: #0e639c;
+  border: none;
+  color: white;
+}
+
+.form__button:hover {
+  background-color: #1278bd;
+}
+
+.result {
+  color: #d4d4d4;
+  margin-bottom: 1.2em;
+}
+
+.history {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: column-reverse;
+          flex-direction: column-reverse;
+  width: 100%;
+  min-height: 3.6em;
+  padding-left: 2em;
+  padding-top: 1.2em;
+}
+
+.history::before {
+  content: '[';
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #d4d4d4;
+}
+
+.history::after {
+  content: '];';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  color: #d4d4d4;
+}
+
+.history_hidden {
+  display: none;
+}
+
+.card {
+  width: 100%;
+  margin-bottom: 1.2em;
+}
+
+.card__list-header {
+  line-height: 1.2em;
+}
+
+.card__list-footer {
+  line-height: 1.2em;
+}
+
+.card__list-text {
+  line-height: 1.2em;
+  text-indent: 2em;
+  color: #9cdcfe;
+}
+
+.light-blue-text {
+  color: #9cdcfe;
+}
+
+.white-text {
+  color: #d4d4d4;
+}
+
+.olive-text {
+  color: #b5cea8;
+}
+/*# sourceMappingURL=main.css.map */
