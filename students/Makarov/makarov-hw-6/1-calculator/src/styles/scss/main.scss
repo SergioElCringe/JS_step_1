@@ -1,0 +1,53 @@
+$bg: #000807;
+
+*{
+    box-sizing: border-box;
+    font-family: monospace, 'Monaco';
+}
+
+.overall-wrapper {
+    width: 100vw;
+    max-width: 100%;
+    min-height: 100vh;
+}
+
+.calc{
+    position: relative;
+    margin-left: 10px;
+    &__container{
+        display: flex;
+        flex-wrap: wrap;
+        width: calc(25em + 6px);
+        padding-left: 1px;
+    }
+    &__screen{
+        display: block;
+        margin: 1px 0;
+        width: calc(100% - 1px);
+        height: 5em;
+        border: none;
+        text-align: right;
+        color: black;
+    }
+    &__keyboard{
+        display: flex;
+        flex-flow: column wrap;
+        height: calc(20em + 4px);
+        gap: 1px;
+    }
+    &__btn{
+        display: block;
+        width: 5em;
+        height: 5em;
+        border: none;
+        &_high{
+            height: calc(10em + 1px);
+        }
+    }
+}
+
+.calc_theme_dark{
+    .calc__container{
+        background-color: $bg;
+    }
+}
