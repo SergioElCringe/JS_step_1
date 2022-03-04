@@ -2,114 +2,139 @@ const calculator = {
     container: null,
     outputEl: null,
     buttons: null,
-    data: ['0'],
-    operands: [],
-    names: {},
+    //Below is something like a lookup table for Decimal.js library methods.
+    operations: { '+': 'plus', '-': 'minus', '*': 'times', '/': 'div' },
     result: null,
+    data: null,
+
+    get last() {
+        return this.data[this.data.length - 1];
+    },
+
+    set last(value) {
+        this.data[this.data.length - 1] = value;
+    },
 
     init() {
         this.container = document.querySelector('.calc__container');
         this.render();
-        this.operands = ['+', '-', '*', '/'];
-        this.names = {
-            '+': 'plus',
-            '-': 'minus',
-            '*': 'times',
-            '/': 'div'
-        },
-            this.outputEl = document.querySelector('.calc__screen');
-        this.outputEl.value = '0';
         this.buttons = document.querySelector('.calc__keyboard');
         this.handleEvents();
+        this.outputEl = document.querySelector('.calc__screen');
+        this.clearAll();
+        this.displayInput();
     },
 
     handleEvents() {
-        this.buttons.addEventListener('click', this.chooseAction.bind(this));
+        this.buttons.addEventListener('click', this.processInput.bind(this));
+        document.addEventListener('keydown', this.processInput.bind(this));
     },
 
-    chooseAction(event) {
-        const trigger = event.target;
-        if (trigger.classList.contains('calc__btn_symbol')) {
-            this.processDigit(trigger);
-        } else if (trigger.classList.contains('calc__btn_point')) {
-            this.processPoint();
-        } else if (trigger.classList.contains('calc__btn_operation')) {
-            this.processOperand(trigger);
-        } else if (trigger.classList.contains('calc__btn_plusmin')) {
-            this.processPlusMin();
-        } else if (trigger.classList.contains('calc__btn_ce')) {
-            this.clearEntry();
-        } else if (trigger.classList.contains('calc__btn_c')) {
-            this.clearAll();
-        } else if (trigger.classList.contains('calc__btn_result')) {
-            this.compute();
+    processInput(event) {
+        if (event.type === 'click') {
+            this.chooseAction(event.target.dataset.action);
+        } else if (event.type === 'keydown') {
+            this.chooseAction(event.key);
         }
         this.displayInput();
     },
 
     displayInput() {
-        if (this.data[this.data.length - 1] === 'NaN') {
-            this.data = ['0'];
+        if (this.last === 'NaN') {
+            this.clearAll();
             this.outputEl.value = 'Result is undefined';
         } else {
             this.outputEl.value = this.data.join(' ');
         }
     },
 
-    compute() {
-        const data = this.data;
-        let result = new Decimal(data.shift());
-        if (this.data.length === 2) {
-            const el1 = data.shift();
-            const el2 = new Decimal(data.shift());
-            result = result[this.names[el1]](el2);
-        }
-        this.data = [result.toString()];
+    chooseAction(input) {
+        switch (input) {
+            case '0':
+            case '1':
+            case '2':
+            case '3':
+            case '4':
+            case '5':
+            case '6':
+            case '7':
+            case '8':
+            case '9':
+                this.processDigit(input)
+                break;
+            case '.':
+                this.processPoint();
+                break;
+            case '+-':
+                this.processPlusMin();
+                break;
+            case '+':
+            case '-':
+            case '*':
+            case '/':
+                this.processOperand(input);
+                break;
+            case '=':
+            case 'Enter':
+                this.compute();
+                break;
+            case 'Escape':
+                this.clearAll();
+                break;
+            case 'Delete':
+                this.clearEntry();
+                break;
+        };
     },
-    
-    processDigit(trigger) {
-        const digit = trigger.dataset.symbol;
-        const lastEl = this.data[this.data.length - 1];
-        if (this.operands.includes(lastEl)) {
+
+    compute() {
+        if (this.data.length === 3) {
+            const a = new Decimal(this.data[0]);
+            const operand = this.data[1];
+            const b = new Decimal(this.data[2]);
+            this.result = a[this.operations[operand]](b);
+        }
+        this.data = [this.result.toString()];
+    },
+
+    processDigit(digit) {
+        if (this.last in this.operations) {
             this.data.push(digit);
-        } else if (lastEl !== '0' && lastEl !== 'Infinity' && lastEl !== '-Infinity') {
-            this.data[this.data.length - 1] += digit;
+        } else if (this.last !== '0' && this.last !== 'Infinity' && this.last !== '-Infinity') {
+            this.last += digit;
         } else {
-            this.data[this.data.length - 1] = digit;
+            this.last = digit;
         }
     },
 
     processPoint() {
-        const lastEl = this.data[this.data.length - 1];
-        if (!isNaN(lastEl) && !lastEl.split('').includes('.') && isFinite(lastEl)) {
-            this.data[this.data.length - 1] += '.';
-        } else if (this.operands.includes(lastEl)) {
+        if (!isNaN(this.last) && !this.last.split('').includes('.') && isFinite(this.last)) {
+            this.last += '.';
+        } else if (this.last in this.operations) {
             this.data.push('0.');
         }
     },
 
-    processOperand(trigger) {
+    processOperand(operand) {
         if (this.data.length === 3) {
             this.compute();
         }
-        if (this.operands.includes(this.data[this.data.length - 1])) {
-            this.data.pop();
-            this.data.push(trigger.innerHTML);
+        if (this.last in this.operations) {
+            this.last = operand;
         } else {
-            this.data.push(trigger.innerHTML);
+            this.data.push(operand);
         }
     },
 
     processPlusMin() {
-        if (!isNaN(this.data[this.data.length - 1])) {
-            console.log(this.data[this.data.length - 1]);
-            this.data[this.data.length - 1] = ((-1) * this.data[this.data.length - 1]) + '';
+        if (!isNaN(this.last)) {
+            this.last = ((-1) * this.last) + '';
         }
     },
 
     clearEntry() {
-        if (!this.operands.includes(this.data[this.data.length - 1])) {
-            this.data[this.data.length - 1] = '0';
+        if (!(this.last in this.operations)) {
+            this.last = '0';
         }
     },
 
@@ -121,29 +146,28 @@ const calculator = {
         this.container.innerHTML = `
             <input type="text" class="calc__screen" >
             <div class="calc__keyboard">
-                <button class="calc__btn calc__btn_symbol" data-symbol="7">7</button>
-                <button class="calc__btn calc__btn_symbol" data-symbol="4">4</button>
-                <button class="calc__btn calc__btn_symbol" data-symbol="1">1</button>
-                <button class="calc__btn calc__btn_plusmin">&#177;</button>
-                <button class="calc__btn calc__btn_symbol" data-symbol="8">8</button>
-                <button class="calc__btn calc__btn_symbol" data-symbol="5">5</button>
-                <button class="calc__btn calc__btn_symbol" data-symbol="2">2</button>
-                <button class="calc__btn calc__btn_symbol" data-symbol="0">0</button>
-                <button class="calc__btn calc__btn_symbol" data-symbol="9">9</button>
-                <button class="calc__btn calc__btn_symbol" data-symbol="6">6</button>
-                <button class="calc__btn calc__btn_symbol" data-symbol="3">3</button>
-                <button class="calc__btn calc__btn_point">.</button>
-                <button class="calc__btn calc__btn_operation" data-operation="plus">+</button>
-                <button class="calc__btn calc__btn_operation" data-operation="minus">-</button>
-                <button class="calc__btn calc__btn_operation" data-operation="times">*</button>
-                <button class="calc__btn calc__btn_operation" data-operation="div">/</button>
-                <button class="calc__btn calc__btn_c">C</button>
-                <button class="calc__btn calc__btn_ce">CE</button>
-                <button class="calc__btn calc__btn_high calc__btn_result">=</button>
+                <button class="calc__btn" data-action="7">7</button>
+                <button class="calc__btn" data-action="4">4</button>
+                <button class="calc__btn" data-action="1">1</button>
+                <button class="calc__btn" data-action="+-">&#177;</button>
+                <button class="calc__btn" data-action="8">8</button>
+                <button class="calc__btn" data-action="5">5</button>
+                <button class="calc__btn" data-action="2">2</button>
+                <button class="calc__btn" data-action="0">0</button>
+                <button class="calc__btn" data-action="9">9</button>
+                <button class="calc__btn" data-action="6">6</button>
+                <button class="calc__btn" data-action="3">3</button>
+                <button class="calc__btn" data-action=".">.</button>
+                <button class="calc__btn" data-action="+">+</button>
+                <button class="calc__btn" data-action="-">-</button>
+                <button class="calc__btn" data-action="*">*</button>
+                <button class="calc__btn" data-action="/">/</button>
+                <button class="calc__btn" data-action="Escape">C</button>
+                <button class="calc__btn" data-action="Delete">CE</button>
+                <button class="calc__btn calc__btn_high" data-action="=">=</button>
             </div>
         `;
     }
-
 }
 
 calculator.init();
