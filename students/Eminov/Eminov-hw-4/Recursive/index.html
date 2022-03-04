@@ -10,7 +10,7 @@
 
 <body>
     <!-- HTML -->
-    <button onclick="recursive()">Клонирование из объекта "Olga" в "OlgaTwo"</button>
+    <button onclick="recursive(olga)">Клонирование из объекта "Olga" в "OlgaTwo"</button>
 
     <!-- JS -->
     <script>
@@ -28,12 +28,21 @@
             }
         };
 
-        const olgaTwo = {};
+        console.log(olga);
 
-        function recursive() {
-            for (let key in olga) {
-                olgaTwo[key] = olga[key];
+        function recursive(obj) {
+            let olgaTwo = {};
+
+            for (let key in obj) {
+                if (typeof obj[key] === "object") {
+                    olgaTwo[key] = recursive(obj[key]);
+                } else {
+                    olgaTwo[key] = obj[key];
+                };
             };
+
+            console.log(olgaTwo);
+            return olgaTwo;
         };
     </script>
 </body>
