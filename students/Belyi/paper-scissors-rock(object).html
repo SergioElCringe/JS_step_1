@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <button onclick="play(1)">Камень</button>
+        <button onclick="play(2)">Ножницы</button>
+        <button onclick="play(3)">Бумага</button>
+    </div>
+    
+    <script>
+
+    function play(variant) {
+        const game = {
+            random() {
+                let pcChoice = Math.floor(Math.random(1, 3) * 3 + 1);
+                return pcChoice
+            }, 
+            compare(variant) {
+                if (variant === 1) {
+                    if (this.random() > 2) {
+                        return console.log('У вас Камень, у соперника Бумага. Вы проиграли!');
+                    };
+                    if (this.random() > 1 && (this.random()) < 3) {
+                        return console.log('У вас Камень, у соперника Ножницы. Вы выиграли!');
+                    };
+                    if (this.random() < 2) {
+                        return console.log('У вас Камень, у соперника Камень. Ничья!');
+                     };
+                };
+                if (variant === 2) {
+                    if (this.random() < 2) {
+                        return console.log('У вас Ножницы, у соперника Камень. Вы проиграли!');
+                    };
+                    if (this.random() > 2) {
+                        return console.log('У вас Ножницы, у соперника Бумага. Вы выиграли!');
+                     };
+                    if (this.random() > 1 && (this.random()) < 3) {
+                        return console.log('У вас Ножницы, у соперника Ножницы. Ничья!');
+                    };
+                }
+                if (variant === 3) {
+                    if (this.random() < 3 && (this.random()) > 1) {
+                        return console.log('У вас Бумага, у соперника Ножницы. Вы проиграли');
+                    };
+                    if (this.random() < 2) {
+                        return console.log('У вас Бумага, у соперника Камень. Вы выиграли!');
+                    }
+                    if (this.random() > 2) {
+                        return console.log('У вас Бумага, у соперника Бумага. Ничья!');
+                     };
+                };
+            }
+
+        }
+        game.compare(variant)
+    }
+        
+
+
+
+
+
+
+    </script>
+</body>
+</html>
