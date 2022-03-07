@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .conainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .main-img {
+        display: flex;
+        justify-content: center;
+        height: 250px;
+      }
+
+      .carousel {
+        display: flex;
+        justify-content: center;
+      }
+
+      .img__preview {
+        cursor: pointer;
+        margin-right: 20px;
+        height: 100px;
+        opacity: 0.8;
+        transition: opacity 0.2s;
+      }
+
+      .img__preview:hover {
+        opacity: 1;
+        transition: opacity 0.2s;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="main-img">
+        <button class="left">←</button>
+        <img src="#" alt="" id="img__main" />
+        <button class="right">→</button>
+      </div>
+      <div class="carousel"></div>
+    </div>
+
+    <script>
+      const fetchData = [
+        "/1.png",
+        "/2.png",
+        "/3.png",
+        "/4.png",
+        "/5.png",
+        "/6.png",
+      ];
+      const app = {
+        items: null,
+        urlToImages: "./src/assets/img",
+        selected: null,
+        mainImg: null,
+        carouselContainer: null,
+        rbutton: null,
+        lbutton: null,
+        elementId : null,
+
+        init(data) {
+          this.items = data;
+          this.selected = this.items[0];
+          this.mainImg = document.querySelector("#img__main");
+          this.carouselContainer = document.querySelector(".carousel");
+          this.carouselContainer.addEventListener(
+            "click",
+            this.clickHandler.bind(this)
+          );
+          this.render();
+          this.createCarousel();
+        },
+        createCarousel() {
+          let accum = "";
+          this.items.forEach((item) => {
+            accum += `<img
+                  src="${this.urlToImages + item}"
+                  class="img__preview"
+                  data-url="${item}"
+                />`;
+          });
+          this.carouselContainer.innerHTML = accum;
+        },
+        buttonLeft(url){
+          this.selected = url;
+          this.elementId = fetchData.indexOf(this.selected);
+          if(!this.elementId){
+            this.elementId = 6;
+          }
+          this.elementId--;
+          const newSelected = fetchData[this.elementId];
+          const newUrl = this.urlToImages + newSelected;
+          this.mainImg.src = newUrl;
+          this.selected = newSelected;
+        },
+        buttonRight(url){
+          this.selected = url;
+          this.elementId = fetchData.indexOf(this.selected);
+          if(this.elementId == 5){
+            this.elementId = -1;
+          }
+          this.elementId++;
+          const newSelected = fetchData[this.elementId];
+          const newUrl = this.urlToImages + newSelected;
+          this.mainImg.src = newUrl;
+          this.selected = newSelected;
+        },
+        changeImg(url) {
+          this.selected = url;
+          this.render();
+        },
+
+        render() {
+          const url = this.urlToImages + this.selected;
+          this.mainImg.src = url;
+        },
+
+        clickHandler(event) {
+          if (event.target.tagName === "IMG") {
+            const url = event.target.dataset.url;
+            this.changeImg(url);
+          }
+        },
+      };
+      app.init(fetchData);
+      document.querySelector(".left").onclick = () => app.buttonLeft(app.selected);
+      document.querySelector(".right").onclick = () => app.buttonRight(app.selected);
+    </script>
+  </body>
+</html>
