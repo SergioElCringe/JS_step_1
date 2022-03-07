@@ -21,22 +21,22 @@
                         this.resultRandom = Math.floor(Math.random(0, 9) * 9);
                         if (!this.randomNumber.includes(this.resultRandom)) {
                         this.randomNumber.push(this.resultRandom);
-                        }
-                    }
-                    return this.randomNumber 
+                        };
+                    };
+                    return this.randomNumber;
                 }, 
                 compare(computerNumber, playerNumber) {
-                    let bulls = 0
-                    let cows = 0 
+                    let bulls = 0;
+                    let cows = 0; 
                     for (let i = 0; i < 4; i++) {
                         if (computerNumber[i] === +playerNumber[i]) {
-                            bulls++
+                            bulls++;
                         }
                         else if (computerNumber.includes(+playerNumber[i])) {
-                            cows++
-                        }
-                    }
-                    this.resultCompare(bulls, cows, playerNumber)
+                            cows++;
+                        };
+                    };
+                    this.resultCompare(bulls, cows, playerNumber);
 
                     return bulls === 4 ? true : false;
                 },
@@ -46,34 +46,34 @@
                     Cows: ${cows}`);
                 },
                 winLose() {
-                    let result 
-                    let playerNumber 
-                    let computerNumber = this.random()
+                    let result; 
+                    let playerNumber; 
+                    let computerNumber = this.random();
                     for (let i = 1; i <= 10; i++) {
                         playerNumber = [...prompt(`Соперник загадал число. Введите свои четыре числа от 0 до 9`)]
                         if (playerNumber.length === 4) {
-                            console.log(`Раунд ${i}`)
-                            result = this.compare(computerNumber, playerNumber)
+                            console.log(`Раунд ${i}`);
+                            result = this.compare(computerNumber, playerNumber);
                         
                             if (result === true) {
-                                console.log(`Поздравляем, вы выиграли!`)
+                                console.log(`Поздравляем, вы выиграли!`);
 
-                            }
-                        }
+                            };
+                        };
                         if (playerNumber.length > 4) {
                             console.log(`Ошибка, попробуйте ввести свои числа занаво`)
-                        }
+                        };
                        
-                    }
+                    };
                     if (i = 10 && result === false) {
                             console.log(`Вы проиграли! Загаданное соперником число: ${computerNumber}. Попробуйте еще раз.`)
-                        }
-                }
+                        };
+                },
 
 
-            }
+            };
             playGame.winLose()
-        }
+        };
 
 
 

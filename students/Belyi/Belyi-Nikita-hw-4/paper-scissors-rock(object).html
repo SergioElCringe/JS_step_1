@@ -17,56 +17,53 @@
 
     function play(variant) {
         const game = {
-            random() {
-                let pcChoice = Math.floor(Math.random(1, 3) * 3 + 1);
-                return pcChoice
-            }, 
-            compare(variant) {
-                if (variant === 1) {
-                    if (this.random() > 2) {
-                        return console.log('У вас Камень, у соперника Бумага. Вы проиграли!');
-                    };
-                    if (this.random() > 1 && (this.random()) < 3) {
-                        return console.log('У вас Камень, у соперника Ножницы. Вы выиграли!');
-                    };
-                    if (this.random() < 2) {
-                        return console.log('У вас Камень, у соперника Камень. Ничья!');
-                     };
+            pcChoice: null,
+            playerChoice: null,
+            winner: null,
+            start(playerChoice) {
+                this.pcChoice = Math.floor(Math.random(1, 3) * 3 + 1);
+                this.playerChoice = playerChoice;
+                this.check();
+                this.getWinner();
+            },
+            check() {
+                if (this.pcChoice === this.playerChoice) {
+                    this.winner = `Никто не`;
+    
                 };
-                if (variant === 2) {
-                    if (this.random() < 2) {
-                        return console.log('У вас Ножницы, у соперника Камень. Вы проиграли!');
-                    };
-                    if (this.random() > 2) {
-                        return console.log('У вас Ножницы, у соперника Бумага. Вы выиграли!');
-                     };
-                    if (this.random() > 1 && (this.random()) < 3) {
-                        return console.log('У вас Ножницы, у соперника Ножницы. Ничья!');
-                    };
-                }
-                if (variant === 3) {
-                    if (this.random() < 3 && (this.random()) > 1) {
-                        return console.log('У вас Бумага, у соперника Ножницы. Вы проиграли');
-                    };
-                    if (this.random() < 2) {
-                        return console.log('У вас Бумага, у соперника Камень. Вы выиграли!');
-                    }
-                    if (this.random() > 2) {
-                        return console.log('У вас Бумага, у соперника Бумага. Ничья!');
-                     };
+                if ((this.playerChoice === 1 && this.pcChoice === 3) || (this.playerChoice === 2 && this.pcChoice === 1) || (this.playerChoice === 3 && this.pcChoice === 2)) { 
+                    this.winner = `Компьютер`;
+                    
+                }; 
+                if ((this.playerChoice === 1 && this.pcChoice === 2) || (this.playerChoice === 2 && this.pcChoice === 3) || (this.playerChoice === 3 && this.pcChoice === 1)) {
+                    this.winner = `Игрок`;
                 };
-            }
-
-        }
-        game.compare(variant)
-    }
         
-
-
-
-
-
-
+            },
+            getWinner() {
+                const { winner, playerChoice, pcChoice } = this;
+                console.log(`
+                ${ this.winner } выиграл\n
+                Игрок: ${this.getName(playerChoice)}\n
+                Компьютер: ${this.getName(pcChoice)}\n
+                `);
+            },
+            getName(number) {
+                switch(number) {
+                    case 1:
+                        return 'Камень';
+                        
+                    case 2: 
+                        return 'Ножницы';
+                        
+                    case 3: 
+                        return 'Бумага';
+                        
+                };  
+            },
+        };     
+        game.start(variant);
+    };
     </script>
 </body>
 </html>
