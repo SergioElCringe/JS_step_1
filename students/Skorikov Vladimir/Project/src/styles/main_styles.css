@@ -1438,3 +1438,7 @@ section
 {
 	color: #FFFFFF;
 }
+
+.cart__icon {
+	width: 20px;
+}
