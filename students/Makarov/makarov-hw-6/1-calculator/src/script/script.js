@@ -4,7 +4,7 @@ const calculator = {
     buttons: null,
     //Below is something like a lookup table for Decimal.js library methods.
     operations: { '+': 'plus', '-': 'minus', '*': 'times', '/': 'div' },
-    result: null,
+    result: '0',
     data: null,
 
     get last() {
@@ -19,8 +19,8 @@ const calculator = {
         this.container = document.querySelector('.calc__container');
         this.render();
         this.buttons = document.querySelector('.calc__keyboard');
-        this.handleEvents();
         this.outputEl = document.querySelector('.calc__screen');
+        this.handleEvents();
         this.clearAll();
         this.displayInput();
     },
@@ -28,6 +28,7 @@ const calculator = {
     handleEvents() {
         this.buttons.addEventListener('click', this.processInput.bind(this));
         document.addEventListener('keydown', this.processInput.bind(this));
+        this.outputEl.addEventListener('click', this.copyToClipBoard.bind(this));
     },
 
     processInput(event) {
@@ -42,9 +43,9 @@ const calculator = {
     displayInput() {
         if (this.last === 'NaN') {
             this.clearAll();
-            this.outputEl.value = 'Result is undefined';
+            this.outputEl.innerText = 'Result is undefined';
         } else {
-            this.outputEl.value = this.data.join(' ');
+            this.outputEl.innerText = this.data.join(' ');
         }
     },
 
@@ -61,28 +62,35 @@ const calculator = {
             case '8':
             case '9':
                 this.processDigit(input)
+                this.handleBtnStyles(input);
                 break;
             case '.':
                 this.processPoint();
+                this.handleBtnStyles(input);
                 break;
-            case '+-':
+            case 'plusMinus':
                 this.processPlusMin();
+                this.handleBtnStyles(input);
                 break;
             case '+':
             case '-':
             case '*':
             case '/':
                 this.processOperand(input);
+                this.handleBtnStyles(input);
                 break;
             case '=':
             case 'Enter':
                 this.compute();
+                this.handleBtnStyles(input);
                 break;
             case 'Escape':
                 this.clearAll();
+                this.handleBtnStyles(input);
                 break;
             case 'Delete':
                 this.clearEntry();
+                this.handleBtnStyles(input);
                 break;
         };
     },
@@ -144,12 +152,12 @@ const calculator = {
 
     render() {
         this.container.innerHTML = `
-            <input type="text" class="calc__screen" >
+            <span class="calc__screen"></span>
             <div class="calc__keyboard">
                 <button class="calc__btn" data-action="7">7</button>
                 <button class="calc__btn" data-action="4">4</button>
                 <button class="calc__btn" data-action="1">1</button>
-                <button class="calc__btn" data-action="+-">&#177;</button>
+                <button class="calc__btn" data-action="plusMinus">&#177;</button>
                 <button class="calc__btn" data-action="8">8</button>
                 <button class="calc__btn" data-action="5">5</button>
                 <button class="calc__btn" data-action="2">2</button>
@@ -158,15 +166,30 @@ const calculator = {
                 <button class="calc__btn" data-action="6">6</button>
                 <button class="calc__btn" data-action="3">3</button>
                 <button class="calc__btn" data-action=".">.</button>
-                <button class="calc__btn" data-action="+">+</button>
-                <button class="calc__btn" data-action="-">-</button>
-                <button class="calc__btn" data-action="*">*</button>
-                <button class="calc__btn" data-action="/">/</button>
+                <button class="calc__btn calc__btn_operand" data-action="+">+</button>
+                <button class="calc__btn calc__btn_operand" data-action="-">-</button>
+                <button class="calc__btn calc__btn_operand" data-action="*">*</button>
+                <button class="calc__btn calc__btn_operand" data-action="/">/</button>
                 <button class="calc__btn" data-action="Escape">C</button>
                 <button class="calc__btn" data-action="Delete">CE</button>
-                <button class="calc__btn calc__btn_high" data-action="=">=</button>
+                <button class="calc__btn calc__btn_result calc__btn_high" data-action="Enter">=</button>
             </div>
         `;
+    },
+    
+    /*styles handling*/
+    handleBtnStyles(input) {
+        const btn = this.buttons.querySelector(`[data-action|="${input}"]`);
+        btn.classList.toggle('calc__btn_active');
+        setTimeout(() => btn.classList.toggle('calc__btn_active'), 300);
+    },
+
+    /*copy output value*/
+    copyToClipBoard(event) {
+        const value = event.target.innerText;
+        document.execCommand('copy');
+        event.target.innerText = 'Copied';
+        setTimeout(() => event.target.innerText = value, 500);
     }
 }
 
