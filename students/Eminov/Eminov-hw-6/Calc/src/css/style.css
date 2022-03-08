@@ -1,0 +1,66 @@
+body {
+  font-family: sans-serif;
+}
+
+.calculator {
+  margin: 150px auto 0;
+  width: 450px;
+  background-color: #333;
+  padding-top: 10px;
+  border-radius: 5px;
+}
+
+.calculator .outputs {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 20px;
+}
+
+.calculator .outputs button:nth-child(1) {
+  width: 410px;
+  text-align: right;
+  border-radius: 5px;
+  height: 40px;
+  font-size: 20px;
+  font-weight: bold;
+  padding-right: 15px;
+  color: #3338;
+}
+
+.calculator .outputs button:nth-child(2) {
+  width: 410px;
+  text-align: right;
+  border-radius: 5px;
+  height: 80px;
+  font-size: 40px;
+  font-weight: bold;
+  padding-right: 15px;
+}
+
+.calculator .agregats {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.calculator .agregats button {
+  width: 80px;
+  height: 50px;
+  border-radius: 50%;
+  margin: 0 10px 20px;
+  font-weight: bold;
+  font-size: 15px;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.calculator .agregats button:hover {
+  background-color: #cacaca;
+}
+/*# sourceMappingURL=style.css.map */
