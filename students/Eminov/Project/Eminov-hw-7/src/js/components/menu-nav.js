@@ -1,3 +1,5 @@
+const menuApi = 'https://raw.githack.com/SergioElCringe/JS_step_1/main/BASE__PROJECT/';
+
 const menu = [{
         url: 'index.html',
         name: 'Home',
@@ -84,14 +86,14 @@ const nav = {
         };
 
         return `<li ${hassubs}>
-            <a href="${url}">${name}</a>
+            <a href="${menuApi + url}">${name}</a>
             ${this.checkSubCategories(subCategories)}
         </li>`;
     },
 
     getTemplateSub(item) {
         const { url, name } = item;
-        return `<li><a href="${url}">${name}</a></li>`;
+        return `<li><a href="${menuApi + url}">${name}</a></li>`;
     },
 
     checkSubCategories(categories) {
