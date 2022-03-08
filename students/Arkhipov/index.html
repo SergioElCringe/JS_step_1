@@ -5,11 +5,58 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
+	<title>JS | Lesson №1</title>
+	<style>
+		button {
+			width: 100px;
+			margin: 0px 0px 10px 0px;
+			font-size: 16px;
+			border: 1px solid teal;
+			border-radius: 4px;
+		}
+	</style>
 </head>
 
 <body>
+	<div>
+		<button onclick=summ() class="button">+</button>
+	</div>
+	<div>
+		<button onclick=difference() class="button">-</button>
+	</div>
+	<div>
+		<button onclick=multiplication() class="button">*</button>
+	</div>
+	<div>
+		<button onclick=dividing() class="button">/</button>
+	</div>
 
+	<script>
+		function summ() {
+			let a = +prompt('ener first number')
+			let b = +prompt('ener second number')
+			let resylt = a + b
+			console.log(Math.floor(resylt));
+		}
+		function difference() {
+			let a = +prompt('ener first number')
+			let b = +prompt('ener second number')
+			let resylt = a - b
+			console.log(Math.floor(resylt));
+		}
+		function multiplication() {
+			let a = +prompt('ener first number')
+			let b = +prompt('ener second number')
+			let resylt = a * b
+			console.log(Math.floor(resylt));
+		}
+		function dividing() {
+			let a = +prompt('ener first number')
+			let b = +prompt('ener second number')
+			let resylt = a / b
+			console.log(Math.floor(resylt));
+		}
+	</script>
 </body>
 
 </html>
