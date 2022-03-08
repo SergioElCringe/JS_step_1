@@ -1,3 +1,5 @@
+PRODUCTS_API
+
 const ENUMS = {
     category: {
         1: 'new',
