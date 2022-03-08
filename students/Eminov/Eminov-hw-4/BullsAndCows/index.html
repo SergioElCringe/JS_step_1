@@ -16,7 +16,6 @@
     <script>
         function game() {
             const play = {
-                skyNet: [],
                 randomNumber: null,
                 win: null,
                 maxRounds: 10,
@@ -27,15 +26,17 @@
                     return Math.floor(Math.random() * 10);
                 },
                 getHiddensValueOfComp() {
-                    while (this.skyNet.length < 4) {
+                    let skyNet = [];
+
+                    while (skyNet.length < 4) {
                         this.randomNumber = this.getRandom();
 
-                        if (!this.skyNet.includes(this.randomNumber)) {
-                            this.skyNet.push(this.randomNumber);
+                        if (!skyNet.includes(this.randomNumber)) {
+                            skyNet.push(this.randomNumber);
                         };
                     };
 
-                    return this.skyNet;
+                    return skyNet;
                 },
                 getHint(bulls, cows, playerChoice) {
                     console.log(
