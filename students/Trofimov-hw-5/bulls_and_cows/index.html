@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="src/style/css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <title>Bulls_and_cows</title>
+</head>
+
+<body>
+    <div class="content">
+        <div class="left_side">
+            <div class="header_block">
+                <h1 class="header_text">Игра:<br>Быки и Коровы!</h1>
+            </div>
+    
+            <div class="game_block">
+                <div class="answer_and_rounds_block">
+                    <p class="answer_text">Загаданное число: <span class="answer_number"></span></p>
+                    <p class="rounds_text">Ходов до конца игры осталось: <span class="rounds_number">10</span></p>
+                </div>
+    
+                <div class="player_form_block">
+                    <input type="text" id="player" placeholder="Введите число" class="input_form">
+                    <button id="clearButton" class="input_form color_changer">X</button>
+                    <br>
+                    <label for="player" class="text_number">Введите число -></label>
+                    <br>
+                    <input type="button" id="gameProcess" name="ok" value="Готов ответить" onclick="gameProcess()" class="button_form color_changer">
+                    <a href="index.html">
+                        <input name="search1" type="button" class="knopka button_form color_changer" title="Обновить" value="Играть заново">
+                    </a>
+                </div>            
+            </div>
+        </div>
+        
+
+        <div class="right_side results_table_block">
+            <div class="results_table">
+
+            </div>
+        </div>
+
+
+    </div>
+
+    <script src="./src/js/script.js"></script>
+</body>
+</html>
