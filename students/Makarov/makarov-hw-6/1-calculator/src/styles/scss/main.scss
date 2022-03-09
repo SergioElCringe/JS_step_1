@@ -51,13 +51,15 @@ $btn-active: #86a7a4;
     }
     &__keyboard {
         display: flex;
-        flex-flow: column wrap;
-        gap: 1px;
+        // flex-flow: column wrap;
+        column-gap: 1px;
     }
+
     &__btn {
         position: relative;
         display: block;
         padding: 0;
+        margin-bottom: 1px;
         border: none;
         color: $text;
         background-color: $btn;
@@ -95,8 +97,13 @@ $btn-active: #86a7a4;
         &__keyboard {
             height: calc(64vh + 3px);
         }
+        &__numbers {
+            display: flex;
+            flex-wrap: wrap;
+            width: calc(48vh + 2px);
+            column-gap: 1px;
+        }
         &__btn {
-
             width: 16vh;
             height: 16vh;
             font-size: 4vh;
@@ -121,6 +128,12 @@ $btn-active: #86a7a4;
         }
         &__keyboard {
             height: calc(64vw + 3px);
+        }
+        &__numbers {
+            display: flex;
+            flex-wrap: wrap;
+            width: calc(48vw + 2px);
+            column-gap: 1px;
         }
         &__btn {
             width: 16vw;
