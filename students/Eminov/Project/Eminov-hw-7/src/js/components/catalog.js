@@ -54,7 +54,7 @@ const ENUMS = {
     condition: {
         1: 'new',
         2: 'hot',
-        3: 'sale',
+        3: 'sale'
     },
 };
 
@@ -82,7 +82,7 @@ const app = {
                 </div>
                 <div class="product_price">${price}</div>
             </div>
-        </div>`
+        </div>`;
     },
 
     getProductExtraTemplate(conditionId) {
@@ -103,21 +103,22 @@ const app = {
                     className = 'product_new';
                     text = 'New';
                     break;
-                }
+                };
 
             case 2:
                 {
                     className = 'product_hot';
                     text = 'Hot';
                     break;
-                }
+                };
 
             default:
                 {
                     className = 'product_sale';
                     text = 'Sale';
-                }
+                };
         };
+
         return { className, text };
     },
 
@@ -126,6 +127,6 @@ const app = {
         this.items.forEach(item => accum += this.getTemplate(item));
         this.container.innerHTML = accum;
     },
-}
+};
 
 app.init();
