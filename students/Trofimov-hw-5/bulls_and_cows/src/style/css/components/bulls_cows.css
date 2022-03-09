@@ -1,5 +1,5 @@
 body {
-    background: url(../../../assets/images/main_background.png) no-repeat center center fixed;
+    background: url("https://cdn6.aptoide.com/imgs/9/6/c/96c1ef777ce2b1eb2e435f35cc139742_fgraphic_705x345.png") no-repeat center center fixed;
     background-size: cover;
     font-family: 'Press Start 2P', cursive;
 };
@@ -26,7 +26,7 @@ body {
     position: absolute;
     top: 0; left: 0; bottom: 0; right: -70%;
     text-align: left;
-    background-image: url('../../../assets/images/bg_list.jpg');
+    background-image: url('https://catherineasquithgallery.com/uploads/posts/2021-03/1614845566_20-p-fon-tetrad-22.jpg');
     border-radius: 10%;
 }
 
