@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="src/css/style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- HTML -->
+    <div class="container">
+        <div class="game">
+            <div class="game-form">
+                <div class="game-form__play">
+                    <h2>Итак, компьютер уже что-то загадал... Удачи отгадать число!</h2>
+                    <label>
+                        <span>Ваша версия числа:</span>
+                        <input type="text" placeholder="Введите ваше число..." id="inputChoice">
+                    </label>
+                    <div class="game-btn">
+                        <button id="move">Сделать ход!</button>
+                        <button id="play">Новая игра</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="result" id="result-attempt">
+        </div>
+        <div class="comment" id="comment">
+        </div>
+    </div>
+
+    <!-- JS -->
+    <script>
+        (function play() {
+            const bullsAndCows = {
+                container: null,
+                inputChoice: null,
+                selectedNumbers: [],
+                computerChoice: [],
+                playerChoice: null,
+                history: [],
+                attempts: 10,
+                play: true,
+
+                init() {
+                    this.container = document.querySelector('#result-attempt');
+                    this.inputChoice = document.querySelector('#inputChoice');
+                },
+
+                getPlayerChoice() {
+                    this.init();
+                    this.selectedNumbers.push({
+                        playerNumber: this.inputChoice.value,
+                    });
+
+                    return [...this.selectedNumbers[this.selectedNumbers.length - 1].playerNumber];
+                },
+
+                getRandom() {
+                    return Math.floor(Math.random() * 10);
+                },
+
+                getHiddensValueOfComp() {
+                    let randomNumber = null;
+
+                    while (this.computerChoice.length < 4) {
+                        randomNumber = this.getRandom();
+
+                        if (!this.computerChoice.includes(randomNumber)) {
+                            this.computerChoice.push(randomNumber);
+                        };
+                    };
+
+                    return this.computerChoice;
+                },
+
+                checkValues(inputValue, hiddenValue) {
+                    let bulls = 0;
+                    let cows = 0;
+
+                    for (let i = 0; i < 4; i++) {
+                        if (hiddenValue[i] === +inputValue[i]) {
+                            bulls++
+                        } else if (hiddenValue.includes(+inputValue[i])) {
+                            cows++;
+                        };
+                    };
+
+                    this.history.push({
+                        choice: inputValue,
+                        bulls: bulls,
+                        cows: cows,
+                        left: (--this.attempts),
+                    });
+
+                    this.render();
+
+                    return bulls === 4;
+                },
+
+                getWinner(computerChoice) {
+                    let result = null;
+
+                    if (this.play) {
+                        if (this.attempts > 0) {
+                            this.playerChoice = this.getPlayerChoice();
+                            result = this.checkValues(this.playerChoice, computerChoice);
+
+                            if (result) {
+                                this.play = false;
+                                alert('Поздравляю! Вы победили.');
+                            };
+                        } else {
+                            this.play = false;
+                            alert(`К сожалению, вы проиграли! Загаданное число компьютером было ${computerChoice}`);
+                        };
+                    };
+                },
+
+                render() {
+                    let templateAll = '';
+                    this.history.forEach(item => templateAll += this.getTemplate(item));
+                    this.container.innerHTML = templateAll;
+                },
+
+                getTemplate(item) {
+                    return `
+                    <div class="result-attempt">
+                        <p>Выбранная вами комбинация: <b>${item.choice}</b>. Быки: <b>${item.bulls}</b>, коровы: <b>${item.cows}</b>. Осталось: <b>${item.left} попыток!</b></p>
+                    </div>
+                    `;
+                },
+
+                makeMove() {
+                    this.computerChoice = this.getHiddensValueOfComp();
+                    this.getWinner(this.computerChoice);
+                },
+            };
+
+            bullsAndCows.init();
+            document.querySelector('#move').onclick = () => bullsAndCows.makeMove();
+            document.querySelector('#play').onclick = () => play();
+        })();
+    </script>
+</body>
+
+</html>

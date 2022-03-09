@@ -1,0 +1,82 @@
+body {
+  font-family: sans-serif;
+  background-color: #e6f8dd;
+}
+
+.container {
+  margin: 20px 0 0 20px;
+}
+
+.container .game .game-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.container .game .game-form .game-form__play h2 {
+  margin-top: 0;
+}
+
+.container .game .game-form .game-form__play label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 20px;
+  margin-right: 20px;
+}
+
+.container .game .game-form .game-form__play label span {
+  margin-right: 30px;
+}
+
+.container .game .game-form .game-form__play label input {
+  background: none;
+  border-radius: 5px;
+}
+
+.container .game .game-form .game-btn {
+  margin-top: 20px;
+}
+
+.container .game .game-form .game-btn button {
+  margin-left: 10px;
+  padding: 5px 20px;
+  width: 150px;
+  background-color: #00d9ff;
+  border-radius: 5px;
+  font-size: 15px;
+}
+
+.container .game .game-form .game-btn button:hover {
+  background-color: #00b7ff;
+}
+
+.container .game .game-form .game-btn button:nth-child(1) {
+  margin-right: 55px;
+}
+
+.container .result {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.container .result .result-attempt {
+  margin-right: 50px;
+}
+
+.container .result .result-attempt span {
+  display: block;
+  font-size: 15px;
+}
+/*# sourceMappingURL=style.css.map */
