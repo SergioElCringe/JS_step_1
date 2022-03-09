@@ -49,7 +49,6 @@ const cart = {
 
     removeAllItems() {
         this.items = [];
-
         this.render();
     },
 
@@ -130,7 +129,7 @@ const cart = {
         this.countAmount();
 
         if (result && this.items.length > 0) {
-            result += this.getTotal(this.itemsCount, this.itemsPrice)
+            result += this.getTotal(this.itemsCount, this.itemsPrice);
         };
 
         this.containerItems.innerHTML = result;
