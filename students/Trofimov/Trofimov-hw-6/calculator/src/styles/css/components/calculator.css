@@ -1,0 +1,79 @@
+body {
+    background-image: url("https://avatars.mds.yandex.net/get-images-cbir/1774282/D3exxC0ypZX808C-dRulMA4775/ocr");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    user-select: none;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-gap: 2px;
+    background-color: #477d05;
+    padding: 10px;
+    border-radius: 5px;
+    max-width: 460px;
+    font-family: "Calibri";
+    margin: 10px;
+}
+
+.item {
+    background-color: black;
+    width: 85px;
+    height: 65px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    font-weight: bold;
+    margin: auto;
+    border-radius: 5px;
+}
+
+.item:hover{
+    background-color: darkgray;
+}
+
+.input-value {
+    min-height: 90px;
+    height: auto;
+    grid-column: 1/-1;
+    padding-right: 20px;
+    padding-left: 20px;
+    margin-bottom: 10px;
+    background-color: white;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    font-size: 45px;
+    text-align: right;
+    color: black;
+}
+
+.input-value:hover {
+    background-color: white;
+}
+
+.upper-font {
+    font-size: 18px;
+    margin-left: 2px;
+    margin-top: -22px;
+}
+
+.clean, .back, .percent, .divide, .multiple, .subtraction, .summation {
+    color: goldenrod;
+}
+
+.clean:hover, .back:hover, .percent:hover, .divide:hover, .multiple:hover, .subtraction:hover, .summation:hover {
+    color: white;
+}
+
+.equal {
+    background-color: goldenrod;
+}
+
+.equal:hover {
+    background-color: gold;
+}
