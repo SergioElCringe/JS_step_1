@@ -118,8 +118,6 @@
     },
 
     render() {
-      // let templateAll = '';
-      // this.items.forEach(item => templateAll += this.getTemplate(item));
       const templateAll = this.items.reduce((acc, item) => {
         acc += this.getTemplate(item);
         return acc;
