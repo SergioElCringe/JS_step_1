@@ -1,0 +1,29 @@
+* {
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	box-sizing: border-box;
+	font-family: sans-serif;
+}
+
+.container {
+	display: flex;
+	justify-content: space-around;
+	padding: 10px;
+	flex-wrap: wrap;
+}
+.container div {
+	margin: 0px 10px;
+}
+
+.button {
+	display: block;
+	width: 100px;
+	margin: 10px auto;
+	font-size: 16px;
+	border: 1px solid teal;
+	border-radius: 4px;
+}
+
+.title {
+	text-align: center;
+}

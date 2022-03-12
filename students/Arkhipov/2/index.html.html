@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./style.css">
+	<title>JS | Lesson №2</title>
+</head>
+
+<body>
+	<section class="container">
+		<div class="calc">
+			<h2 class="title">Калькулятор</h2>
+			<div>
+				<button onclick=makeMathOperation(1) class="button">+</button>
+			</div>
+			<div>
+				<button onclick=makeMathOperation(2) class="button">-</button>
+			</div>
+			<div>
+				<button onclick=makeMathOperation(3) class="button">*</button>
+			</div>
+			<div>
+				<button onclick=makeMathOperation(4) class="button">/</button>
+			</div>
+		</div>
+		<div class="game">
+			<h2 class="title">Игра</h2>
+			<div>
+				<button onclick="userSelect(`камень`)" class="button">Камень</button>
+			</div>
+			<div>
+				<button onclick="userSelect(`ножницы`)" class="button">Ножницы</button>
+			</div>
+			<div>
+				<button onclick="userSelect(`бумага`)" class="button">Бумага</button>
+			</div>
+		</div>
+		<div class="math">
+			<h2 class="title">Рекурсия</h2>
+			<div>
+				<button onclick="doPower()" class="button">Возвести в степень</button>
+			</div>
+		</div>
+	</section>
+	<script src="./script.js"></script>
+</body>
+
+</html>
