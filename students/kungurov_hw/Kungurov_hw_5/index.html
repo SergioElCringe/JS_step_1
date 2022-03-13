@@ -134,20 +134,23 @@
             }
             console.log(this.cows + ": Коров " + this.bulls + ": Быков");
           },
+
+          info() {
+            this.init()
+            this.round = 10;
+            this.items = [];
+          },
+
           endPlay() {
             this.input();
             this.gameInfo();
             if (this.bulls === 4) {
               this.attempt.value = "вы победили";
-              this.init()
-              this.round = 10;
-              this.items = [];
+              this.info();
               this.player = 'Победа';
             } else if (!this.round) {
               this.attempt.value = "вы проиграли , компьютер :" + this.pc;
-              this.init();
-              this.round = 10;
-              this.items = [];
+              this.info();
               this.player = 'Проиграли';
             }
           },
