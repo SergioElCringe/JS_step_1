@@ -124,32 +124,32 @@
       },
 
       addOperators(evt) {
-        if (event.target.tagName === "BUTTON") {
+        if (event.target.tagName === 'BUTTON') {
             const { target: { dataset: { operator } } } = evt;
             this.outputValue += operator;
             this.output.value = this.outputValue;
           };
       },
       addNumber(evt) {
-        if (event.target.tagName === "BUTTON") {
+        if (event.target.tagName === 'BUTTON') {
             const { target: { dataset: { number } } } = evt;
             this.outputValue += number;
             this.output.value = this.outputValue;
             
           };
       },
-      equals(){
+      equals() {
         this.output.value = eval(this.outputValue)
         this.outputValue = '';
       },
-      delete(){
+      delete() {
         this.outputValue = '';
         this.output.value = null;
       },
-      draw(){
+      draw() {
         this.output.value = eval(this.outputValue);
         const arr = this.output.value;
-        this.output.value = arr*-1;
+        this.output.value = arr * -1;
         this.outputValue = this.output.value;
       },
     };

@@ -69,12 +69,9 @@
         init(data) {
           this.items = data;
           this.selected = this.items[0];
-          this.mainImg = document.querySelector("#img__main");
-          this.carouselContainer = document.querySelector(".carousel");
-          this.carouselContainer.addEventListener(
-            "click",
-            this.clickHandler.bind(this)
-          );
+          this.mainImg = document.querySelector('#img__main');
+          this.carouselContainer = document.querySelector('.carousel');
+          this.carouselContainer.addEventListener("click" , this.clickHandler.bind(this));
           this.render();
           this.createCarousel();
         },
@@ -89,10 +86,10 @@
           });
           this.carouselContainer.innerHTML = accum;
         },
-        buttonLeft(url){
+        buttonLeft(url) {
           this.selected = url;
           this.elementId = fetchData.indexOf(this.selected);
-          if(!this.elementId){
+          if (!this.elementId) {
             this.elementId = 6;
           }
           this.elementId--;
@@ -101,10 +98,10 @@
           this.mainImg.src = newUrl;
           this.selected = newSelected;
         },
-        buttonRight(url){
+        buttonRight(url) {
           this.selected = url;
           this.elementId = fetchData.indexOf(this.selected);
-          if(this.elementId == 5){
+          if (this.elementId == 5){
             this.elementId = -1;
           }
           this.elementId++;
@@ -124,15 +121,15 @@
         },
 
         clickHandler(event) {
-          if (event.target.tagName === "IMG") {
+          if (event.target.tagName === 'IMG') {
             const url = event.target.dataset.url;
             this.changeImg(url);
           }
         },
       };
       app.init(fetchData);
-      document.querySelector(".left").onclick = () => app.buttonLeft(app.selected);
-      document.querySelector(".right").onclick = () => app.buttonRight(app.selected);
+      document.querySelector('.left').onclick = () => app.buttonLeft(app.selected);
+      document.querySelector('.right').onclick = () => app.buttonRight(app.selected);
     </script>
   </body>
 </html>
