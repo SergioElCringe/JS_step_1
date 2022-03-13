@@ -103,11 +103,9 @@ const cart = {
     } else {
       this.containerCard.innerHTML = '';
     };
-    if(!!this.items){
       this.money = document.querySelector('#mon');
       this.clean = document.querySelector('#cart');
       this.clean.addEventListener ('click', this.deleteItem.bind(this));
-    }
     let result = null  ;
     this.index = this.items.find((el ) => {
       result += el.price * el.amount;
