@@ -39,9 +39,9 @@
 
         const game = {
             play() {
-                let i = 10;
-                while (i) {
-                    let bulls = game.bullAndCowsCount();
+                bot.array = bot.NumberGenerate();
+                for (let i = 9; i > 0;) {
+                    let bulls = game.bullAndCowsCount(player.input(), bot.array);
                     if (bulls === 4) {
                         console.log("Компьютер загадал:" + bot.array);
                         return console.log('Вы выиграли');
@@ -52,19 +52,14 @@
                 console.log("Попытки кончились, вы проиграли");
             },
 
-            bullAndCowsCount() {
+            bullAndCowsCount(player, bot) {
                 let cows = 0;
                 let bulls = 0;
-                player.array = player.input();
-                bot.array = bot.NumberGenerate();
-                for (i = 0; i <= bot.array.length - 1; i++) {
-                    for (j = 0; j <= player.array.length - 1; j++) {
-                        if (bot.array[i] == player.array[j] && i == j) {
-                            bulls++;
-                        }
-                        else if (bot.array[i] == player.array[j] && i != j) {
-                            cows++;
-                        }
+                for (let i = 0; i < bot.length; i++) {
+                    if (player[i] === bot[i]) {
+                        bulls++
+                    } else if (player.includes(+bot[i])) {
+                        cows++;
                     };
                 };
                 console.log(`Коров :${cows}\n\nБыков: ${bulls}\n\n`)
