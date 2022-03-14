@@ -124,7 +124,7 @@ const game = {
             </p>
                 ${this.roundsEliment.innerHTML}
             </div>
-        </div> `
+        </div> `;
     },
 
     winRender(elem, goal, rounds, play) {
@@ -143,7 +143,7 @@ const game = {
             <button class="restart-btn" onclick="game.restart(game.output)">
                 Restart
             </button>
-        </div> `
+        </div> `;
     },
 
     restart(elem) {
@@ -152,7 +152,7 @@ const game = {
             <p>
                Let's start, again
             </p>
-        </div> `
+        </div> `;
         this.init()
         this.bullsEliment.innerHTML = ``;
         this.cowsEliment.innerHTML = ``;
