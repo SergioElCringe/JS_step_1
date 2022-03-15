@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        height: 500px;
+        font-family: sans-serif;
+      }
+      .game {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 2px solid grey;
+        width: 70%;
+        flex-direction: column;
+        background-image: url(../Kungurov_hw_5/unnamed.jpg);
+        object-fit: cover;
+        background-size: cover;
+      }
+      .game .start {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 150px;
+        height: 50px;
+      }
+      form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 70%;
+        margin-bottom: 30px;
+        margin-top: 83px;
+      }
+      label {
+        margin-bottom: 15px;
+      }
+      input {
+        width: 220px;
+        height: 50px;
+      }
+      .result {
+        border: 2px solid black;
+        height: 615px;
+      }
+      .card{
+        border: 2px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="game">
+      <div class="form">
+        <form>
+          <label>
+            <input
+              type="text"
+              id="peopleNumber"
+              placeholder="Введите ваше число"
+            />
+          </label>
+          <label>
+            <input type="text" id="winner" placeholder="Попыток осталось: " />
+          </label>
+        </form>
+        <button class="att">Игра</button>
+      </div>
+    </div>
+    <div class="result" id="result"></div>
+
+    <script>
+      (function () {
+        const bac = {
+          result: {},
+          items: [],
+          round: 9,
+          history: [],
+          attempt: null,
+          pc: null,
+          player: [],
+          bulls: 0,
+          cows: 0,
+          people: null,
+          container: null,
+          playernum: null,
+          win: [],
+          init() {
+            this.botNumber();
+            console.log(this.pc);
+            this.attempt = document.querySelector("#winner");
+            this.container = document.querySelector("#result");
+          },
+          botNumber() {
+            const result = [];
+            while (result.length < 4) {
+              const rndNumber = Math.floor(Math.random() * 10);
+              if (!result.includes(rndNumber)) {
+                result.push(rndNumber);
+              }
+            }
+            this.pc = result;
+          },
+          game() {
+            this.attempt.value = "Осталось попыток: " + this.round;
+            this.endPlay();
+            --this.round;
+            this.result = {};
+            this.container = document.querySelector(".result");
+            this.add();
+          },
+          input() {
+            this.playernum = document.querySelector("#peopleNumber").value;
+            this.player = this.playernum.split("");
+            document.querySelector("#peopleNumber").value = null;
+          },
+          gameInfo() {
+            for (i = 0; i <= this.pc.length - 1; i++) {
+              for (j = 0; j <= this.player.length - 1; j++) {
+                if (this.pc[i] == this.player[j] && i == j) {
+                  this.bulls++;
+                } else if (this.pc[i] == this.player[j] && i != j) {
+                  this.cows++;
+                }
+              }
+            }
+            console.log(this.cows + ": Коров " + this.bulls + ": Быков");
+          },
+
+          info() {
+            this.init()
+            this.round = 10;
+            this.items = [];
+          },
+
+          endPlay() {
+            this.input();
+            this.gameInfo();
+            if (this.bulls === 4) {
+              this.attempt.value = "вы победили";
+              this.info();
+              this.player = 'Победа';
+            } else if (!this.round) {
+              this.attempt.value = "вы проиграли , компьютер :" + this.pc;
+              this.info();
+              this.player = 'Проиграли';
+            }
+          },
+          add() {
+            this.items.push({
+              people: this.player,
+              bulls: this.bulls,
+              cows: this.cows,
+            });
+            console.log(this.items)
+            this.render();
+          },
+          render() {
+            const templateAll = this.items.reduce((acc, item) => {
+              acc += this.getTemplate(item);
+              return acc;
+            }, "");
+            this.container.innerHTML = templateAll;
+            this.bulls = 0;
+            this.cows = 0;
+          },
+          getTemplate(item) {
+            const { people , bulls , cows } = item;
+            return `
+        <div class="card">
+          <div>
+            <span class="prop">Вы:</span>
+            <span class="value">${ people }</span>
+          </div>
+          <div>
+            <span class="prop">Быки:</span>
+            <span class="value">${ bulls }</span>
+          </div>
+          <div>
+            <span class="prop">Коровы:</span>
+            <span class="value">${ cows }</span>
+          </div>
+        </div>
+      `;
+          },
+        };
+        bac.init();
+        document.querySelector(".att").onclick = () => bac.game();
+      })();
+    </script>
+  </body>
+</html>
