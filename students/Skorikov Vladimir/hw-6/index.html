@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Homework 6</title>
+  <style>
+    .conainer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .main-img {
+      display: flex;
+      height: 250px;
+      justify-content: space-evenly;
+      align-items: center;
+    }
+
+    .carousel {
+      display: flex;
+      justify-content: center;
+    }
+
+    .slide-img {
+      width: 11%;
+    }
+
+    .img__preview {
+      cursor: pointer;
+      margin-right: 20px;
+      height: 100px;
+      opacity: .8;
+      transition: opacity .2s;
+    }
+
+    .img__preview:hover {
+      opacity: 1;
+      transition: opacity .2s;
+    }
+
+    .active {
+      opacity: 1;
+      transition: opacity .2s;
+      width: 13%;
+    }
+
+    .prev,
+    .next {
+      cursor: pointer;
+      padding: 16px;
+      color: rgb(0, 0, 0);
+      font-weight: bold;
+      font-size: 38px;
+      transition: 0.6s ease;
+      border-radius: 0 3px 3px 0;
+    }
+
+    .next {
+      right: 0;
+      border-radius: 3px 0 0 3px;
+    }
+
+   .prev:hover,
+   .next:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+      border-radius: 25px;
+      color: white;
+    }
+
+    .btn__carousel {
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      margin: 100px auto;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      text-align: center;
+      font-weight: 900;
+      color: rgb(25, 12, 12);
+      margin-bottom: 15px;
+    }
+
+    #output {
+      color: white; 
+      font-size: 50px;
+      text-align: right;
+      margin: 20px;
+    }
+
+    #calc {
+      width: 320px;
+      padding: 0;
+      border: 2px solid #616c63;
+      border-radius: 4px;
+      box-shadow: 0 0 30px grey;
+      background-color: rgb(128, 127, 127);
+    }
+
+    #history {
+      width: 320px;
+      height: 170px;
+      text-align: right;
+    }
+
+    button:focus {
+      outline: 0;
+    }
+
+    .btn-first-row {
+      border-top: 1px solid #191919 !important;
+      background: #000;
+      font-size: 18px !important;
+      font-weight: 600 !important;
+    }
+
+    .btn-first-row:hover {
+      background: #454545;
+    }
+
+    .btn-first-row:active {
+      background: #333333;
+    }
+
+    .btn-op {
+      font-size: 32px;
+      font-weight: 100;
+    }
+
+    .btn-main {
+      background: #1F1F1F;
+    }
+
+    .btn-main:hover {
+      background: #ffffff;
+      color: #000;
+    }
+
+    .btn-main:active {
+      background: #ffffff;
+      color: #000;
+    }
+
+    .btn-pad {
+      width: 80px;
+      height: 50px;
+      margin: 0px;
+      padding: 0;
+      border: none;
+      float: left;
+      font-family: Segoe UI;
+      color: #FFF;
+      /*text-decoration: none;*/
+    }
+
+    .btn-num {
+      font-size: 22px;
+      font-weight: 600;
+    }
+
+    .btn-other {
+      font-weight: 400;
+    }
+
+    .btn-whatfuckingever {
+      font-size: 22px;
+      font-weight: 300;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="slider">
+    <div class="main-img">
+      <a class="prev" data-set="left">&#10094;</a>
+      <img class="slide-img" src="" alt="" id="img__main">
+      <a class="next" data-set="right">&#10095;</a>
+    </div>
+    <div class="carousel"></div>
+  </div>
+
+  <div class="container">
+    <h1>Калькулятор</h1>
+    <div id="calc">
+      <div id="history">
+        <p id="output">0</p>
+      </div>
+      <div id="buttons">
+        <button id="percent" class="btn-pad btn-first-row btn-op">%</button>
+        <button id="sqroot" class="btn-pad btn-first-row btn-op">√</button>
+        <button id="square" class="btn-pad btn-first-row btn-op">𝒙<sup>2</sup></button>
+        <button id="inverse" class="btn-pad btn-first-row btn-op"><sup>1</sup>/<sub>𝒙</sub></button>
+        <button class="btn-pad btn-main btn-other">CE</button>
+        <button class="btn-pad btn-main btn-other">C</button>
+        <button class="btn-pad btn-main btn-other">⌫</button>
+        <button id="divide" class="btn-pad btn-main btn-op">÷</button>
+        <button class="btn-pad btn-main btn-num">7</button>
+        <button class="btn-pad btn-main btn-num">8</button>
+        <button class="btn-pad btn-main btn-num">9</button>
+        <button id="multiply" class="btn-pad btn-main btn-op">×</button>
+        <button class="btn-pad btn-main btn-num">4</button>
+        <button class="btn-pad btn-main btn-num">5</button>
+        <button class="btn-pad btn-main btn-num">6</button>
+        <button id="subs" class="btn-pad btn-main btn-op">−</button>
+        <button class="btn-pad btn-main btn-num">1</button>
+        <button class="btn-pad btn-main btn-num">2</button>
+        <button class="btn-pad btn-main btn-num">3</button>
+        <button id="sum" class="btn-pad btn-main btn-op">+</button>
+        <button class="btn-pad btn-main btn-whatfuckingever">±</button>
+        <button class="btn-pad btn-main btn-num">0</button>
+        <button class="btn-pad btn-main btn-num">.</button>
+        <button id="solve" class="btn-pad btn-main btn-op">=</button>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="src/js/carousel.js"></script>
+  <script src="src/js/calculator.js"></script>
+</body>
+
+</html>
