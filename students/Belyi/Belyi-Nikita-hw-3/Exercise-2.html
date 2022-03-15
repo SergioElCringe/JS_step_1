@@ -18,15 +18,15 @@ function createArray() {
     let primeNumber = [];
     for (let i = 2; i <= 100; i++) {
         for (let j = 2; j < i; j++) {
-            if (i % j == 0) {
-            result = false
-            }
-        }
+            if (!(i % j )) {
+            result = false;
+            };
+        };
         if (result) {
         primeNumber.push(i);
         }
-        result = true
-    } 
+        result = true;
+    };
     console.log(primeNumber)
 }
     console.log(createArray())  
