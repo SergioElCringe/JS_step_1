@@ -13,64 +13,87 @@ const PRODUCTS = [
     imgUrl: '/product_1.jpg',
     name: 'Smart Phone',
     price: 670,
-    category: 1
+    category: 1,
+    id: 'p1'
   },
   {
     imgUrl: '/product_2.jpg',
     name: 'Smart Phone',
-    price: 670,
-    category: null
+    price: 570,
+    category: null,
+    id: 'p2'
   },
   {
     imgUrl: '/product_3.jpg',
     name: 'Smart Phone',
-    price: 670,
-    category: null
+    price: 470,
+    category: null,
+    id: 'p3'
   },
   {
     imgUrl: '/product_4.jpg',
     name: 'Smart Phone',
-    price: 670,
-    category: 1
+    price: 370,
+    category: 1,
+    id: 'p4'
   },
   {
     imgUrl: '/product_5.jpg',
     name: 'Smart Phone',
-    price: 670,
-    category: 2
+    price: 270,
+    category: 2,
+    id: 'p5'
   },
   {
     imgUrl: '/product_6.jpg',
     name: 'Smart Phone',
-    price: 670,
-    category: null
+    price: 170,
+    category: null,
+    id: 'p6'
   },
   {
     imgUrl: '/product_7.jpg',
     name: 'Smart Phone',
-    price: 670,
-    category:null
+    price: 770,
+    category:null,
+    id: 'p7'
   },
   {
     imgUrl: '/product_8.jpg',
     name: 'Smart Phone',
-    price: 670,
-    category: 3
+    price: 870,
+    category: 3,
+    id: 'p8'
   },
 ];
 
 const catalog = {
   items: [],
   container: null,
+  cart: null,
 
   init() {
     this.items = PRODUCTS;
+    this.cart = cart;
     this.container = document.querySelector('#catalog');
     this.render();
+    this.handleEvents();
+  },
+
+  handleEvents() {
+    this.container.addEventListener('click', evt => {
+      if (evt.target.classList.contains('btn-add')) {
+        const { name, price, imgurl, id } = evt.target.dataset;
+        this.cart.addItem({
+          name, price, id, 
+          imgUrl: imgurl
+        });
+      }
+    });
   },
 
   createTemplate(item) {
-    const { imgUrl, name, price, category } = item;
+    const { imgUrl, name, price, category, id } = item;
     return `
     <div class="product">
       <div class="product_image"><img src="${ PRODUCTS_API + imgUrl }" alt=""></div>
@@ -78,6 +101,15 @@ const catalog = {
       <div class="product_content">
         <div class="product_title"><a href="product.html">${ name }</a></div>
         <div class="product_price">$${ price }</div>
+      </div>
+      <div 
+        class="newsletter_button button_custom btn-add"
+        data-imgurl="${ imgUrl }"
+        data-name="${ name }"
+        data-price="${ price }"
+        data-id="${ id }"
+      >
+        <span>Add</span>
       </div>
     </div>
     `;

@@ -34,8 +34,11 @@
 								<div class="shopping_cart">
 									<a href="cart.html">
 										<img class="cart__icon" src="https://raw.githubusercontent.com/SergioElCringe/JS_step_1/main/BASE__PROJECT/images/shopping.svg" alt="Cart-icon">
-										<div>Cart <span>(0)</span></div>
+										<div>Cart <span id="cart-counter">(0)</span> <span id="cart-prices">$0</span></div>
 									</a>
+									<div class="cart__content" id="cart-items">
+										
+									</div>
 								</div>
 								<div class="search">
 									<div class="search_icon">
@@ -408,6 +411,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <script src="https://raw.githack.com/SergioElCringe/JS_step_1/main/BASE__PROJECT/plugins/parallax-js-master/parallax.min.js"></script>
 <script src="./src/js/custom.js"></script>
 
+<script src="./src/js/components/app.js"></script>
+<script src="./src/js/components/cart.js"></script>
 <script src="./src/js/components/catalog.js"></script>
 <script src="./src/js/components/nav-menu.js"></script>
 </body>
