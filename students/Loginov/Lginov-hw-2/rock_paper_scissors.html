@@ -9,60 +9,41 @@
 <body>
     <button onclick="play()">PLAY THE GAME</button>
     <script> 
-        function numberCheck() {
-            let a = +prompt('1 - rock, 2 - paper, 3 - scissors');
-            if (a === 1 || a === 2 || a === 3) {
-                return a;
-            }
-            else {
-                return console.log('Choose your item');
-            }
-        };
         function randomNumber() {
             return Math.floor(Math.random() * (3 - 1 + 1) + 1)
         };
-        function play() {
-            const playerChoice = numberCheck();
-            const botChoice = randomNumber();
 
-            switch (playerChoice) {
-                case 1: {
-                    if (botChoice === 1) {
-                        console.log('You choose rock. Bot choose rock too. Its a draw');
-                    }
-                    else if (botChoice === 2) {
-                        console.log('You choose rock. Bot choose paper. You lose');
-                    }
-                    else {
-                        console.log('You choose rock. Bot choose scissors. You win');
-                    }
-                    break;
-                };
-                case 2: {
-                    if (botChoice === 1) {
-                        console.log('You choose paper. Bot choose rock. You win')
-                    }
-                    else if (botChoice === 2) {
-                        console.log('You choose paper. Bot choose paper too. Its a draw')
-                    }
-                    else {
-                        console.log('You choose paper. Bot choose scissors. You lose')
-                    }
-                    break;
-                };
-                case 3: {
-                    if (botChoice === 1) {
-                        console.log('You choose scissors. Bot choose rock. you lose')
-                    }
-                    else if (botChoice === 2) {
-                        console.log('You choose scissors. Bot choose paper. You win')
-                    }
-                    else {
-                        console.log('You choose scissors. Bot choose scissors too. Its a draw')
-                    }
-                    break;
-                };
+        function getName(val) {
+            switch (val) {
+                case 1: return 'Rock';
+                case 2: return 'Paper';
+                case 3: return 'Scissors';
+            }
+        };
+
+        function play(user) {
+            console.log(match(user));
+        };
+
+        function match() {
+
+            const botChoice = randomNumber();
+            let playerChoice = +prompt('1 - rock, 2 - paper, 3 - scissors')
+            let winner = 'User';
+            let round = 1;
+
+            if ((playerChoice === 1 && botChoice === 2 || playerChoice === 2 && botChoice === 3 || playerChoice === 3 && botChoice === 1)) {
+                winner = 'Computer';
+            } else if (playerChoice === botChoice) {
+                winner = 'Both';
             };
+            return `
+            Раунд: ${ round++ }\n
+            Результат\n
+            Игрок: ${ getName(playerChoice) }\n
+            Компьютер: ${ getName(botChoice) }\n
+            
+            ПОБЕДИТЕЛЬ: ${ winner }`;
         };
     </script>
 </body>
