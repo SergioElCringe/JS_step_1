@@ -88,7 +88,6 @@ function changeNumberToChoise() {
 			default: { computerSelect = 'бумага' };
 		}
 	}
-	return
 }
 
 function getRandomNum(numMax) {
