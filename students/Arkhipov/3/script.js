@@ -54,51 +54,71 @@ function getMaxSimpleNumber() {
 // 3 задание
 function startGame() {
 	const skyNet = RandomNumber();
-	console.log(skyNet);
-	let indexRound = 10;
-	// do {
-	// 	round(skyNet);
-	// 	--indexRound
-	// } while (indexRound)
-	round(skyNet);
-
+	console.log('Я загадал число.');
+	let rounNumber = 10;
+	while (rounNumber !== 0 && round(skyNet, rounNumber) !== 0) {
+		--rounNumber
+	}
+	if (rounNumber === 0) {
+		const numResult = skyNet.join('');
+		console.log(`Вы проиграли\n
+Загаданное число: ${numResult}`);
+	}
 }
-
-function round(skyNet) {
+/**
+ * Мрак, но работает 
+ * */
+function round(skyNet, rounNumber) {
+	console.log(`Раунд № ${rounNumber}`);
 	let userNumber = prompt('Пропробуй угадать число');
 	userNumber = Array.from(userNumber);
-
-	console.log(userNumber);
 	let bull = 0;
 	let cow = 0;
-	for (let i = 0; i !== skyNet.length; i++) {
-		for (let y = 0; y !== 4; y++) {
-			if (skyNet[i] === userNumber[y]) {
+	skyNet.forEach(e => {
+		for (let i = 0; i < skyNet.length; i++) {
+			if (e === userNumber[i] && skyNet[i] === userNumber[i]) {
 				bull++
-
-			} else if (0) {
+			} else if (e === userNumber[i]) {
 				cow++
 			}
 		}
-	}
-	console.log('быков ' + bull);
-	console.log('коров ' + cow);
-
+	});
+	return writeResultGame(bull, cow, userNumber)
 }
 
-
-
+function writeResultGame(bull, cow, userNumber) {
+	let textBull;
+	let textCow;
+	let finishGame = 1;
+	const user = userNumber.join('');
+	bull === 1 ? textBull = 'бык' : textBull = 'быка'
+	cow === 1 ? textCow = 'корова' : textCow = 'коровы'
+	if (bull > 0 && cow > 0) {
+		console.log(`Подсказка: ${cow} ${textCow}, ${bull} ${textBull} \n
+Игрок: ${user}`);
+	} else if (bull < 4 && 0 < bull) {
+		console.log(`Подсказка: ${bull} ${textBull}\n
+Игрок: ${user} `);
+	} else if (cow > 0) {
+		console.log(`Подсказка: ${cow} ${textCow}\n
+Игрок: ${user}`);
+	} else if (bull === 4) {
+		console.log(`Вы победили !!!\n
+Игрок: ${user}`);
+		finishGame = 0;
+	} else {
+		console.log('Неугадал. Попробуй ещё раз');
+	}
+	return finishGame
+}
 
 function RandomNumber() {
-	let num = Array.from('1234');
-	// do {
-	// 	num = createRandomNum(10000);
-	// 	num = num.toString();
-	// 	num = Array.from(num);
-	// 	num = checkUnique(num);
-	// } while (num.length !== 4)
-
-
+	do {
+		num = createRandomNum(10000);
+		num = num.toString();
+		num = Array.from(num);
+		num = checkUnique(num);
+	} while (num.length !== 4)
 	return num
 }
 
