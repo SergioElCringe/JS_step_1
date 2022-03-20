@@ -11,9 +11,9 @@ function addNumberToArr(num) {
 }
 
 function showEvenNumber(num) {
-	if (num.length !== 0) {
+	if (num.length) {
 		let evenNumber = num.filter(e => {
-			if (e % 2 !== 0) {
+			if (e % 2) {
 				return e
 			}
 		})
@@ -21,9 +21,9 @@ function showEvenNumber(num) {
 	}
 }
 function showOddNumber(num) {
-	if (num.length !== 0) {
+	if (num.length) {
 		let evenNumber = num.filter(e => {
-			if (e % 2 === 0) {
+			if (!(e % 2)) {
 				return e
 			}
 		})
@@ -55,11 +55,11 @@ function getMaxSimpleNumber() {
 function startGame() {
 	const skyNet = RandomNumber();
 	console.log('Я загадал число.');
-	let rounNumber = 10;
-	while (rounNumber !== 0 && round(skyNet, rounNumber) !== 0) {
+	let rounNumber = 3;
+	while (rounNumber && round(skyNet, rounNumber) !== 0) {
 		--rounNumber
 	}
-	if (rounNumber === 0) {
+	if (!rounNumber) {
 		const numResult = skyNet.join('');
 		console.log(`Вы проиграли\n
 Загаданное число: ${numResult}`);
@@ -71,7 +71,7 @@ function startGame() {
 function round(skyNet, rounNumber) {
 	console.log(`Раунд № ${rounNumber}`);
 	let userNumber = prompt('Пропробуй угадать число');
-	userNumber = Array.from(userNumber);
+	userNumber = [...userNumber];
 	let bull = 0;
 	let cow = 0;
 	skyNet.forEach(e => {
@@ -116,7 +116,7 @@ function RandomNumber() {
 	do {
 		num = createRandomNum(10000);
 		num = num.toString();
-		num = Array.from(num);
+		num = [...num];
 		num = checkUnique(num);
 	} while (num.length !== 4)
 	return num
