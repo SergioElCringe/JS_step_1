@@ -55,7 +55,7 @@ function getMaxSimpleNumber() {
 function startGame() {
 	const skyNet = RandomNumber();
 	console.log('Я загадал число.');
-	let rounNumber = 3;
+	let rounNumber = 10;
 	while (rounNumber && round(skyNet, rounNumber) !== 0) {
 		--rounNumber
 	}
