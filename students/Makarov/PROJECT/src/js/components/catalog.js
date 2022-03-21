@@ -58,15 +58,15 @@ const CATALOG_DATA = [
     },
 ];
 const STICKER_TYPES = {
-    1: 'New',
-    2: 'Sale',
-    3: 'Hot'
+    1: 'new',
+    2: 'sale',
+    3: 'hot'
 }
 const catalog = {
     container: null,
     stickerTypes: {},
     catalogData: [],
-    imgLinkTemplate: null, 
+    imgLinkTemplate: null,
     init() {
         this.container = document.querySelector('#catalog');
         this.stickerTypes = STICKER_TYPES;
@@ -80,8 +80,8 @@ const catalog = {
     },
 
     createProductBlock(item) {
-        const {imgFileName, sticker, link, title, price} = item;
-        const stickerEl = sticker ? `<div class="product_extra product_${this.stickerTypes[sticker]}"><a href="${link}">${this.stickerTypes[sticker]}</a></div>` : '';
+        const { imgFileName, sticker, link, title, price } = item;
+        const stickerEl = sticker ? `<div class="product_extra product_${this.stickerTypes[sticker]}"><a href="${link}">${this.stickerTypes[sticker].charAt(0).toUpperCase() + this.stickerTypes[sticker].slice(1)}</a></div>` : '';
         return `
             <div class="product">
                 <div class="product_image">
