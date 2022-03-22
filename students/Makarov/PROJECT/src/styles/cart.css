@@ -1,0 +1,90 @@
+.cart__icon {
+    width: 20px;
+}
+
+.cart__content {
+    position: absolute;
+    left: -200px;
+	top: 20px;
+	display: none;
+    flex-direction: column;
+	width: 300px;
+	min-height: 200px;
+    padding: 0 10px;
+	background: #ffffff;
+    border-radius: 4px;
+    box-shadow: 0 0 5px #6c6a74;
+	color: black;
+}
+.shopping_cart:hover .cart__content {
+	display: flex;
+}
+
+.cart-item {
+	display: flex;
+	justify-content: space-around;
+    padding: 10px 0;
+    border-bottom: 1px solid #dddddd;
+}
+
+.cart-item__img {
+	width: 40px;
+    height: auto;
+    object-fit: contain;
+}
+
+.cart-item___info {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.cart__delete-btn {
+    display: block;
+    background: none;
+    border: none;
+    outline: none;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+.cart__delete-btn:focus {
+    border: none;
+    outline: none;
+}
+
+.cart__delete-btn:hover {
+    color: #dc3545;
+}
+
+.cart-item__order {
+    display: flex;
+    flex-direction: column;
+}
+
+.cart-item__price::before {
+    content: "Price:";
+    margin-right: 15px;
+}
+
+.cart-item__price::after {
+    content: "$";
+}
+
+.cart-item__amount::before {
+    content: "Amount: ";
+    margin-right: 15px;
+}
+
+.cart-item__btn {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin: 0 5px;
+    text-align: center;
+    cursor: pointer;
+    color: #1b1b1b;
+}
+.cart-item__btn:hover {
+    color: #dc3545;
+}
