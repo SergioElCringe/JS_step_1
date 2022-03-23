@@ -14,18 +14,18 @@
 		<article class="rps">
 			<h2 class="title">Камень, ножницы, бумага</h2>
 			<div>
-				<button onclick="rpsGame.userSelect(`камень`)" class="button">Камень</button>
+				<button onclick="startRpsGame(`камень`)" class="button">Камень</button>
 			</div>
 			<div>
-				<button onclick="rpsGame.userSelect(`ножницы`)" class="button">Ножницы</button>
+				<button onclick="startRpsGame(`ножницы`)" class="button">Ножницы</button>
 			</div>
 			<div>
-				<button onclick="rpsGame.userSelect(`бумага`)" class="button">Бумага</button>
+				<button onclick="startRpsGame(`бумага`)" class="button">Бумага</button>
 			</div>
 		</article>
 		<article class="bulls-and-cows">
 			<h2 class="title">Быки и коровы</h2>
-			<button onclick="bullsAndCowsGame.startGame()" class="button">Запуск игры</button>
+			<button onclick="startBullsAndCowsGame()" class="button">Запуск игры</button>
 		</article>
 	</section>
 	<script src="./script.js"></script>
