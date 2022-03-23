@@ -1,159 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
 </head>
+
 <body>
-  
-  <script>
-    //OBJECTS
 
-    // const object1 = {
-    //   key1: '1234', //свойство
-    //   key2: 1234,
-    //   key3: function() { //метод
-    //     console.log('Hello Object');
-    //   },
-    // };
+	<script>
+		//OBJECTS
 
-
-      // const olga = {
-      //   name: 'Olga',
-      //   age: 32,
-      //   // sayHello: function() {
-      //   //   console.log('Olga greets you!');
-      //   // }
-      //   sayHello() {
-      //     console.log(`${ this.name } greets you!`);
-      //   },
-      //   getOlder() {
-      //     this.age++;
-      //   },
-      //   changeName(name) {
-      //     this.name = name;
-      //   }
-      // };
+		// const object1 = {
+		//   key1: '1234', //свойство
+		//   key2: 1234,
+		//   key3: function() { //метод
+		//     console.log('Hello Object');
+		//   },
+		// };
 
 
-      const NAMES = ['Olga', 'Vova', 'Nickolay', 'Anna'];
-      const AGES = [33, 24, 30, 19];
-
-      const users = [];
-
-      for (let i = 0; i < NAMES.length; i++) {
-        users.push({
-          name: NAMES[i],
-          age: AGES[i],
-          hobbies: [],
-          test: {
-            a: 0,
-          },
-          sayHello() {
-            console.log(`${ this.name } greets you!`);
-          },
-          getOlder() {
-            this.age++;
-          },
-          changeName(name) {
-            this.name = name;
-          },
-          addHobby(hobby) {
-            this.hobbies.push(hobby);
-          }
-        });
-      }
+		const olga = {
+			name: 'Olga',
+			age: 32,
+			// sayHello: function() {
+			//   console.log('Olga greets you!');
+			// }
+			sayHello() {
+				console.log(`${this.name} greets you!`);
+			},
+			getOlder() {
+				this.age++;
+			},
+			changeName(name) {
+				this.name = name;
+			}
+		};
 
 
-      users.forEach(user => {
-        user.sayHello();
-      });
+		const NAMES = ['Olga', 'Vova', 'Nickolay', 'Anna'];
+		const AGES = [33, 24, 30, 19];
 
-      const olga = users[0];
-      const olga2 = { ...users[0] };
+		const users = [];
 
-      // olga.forEach(); NOT WORKING
-
-      // обход объекта по полям
-
-      // Object.keys(olga).forEach(key => {
-      //   console.log(olga[key]);
-      //   console.log(typeof olga[key]);
-      // });
-
-      // JSON
-      // const olga3 = JSON.parse(JSON.stringify(olga)); // olga3 абсолютно не связана с olga
-
-      // для разрушения связей можно написать рекурсивную функцию
-
-      // LODASH (библиотека) >> метод .cloneDeep()
-
-
-      // const abc = {
-      //   a: 10,
-      //   b: 20,
-      //   c: 30,
-      // };
-
-      // function testF(obj) {
-      //   obj.result = obj.a + obj.b + obj.c;
-      //   return 'ok';
-      // };
-
-      // testF(abc);
+		for (let i = 0; i < NAMES.length; i++) {
+			users.push({
+				name: NAMES[i],
+				age: AGES[i],
+				hobbies: [],
+				test: {
+					a: 0,
+				},
+				sayHello() {
+					console.log(`${this.name} greets you!`);
+				},
+				getOlder() {
+					this.age++;
+				},
+				changeName(name) {
+					this.name = name;
+				},
+				addHobby(hobby) {
+					this.hobbies.push(hobby);
+				}
+			});
+		}
 
 
-      let abc = {
-        a: 10,
-        b: 20,
-        c: 30,
-      };
+		users.forEach(user => {
+			user.sayHello();
+		});
 
-      const qwe = testF(abc);
+		const olga = users[0];
+		const olga2 = { ...users[0] };
 
-      // function testF(obj) {
-      //   const res = { ...obj };
-      //   res.result = res.a + res.b + res.c;
-      //   return res;
-      // };
+		// olga.forEach(); NOT WORKING
 
-      // function testF(obj) {
-      //   const a = obj.a;
-      //   const b = obj.b;
-      //   const c = obj.c;
+		// обход объекта по полям
 
-      //   const result = a + b + c;
+		// Object.keys(olga).forEach(key => {
+		//   console.log(olga[key]);
+		//   console.log(typeof olga[key]);
+		// });
 
-      //   return {
-      //     a: a,
-      //     b: b,
-      //     c: c,
-      //     result: result,
-      //   };
-      // };
+		// JSON
+		// const olga3 = JSON.parse(JSON.stringify(olga)); // olga3 абсолютно не связана с olga
 
-      function testF(obj) {
-        const { a, b, c } = obj; // деструктуризация объекта
-        const result = a + b + c;
-        return { a, b, c, result };
-      };
+		// для разрушения связей можно написать рекурсивную функцию
+
+		// LODASH (библиотека) >> метод .cloneDeep()
 
 
-      const t = {
-        some: {
-          a: 123,
-          somesome: {
-            c: 2222
-          }
-        },
-        b: 'lol'
-      };
+		// const abc = {
+		//   a: 10,
+		//   b: 20,
+		//   c: 30,
+		// };
+
+		// function testF(obj) {
+		//   obj.result = obj.a + obj.b + obj.c;
+		//   return 'ok';
+		// };
+
+		// testF(abc);
+
+
+		let abc = {
+			a: 10,
+			b: 20,
+			c: 30,
+		};
+
+		const qwe = testF(abc);
+
+		// function testF(obj) {
+		//   const res = { ...obj };
+		//   res.result = res.a + res.b + res.c;
+		//   return res;
+		// };
+
+		// function testF(obj) {
+		//   const a = obj.a;
+		//   const b = obj.b;
+		//   const c = obj.c;
+
+		//   const result = a + b + c;
+
+		//   return {
+		//     a: a,
+		//     b: b,
+		//     c: c,
+		//     result: result,
+		//   };
+		// };
+
+		function testF(obj) {
+			const { a, b, c } = obj; // деструктуризация объекта
+			const result = a + b + c;
+			return { a, b, c, result };
+		};
+
+
+		const t = {
+			some: {
+				a: 123,
+				somesome: {
+					c: 2222
+				}
+			},
+			b: 'lol'
+		};
 
       // const { b, some: { a, somesome: { c } } } = t; 
       // const arrayOf = [1, 2, 'lol'];
       // const [one, two, three] = arrayOf;
-  </script>
+	</script>
 </body>
+
 </html>
