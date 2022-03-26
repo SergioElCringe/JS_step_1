@@ -42,16 +42,16 @@
                 rounds: 10,
                 play: true,
                 history: [],
+                bulls: null,
 
                 init() { 
                     this.goal = this.getNumber();
+                    this.container = document.querySelector('#result');
                     console.log(this.goal);
                 },
 
                 gamePlay() {
-                    this.container = document.querySelector('#result');
                     this.process();
-                    this.render();
                 },
 
                 getNumber() {
@@ -66,13 +66,14 @@
                 },
 
                 process() {
-                    while (this.play) {
+                    if (this.play) {
                         if (this.rounds) {
                             let userVariant = [...document.querySelector('#number').value];
                             this.play = this.check(this.goal, userVariant);
-                            --this.rounds;
+                            this.play ? --this.rounds : alert('Вы выиграли!');
                         } else {
                             this.play = false;
+                            alert('Вы проиграли :(');
                         }
                     };
                 },
@@ -80,7 +81,7 @@
                 check(riddle, userVariant) {
                     let bulls = 0;
                     let cows = 0;
-
+                    let rounds = this.rounds;
                     for (let i = 0; i < 4; i++) {
                         if (riddle[i] === +userVariant[i]) {
                             bulls++;
@@ -88,11 +89,14 @@
                             cows++;
                         }
                     }
+                    
                     this.history.push({
                         userVariant,
                         bulls,
                         cows,
+                        rounds,
                     });
+                    this.render();
                     return bulls === 4 ? false : true;
                 },
                 render() {
@@ -101,12 +105,13 @@
                     this.container.innerHTML = templateAll;
                 },
                 getTemplate(item) {
-                    const { userVariant, bulls, cows } = item;
+                    const { userVariant, bulls, cows, rounds } = item;
                     return `
                     <div class="card">
                         <p>Number: ${userVariant}</p>
                         <p>Bulls: ${bulls}</p>
                         <p>Cows: ${cows}</p>
+                        <p>Rounds left: ${rounds}</p>
                     </div>
                     `;
                 },
