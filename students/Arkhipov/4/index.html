@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>JS | Lesson №4</title>
+	<link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+	<section class="container">
+		<article class="rps">
+			<h2 class="title">Камень, ножницы, бумага</h2>
+			<div>
+				<button onclick="startRpsGame(`камень`)" class="button">Камень</button>
+			</div>
+			<div>
+				<button onclick="startRpsGame(`ножницы`)" class="button">Ножницы</button>
+			</div>
+			<div>
+				<button onclick="startRpsGame(`бумага`)" class="button">Бумага</button>
+			</div>
+		</article>
+		<article class="bulls-and-cows">
+			<h2 class="title">Быки и коровы</h2>
+			<button onclick="startBullsAndCowsGame()" class="button">Запуск игры</button>
+		</article>
+	</section>
+	<script src="./script.js"></script>
+</body>
+
+</html>
