@@ -1,0 +1,52 @@
+body {
+    background-color: wheat;
+
+}
+
+img {
+   width: 600px;
+   height: 400px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 600px;
+}
+.header__text {
+    font-size: 70px;
+    width: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    font-size: 40px;
+}
+.main__text {
+    font-size: 40px;
+}
+
+.input {
+    display: flex;
+    flex-direction: column;
+
+}
+input {
+    font-size:40px;
+    width: 300px;
+    margin-bottom: 10px;
+}
+button {
+    font-size: 40px;
+    width: 310px;
+}
+.game {
+    width: 50%;
+    background-color:tan;
+}

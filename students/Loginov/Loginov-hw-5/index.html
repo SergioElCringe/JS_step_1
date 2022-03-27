@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/students/Loginov/Loginov-hw-5/src/css/style.css">
+</head>
+
+<body>
+    <header class="header">
+        <img src="https://www.pngmart.com/files/4/Bull-PNG-Clipart.png" alt="" class="bull">
+        <p class="header__text">Bulls & Cows</p>
+        <img src="https://www.freepnglogos.com/uploads/cow-png/cow-png-images-and-clipart-download-19.png" alt=""
+            class="cow">
+    </header>
+    <main>
+        <div class="input">
+            <p class="main__text">Введите 4 цифры</p>
+            <label for="">
+                <input type="text" id="number">
+            </label>
+            <button id="click">Играть</button>
+        </div>
+        <div class="game" id="result">
+            <div class="card">
+                <p></p>
+                <p></p>
+                <p></p>
+            </div>
+        </div>
+    </main>
+    <script>
+        function randomize() {
+            return Math.floor(Math.random() * 10);
+        }
+        (function play() {
+            const game = {
+                goal: null,
+                rounds: 10,
+                play: true,
+                history: [],
+                bulls: null,
+
+                init() { 
+                    this.goal = this.getNumber();
+                    this.container = document.querySelector('#result');
+                    console.log(this.goal);
+                },
+
+                gamePlay() {
+                    this.process();
+                },
+
+                getNumber() {
+                    const result = [];
+                    while (result.length < 4) {
+                        const rndNumber = randomize();
+                        if (!result.includes(rndNumber)) {
+                            result.push(rndNumber);
+                        }
+                    }
+                    return result;
+                },
+
+                process() {
+                    if (this.play) {
+                        if (this.rounds) {
+                            let userVariant = [...document.querySelector('#number').value];
+                            this.play = this.check(this.goal, userVariant);
+                            this.play ? --this.rounds : alert('Вы выиграли!');
+                        } else {
+                            this.play = false;
+                            alert('Вы проиграли :(');
+                        }
+                    };
+                },
+
+                check(riddle, userVariant) {
+                    let bulls = 0;
+                    let cows = 0;
+                    let rounds = this.rounds;
+                    for (let i = 0; i < 4; i++) {
+                        if (riddle[i] === +userVariant[i]) {
+                            bulls++;
+                        } else if (riddle.includes(+userVariant[i])) {
+                            cows++;
+                        }
+                    }
+                    
+                    this.history.push({
+                        userVariant,
+                        bulls,
+                        cows,
+                        rounds,
+                    });
+                    this.render();
+                    return bulls === 4 ? false : true;
+                },
+                render() {
+                    let templateAll = '';
+                    this.history.forEach(item => templateAll += this.getTemplate(item));
+                    this.container.innerHTML = templateAll;
+                },
+                getTemplate(item) {
+                    const { userVariant, bulls, cows, rounds } = item;
+                    return `
+                    <div class="card">
+                        <p>Number: ${userVariant}</p>
+                        <p>Bulls: ${bulls}</p>
+                        <p>Cows: ${cows}</p>
+                        <p>Rounds left: ${rounds}</p>
+                    </div>
+                    `;
+                },
+            };
+            game.init();
+            document.querySelector('#click').onclick = () => game.gamePlay();
+        })();
+    </script>
+</body>
+
+</html>
