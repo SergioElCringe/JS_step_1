@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+        .form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .span {
+            margin-bottom: 10px;
+        }
+        .input {
+            margin-bottom: 10px;
+        }
+        .result-round {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+            margin-right: 20px;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+        .result {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .p {
+        margin: 0;
+        margin-bottom: 10px;
+        }
+        .span-all {
+            display: block;
+        }
+        .button {
+            margin-bottom: 20px;
+        }
+        .span-number {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form">
+            <h3>Это игра Быки и Коровы. Соперник загадал число.</h3>
+            <span class="span">Введите свой вариант четырёх чисел.</span>
+            <input class="input" type="text" id="input"> 
+            <button class="button" onclick="playGame.makeMove()">Играть</button>
+        </div>
+        <div class="result" id="result-attempt">
+
+        </div>
+    </div>
+
+
+
+<script>
+        
+            const playGame = {
+                randomNumber: [],
+                resultRandom: null,
+                playerChoice: null,
+                container: null,
+                input: null,
+                inforound: [],
+                round: 10,
+
+                random() {
+                    while (this.randomNumber.length < 4) {
+                        this.resultRandom = Math.floor(Math.random(0, 9) * 9);
+                        if (!this.randomNumber.includes(this.resultRandom)) {
+                        this.randomNumber.push(this.resultRandom);
+                        };
+                    };
+                    return this.randomNumber;
+                }, 
+                compare(inputValue, randomValue) {
+                    let bulls = 0;
+                    let cows = 0; 
+                    for (let i = 0; i < 4; i++) {
+                        if (+inputValue[i] === randomValue[i]) {
+                            bulls++;
+                        }
+                        else if (randomValue.includes(+inputValue[i])) {
+                            cows++;
+                        };
+                    };
+                    this.inforound.push({
+                        bulls: bulls,
+                        cows: cows,
+                        choice: inputValue,
+                        round: --this.round,
+                    });
+                    
+                    this.render();
+
+                    return bulls === 4 ? true : false;
+                },
+                render() {
+                    let templateAll = '';
+                    this.inforound.forEach(item => templateAll += this.getTemplate(item));
+                    this.container.innerHTML = templateAll;
+                },
+                getTemplate(item) {
+                    return `
+                    <div class="result-round">
+                        <p class="p">Выбранные вами числа:</p>
+                        <span class="span-number"><b>${item.choice}.</b></span>
+                        <span class="span-all">Быки: <b>${item.bulls}</b>,</span>
+                        <span class="span-all">Коровы: <b>${item.cows}</b>.</span>
+                        <span class="span-all">Осталось: <b>${item.round} попыток!</b></span>
+                    </div>
+                    `;
+                },
+                init() {
+                    this.container = document.querySelector('#result-attempt');
+                    this.input = document.querySelector('#input');
+                }, 
+                getplayerNumber() {
+                    this.init();
+                    return this.input.value;
+                },
+                winLose(randomNumber) {
+                    let result = true;
+                    if (this.round > 0) {
+                        this.playerChoice = this.getplayerNumber();
+                        result = this.compare(this.playerChoice, this.randomNumber)
+                        if (result === true) {
+                            alert('Поздравляю! Вы победили.');
+                        };
+                    };
+                    if (this.round === 0 && result === false) {
+                        alert(`Вы проиграли! Соперник загадал: ${this.randomNumber}`);
+                        };
+                },
+                makeMove() {
+                    this.random();
+                    this.winLose(this.randomNumber);
+                },
+
+            };
+        
+
+
+
+</script>
+
+</body>
+</html>
