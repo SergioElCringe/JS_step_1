@@ -1,4 +1,3 @@
-const IMG_LINK_TEMPLATE = 'https://raw.githubusercontent.com/SergioElCringe/JS_step_1/main/TEST_FTP/static/products/';
 const CATALOG_DATA = [
     {
         imgFileName: 'product_1.jpg',
@@ -6,6 +5,7 @@ const CATALOG_DATA = [
         link: 'categories.html',
         title: 'Smart Phone 1',
         price: 100,
+        id: 1
     },
     {
         imgFileName: 'product_2.jpg',
@@ -13,6 +13,7 @@ const CATALOG_DATA = [
         link: 'categories.html',
         title: 'Smart Phone 2',
         price: 200,
+        id: 2
     },
     {
         imgFileName: 'product_3.jpg',
@@ -20,6 +21,7 @@ const CATALOG_DATA = [
         link: 'categories.html',
         title: 'Smart Phone 3',
         price: 300,
+        id: 3
     },
     {
         imgFileName: 'product_4.jpg',
@@ -27,6 +29,7 @@ const CATALOG_DATA = [
         link: 'categories.html',
         title: 'Smart Phone 4',
         price: 400,
+        id: 4
     },
     {
         imgFileName: 'product_5.jpg',
@@ -34,6 +37,7 @@ const CATALOG_DATA = [
         link: 'categories.html',
         title: 'Smart Phone 5',
         price: 500,
+        id: 5
     },
     {
         imgFileName: 'product_6.jpg',
@@ -41,6 +45,7 @@ const CATALOG_DATA = [
         link: 'categories.html',
         title: 'Smart Phone 6',
         price: 600,
+        id: 6
     },
     {
         imgFileName: 'product_7.jpg',
@@ -48,6 +53,7 @@ const CATALOG_DATA = [
         link: 'categories.html',
         title: 'Smart Phone 7',
         price: 700,
+        id: 7
     },
     {
         imgFileName: 'product_8.jpg',
@@ -55,24 +61,38 @@ const CATALOG_DATA = [
         link: 'categories.html',
         title: 'Smart Phone 8',
         price: 800,
+        id: 8
     },
 ];
 const STICKER_TYPES = {
-    1: 'New',
-    2: 'Sale',
-    3: 'Hot'
+    1: 'new',
+    2: 'sale',
+    3: 'hot'
 }
 const catalog = {
     container: null,
     stickerTypes: {},
     catalogData: [],
-    imgLinkTemplate: null, 
+    imgLinkTemplate: null,
+    cart: null,
+
     init() {
+        this.cart = cart;
         this.container = document.querySelector('#catalog');
         this.stickerTypes = STICKER_TYPES;
         this.catalogData = CATALOG_DATA;
         this.imgLinkTemplate = IMG_LINK_TEMPLATE;
         this.render();
+        this.handleEvents();
+    },
+
+    handleEvents() {
+        this.container.addEventListener('click', e => {
+            if(e.target.classList.contains('button_add')){
+                const { title, price, imgfilename, id } = e.target.dataset;
+                this.cart.addItem({title, price, id, imgFileName: imgfilename});
+            }
+        });
     },
 
     render() {
@@ -80,8 +100,8 @@ const catalog = {
     },
 
     createProductBlock(item) {
-        const {imgFileName, sticker, link, title, price} = item;
-        const stickerEl = sticker ? `<div class="product_extra product_${this.stickerTypes[sticker]}"><a href="${link}">${this.stickerTypes[sticker]}</a></div>` : '';
+        const { imgFileName, sticker, link, title, price, id } = item;
+        const stickerEl = sticker ? `<div class="product_extra product_${this.stickerTypes[sticker]}"><a href="${link}">${this.stickerTypes[sticker].charAt(0).toUpperCase() + this.stickerTypes[sticker].slice(1)}</a></div>` : '';
         return `
             <div class="product">
                 <div class="product_image">
@@ -92,7 +112,17 @@ const catalog = {
                     <div class="product_title"><a href="${link}">${title}</a></div>
                     <div class="product_price">$${price}</div>
                 </div>
+                <button 
+                    class='button_add'
+                    data-imgfilename="${imgFileName}"
+                    data-title="${title}"
+                    data-price="${price}"
+                    data-id="${id}"
+                >
+                    Add
+                </button>
             </div>
+
         `;
     }
 };
