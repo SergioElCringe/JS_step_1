@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="play()">PLAY THE GAME</button>
+    <script> 
+        function randomNumber() {
+            return Math.floor(Math.random() * (3 - 1 + 1) + 1)
+        };
+
+        function getName(val) {
+            switch (val) {
+                case 1: return 'Rock';
+                case 2: return 'Paper';
+                case 3: return 'Scissors';
+            }
+        };
+
+        function play(user) {
+            console.log(match(user));
+        };
+
+        function match() {
+
+            const botChoice = randomNumber();
+            let playerChoice = +prompt('1 - rock, 2 - paper, 3 - scissors')
+            let winner = 'User';
+            let round = 1;
+
+            if ((playerChoice === 1 && botChoice === 2 || playerChoice === 2 && botChoice === 3 || playerChoice === 3 && botChoice === 1)) {
+                winner = 'Computer';
+            } else if (playerChoice === botChoice) {
+                winner = 'Both';
+            };
+            return `
+            Раунд: ${ round++ }\n
+            Результат\n
+            Игрок: ${ getName(playerChoice) }\n
+            Компьютер: ${ getName(botChoice) }\n
+            
+            ПОБЕДИТЕЛЬ: ${ winner }`;
+        };
+    </script>
+</body>
+</html>
