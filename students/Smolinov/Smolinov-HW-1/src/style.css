@@ -1,0 +1,22 @@
+.calculator {
+    width: 500px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+button {
+    width: 200px;
+    height: 200px;
+    font-size: 100px;
+    background-color: lightblue;
+    color: white;
+    border: 5px solid blue;
+    
+}
+
+
+
+
+
