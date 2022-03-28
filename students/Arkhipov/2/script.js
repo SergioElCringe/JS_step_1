@@ -9,7 +9,7 @@ function makeMathOperation(operator) {
 			case 2: { result = substr(a, b) } break
 			case 3: { result = multipl(a, b) } break
 			default: { result = divide(a, b) }
-		}
+		};
 		writeResult(result)
 	}
 }
@@ -18,13 +18,13 @@ function getNumbers() {
 	a = +prompt("Enter first number");
 	b = +prompt("Enter second number");
 	return a, b
-}
+};
 function writeResult(result) {
 	console.log(`Результат: ${result}`);
-}
+};
 function summ(a, b) {
 	return a + b
-}
+};
 function substr(a, b) {
 	return a - b;
 };
@@ -47,7 +47,7 @@ function userSelect(select) {
 	playerSelect = select;
 	changeNumberToChoise();
 	gameResult(playerSelect, computerSelect)
-}
+};
 
 function gameResult(playerOne, playerTwo) {
 	if (playerOne === "камень" && playerTwo === 'камень') {
@@ -77,7 +77,7 @@ function gameResult(playerOne, playerTwo) {
 	else {
 		writeResult('Ничья')
 	}
-}
+};
 
 function changeNumberToChoise() {
 	let numCom = getRandomNum(3);
@@ -88,18 +88,18 @@ function changeNumberToChoise() {
 			default: { computerSelect = 'бумага' };
 		}
 	}
-}
+};
 
 function getRandomNum(numMax) {
 	return Math.floor(Math.random() * numMax);
-}
+};
 //========================================================================================================================================================
 // Рекурсия
 function doPower() {
 	let a = +prompt('Укажите основание числа');
 	let b = +prompt('Укажите степень числа')
 	writeResult(stepen(a, b))
-}
+};
 function stepen(a, b) {
 	if (b !== 1) {
 		return a * stepen(a, b - 1)
@@ -107,4 +107,4 @@ function stepen(a, b) {
 	else {
 		return a
 	}
-}
+};
