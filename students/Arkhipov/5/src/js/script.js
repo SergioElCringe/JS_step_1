@@ -15,7 +15,7 @@ function play() {
 			this.finishContainer = document.querySelector('.finish');
 			this.roundContainer = document.querySelector("#round");
 			this.goal = this.getNumber();
-			console.log(this.goal);
+			console.log(this.goal);//специально оставил как пасхалку
 			this.renderRoundAll();
 			const tryButton = document.querySelector('#try');
 
