@@ -1,0 +1,174 @@
+* {
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	box-sizing: border-box;
+	font-family: sans-serif;
+	font-size: 20px;
+}
+/*
+.player {
+}
+.player__wrapper {
+	margin: 0px 0px 11px 0px;
+	display: flex;
+	justify-content: space-between;
+}
+.select {
+	flex: 0 1 78%;
+	min-height: 40px;
+	padding: 5px;
+}
+.try {
+	flex: 0 1 20%;
+	min-height: 40px;
+	cursor: pointer;
+	background-color: #eebddb;
+}
+.select:focus {
+	outline: tomato;
+	border: 2px solid tomato;
+}
+.game {
+	padding: 10px;
+	div {
+		flex: 0 1 33%;
+		&:nth-child(2) {
+			flex: 0 1 10%;
+		}
+	}
+}
+
+.counter {
+	min-height: 40px;
+	width: 100%;
+	background-color: #aea5cf;
+	padding: 5px;
+	margin: 0px 0px 11px 0px;
+}
+.style {
+	border: 2px solid teal;
+	border-radius: 5px;
+	text-align: center;
+}
+.conteiner {
+	display: flex;
+	justify-content: space-between;
+	margin: 0px 0px 10px 0px;
+	div {
+		flex: 0 1 33%;
+	}
+}
+.button {
+	cursor: pointer;
+	min-height: 500px;
+	font-size: 10vw;
+	background-color: #a2daa7;
+}
+.info {
+}
+.result {
+	min-height: 40px;
+	padding: 5px;
+	margin: 0px 0px 11px 0px;
+	background-color: #f2df4d;
+}
+.result:last-child {
+	margin: 0px 0px 0px 0px;
+}
+.finish {
+	font-size: 8vw;
+	background-color: #9cb7d4;
+}
+*/
+.game {
+	padding: 5px;
+}
+.conteiner {
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+}
+.start {
+	&__button {
+		min-height: 200px;
+		width: 100%;
+		font-size: 8vw;
+		background-color: #a2daa7;
+		cursor: pointer;
+	}
+}
+
+.round {
+	flex: 0 1 45%;
+	&__wrapper {
+		display: flex;
+		justify-content: space-between;
+	}
+	&__counter {
+		background-color: #aea5cf;
+		flex: 0 1 150px;
+	}
+	&__select {
+		flex: 0 1 60%;
+		&:focus {
+			outline: tomato;
+			border: 2px solid tomato;
+		}
+	}
+	&__try {
+		flex: 0 1 150px;
+		cursor: pointer;
+		background-color: #fcccd4;
+	}
+	@media (max-width: 400px) {
+		&__wrapper {
+			flex-direction: column;
+		}
+
+		&__counter {
+			flex: 0 0 auto;
+			font-size: 30px;
+		}
+		&__select {
+			flex: 0 0 100px;
+			font-size: 30px;
+		}
+		&__try {
+			font-size: 30px;
+		}
+	}
+}
+.result {
+	flex: 0 1 20%;
+	width: 60%;
+	// background-color: #a2daa7;
+	margin: 0px auto;
+	&__wrap {
+		display: flex;
+		justify-content: space-between;
+	}
+	&__info {
+		flex: 0 1 45%;
+		background-color: #f4e3c9;
+	}
+
+	&__history {
+		flex: 0 1 45%;
+		background-color: #ffcba9;
+	}
+}
+
+.finish {
+	&__result {
+		font-size: 8vw;
+		background-color: #9cb7d4;
+	}
+}
+.style {
+	border: 2px solid teal;
+	border-radius: 5px;
+	text-align: center;
+	min-height: 40px;
+	margin: 0px 0px 10px 0px;
+	padding: 5px;
+}

@@ -2,95 +2,95 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
 </head>
 
 <body>
-  <button onclick="play()">ok</button>
+	<button onclick="play()">ok</button>
 
 
 
-  <script>
-    function randomize() {
-      return Math.floor(Math.random() * 10);
-    }
+	<script>
+		function randomize() {
+			return Math.floor(Math.random() * 10);
+		}
 
-    function play() {
-      const game = {
-        goal: null,
-        rounds: 10,
-        play: true,
-        history: [],
+		function play() {
+			const game = {
+				goal: null,
+				rounds: 10,
+				play: true,
+				history: [],
 
-        init() {
-          this.goal = this.getNumber();
-          console.log(this.goal);
-          this.process();
-        },
+				init() {
+					this.goal = this.getNumber();
+					console.log(this.goal);
+					this.process();
+				},
 
-        getNumber() {
-          const result = [];
-          while (result.length < 4) {
-            const rndNumber = randomize();
-            if (!result.includes(rndNumber)) {
-              result.push(rndNumber);
-            }
-          }
-          return result;
-        },
+				getNumber() {
+					const result = [];
+					while (result.length < 4) {
+						const rndNumber = randomize();
+						if (!result.includes(rndNumber)) {
+							result.push(rndNumber);
+						}
+					}
+					return result;
+				},
 
-        process() {
-          while (this.play) {
-            if (this.rounds) {
-              let userVariant = [...prompt('Enter...')]; // '1234' >>> ['1', '2', '3', '4']
-              this.play = this.check(this.goal, userVariant);
-              console.log(this.play ? `${--this.rounds} turns left` : `User wins! ${this.goal}`);
-              console.log(this.history);
-            } else {
-              console.log(`User lost! ${this.goal}`);
-              console.log(this.history);
-              this.play = false;
-            }
-          }
-        },
+				process() {
+					while (this.play) {
+						if (this.rounds) {
+							let userVariant = [...prompt('Enter...')]; // '1234' >>> ['1', '2', '3', '4']
+							this.play = this.check(this.goal, userVariant);
+							console.log(this.play ? `${--this.rounds} turns left` : `User wins! ${this.goal}`);
+							console.log(this.history);
+						} else {
+							console.log(`User lost! ${this.goal}`);
+							console.log(this.history);
+							this.play = false;
+						}
+					}
+				},
 
-        check(riddle, userVariant) {
-          let bulls = 0;
-          let cows = 0;
+				check(riddle, userVariant) {
+					let bulls = 0;
+					let cows = 0;
 
-          for (let i = 0; i < 4; i++) {
-            if (riddle[i] === +userVariant[i]) {
-              bulls++;
-            } else if (riddle.includes(+userVariant[i])) {
-              cows++;
-            }
-          }
+					for (let i = 0; i < 4; i++) {
+						if (riddle[i] === +userVariant[i]) {
+							bulls++;
+						} else if (riddle.includes(+userVariant[i])) {
+							cows++;
+						}
+					}
 
-          this.history.push({
-            userVariant,
-            bulls,
-            cows
-          });
+					this.history.push({
+						userVariant,
+						bulls,
+						cows
+					});
 
-          this.getHint(bulls, cows, userVariant);
+					this.getHint(bulls, cows, userVariant);
 
-          return bulls === 4 ? false : true;
-        },
-        getHint(bulls, cows, userVariant) {
-          console.log(`
+					return bulls === 4 ? false : true;
+				},
+				getHint(bulls, cows, userVariant) {
+					console.log(`
             User: ${userVariant}\n
             bulls: ${bulls}\n
             cows: ${cows}\n
           `);
-        }
-      };
+				}
+			};
 
-      game.init();
-    };
-  </script>
+			game.init();
+		};
+	</script>
 </body>
 
 </html>
