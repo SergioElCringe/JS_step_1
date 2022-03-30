@@ -5,12 +5,12 @@ function makeMathOperation(operator) {
 	if (operator === 1 || operator === 2 || operator === 3 || operator === 4) {
 		getNumbers()
 		switch (operator) {
-			case 1: { result = summ(a, b) } break
-			case 2: { result = substr(a, b) } break
-			case 3: { result = multipl(a, b) } break
-			default: { result = divide(a, b) }
+			case 1: { result = summ(a, b) } break;
+			case 2: { result = substr(a, b) } break;
+			case 3: { result = multipl(a, b) } break;
+			default: { result = divide(a, b) };
 		};
-		writeResult(result)
+		writeResult(result);
 	}
 }
 
@@ -51,31 +51,31 @@ function userSelect(select) {
 
 function gameResult(playerOne, playerTwo) {
 	if (playerOne === "камень" && playerTwo === 'камень') {
-		writeResult('Ничья')
+		writeResult('Ничья');
 	}
 	else if (playerOne === "камень" && playerTwo === 'ножницы') {
-		writeResult('Вы выиграли')
+		writeResult('Вы выиграли');
 	}
 	else if (playerOne === "камень" && playerTwo === 'бумага') {
-		writeResult('Вы проиграли')
+		writeResult('Вы проиграли');
 	}
 	else if (playerOne === "ножницы" && playerTwo === 'ножницы') {
-		writeResult('Ничья')
+		writeResult('Ничья');
 	}
 	else if (playerOne === "ножницы" && playerTwo === 'бумага') {
-		writeResult('Вы выиграли')
+		writeResult('Вы выиграли');
 	}
 	else if (playerOne === "ножницы" && playerTwo === 'камень') {
-		writeResult('Вы проиграли')
+		writeResult('Вы проиграли');
 	}
 	else if (playerOne === "бумага" && playerTwo === 'камень') {
-		writeResult('Вы выиграли')
+		writeResult('Вы выиграли');
 	}
 	else if (playerOne === "бумага" && playerTwo === 'ножницы') {
-		writeResult('Вы проиграли')
+		writeResult('Вы проиграли');
 	}
 	else {
-		writeResult('Ничья')
+		writeResult('Ничья');
 	}
 };
 
@@ -97,8 +97,8 @@ function getRandomNum(numMax) {
 // Рекурсия
 function doPower() {
 	let a = +prompt('Укажите основание числа');
-	let b = +prompt('Укажите степень числа')
-	writeResult(stepen(a, b))
+	let b = +prompt('Укажите степень числа');
+	writeResult(stepen(a, b));
 };
 function stepen(a, b) {
 	if (b !== 1) {
