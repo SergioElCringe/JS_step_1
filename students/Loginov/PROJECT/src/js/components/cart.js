@@ -67,10 +67,9 @@ const cart = {
 	},
 	getTotal (itemsCount, itemsPrice) {
 		return `<hr>
-		<div><span>Total quantity: <b>${itemsCount}</b></span><span>Total price: <b>$${itemsPrice}</b></span></div>
+		<div>Total quantity:${itemsCount}<br></vr>Total price:$${itemsPrice}</div>
         <hr>
 		</div>
-		
 		`;
 	},
 	render() {

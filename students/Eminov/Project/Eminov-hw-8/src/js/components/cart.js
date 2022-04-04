@@ -103,13 +103,8 @@ const cart = {
     },
 
     getTotal(itemsCount, itemsPrice) {
-        return `<hr>
+        return `
         <div class="total"><span>Total quantity: <b>${itemsCount}</b></span><span>Total price: <b>$${itemsPrice}</b></span></div>
-        <hr>
-        <div class="action">
-            <div class="continue"><span><b>Continue</b></span></div>
-            <div class="clear-all" onclick="cart.removeAllItems()"><span><b>Remove all products</b></span></div>
-        </div>
         `;
     },
 
