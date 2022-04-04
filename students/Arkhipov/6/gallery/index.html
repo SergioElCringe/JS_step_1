@@ -10,6 +10,7 @@
 </head>
 
 <body>
+
 	<div class="container">
 		<div class="main-img">
 			<img src="./src/assets/img/arrow/arrow-alt-circle-left.svg" alt="arrow left" class="arrow arrow_left"
@@ -22,99 +23,7 @@
 		</div>
 	</div>
 
-
-	<script>
-		const fetchData = ['/1.png', '/2.png', '/3.png', '/4.png', '/5.png', '/6.png',];
-
-		const app = {
-			items: null,
-			urlToImages: './src/assets/img',
-			selected: null,
-			mainImg: null,
-			carouselContainer: null,
-			container: null,
-
-			init(data) {
-				this.items = data;
-				this.selected = this.items[0];
-				this.mainImg = document.querySelector('#img__main');
-				this.carouselContainer = document.querySelector('.carousel');
-				this.container = document.querySelector('.container');
-				this.container.addEventListener('click', this.changeHandler.bind(this));
-				// this.carouselContainer.addEventListener('click', this.clickHandler.bind(this));
-
-
-				this.render();
-				this.createCarousel();
-			},
-
-			createCarousel() {
-				let accum = '';
-				this.items.forEach(item => {
-					accum += `<img 
-            src="${this.urlToImages + item}" 
-            class="img__preview" 
-            data-url="${item}"
-          />`
-				});
-				this.carouselContainer.innerHTML = accum;
-			},
-
-			changeImg(url) {
-
-				this.selected = url;
-				this.render();
-			},
-
-			render() {
-				const url = this.urlToImages + this.selected;
-				this.mainImg.src = url;
-			},
-
-			clickHandler(event) {
-
-				const url = event.target.dataset.url;
-				this.changeImg(url);
-
-			},
-			//========================================================================================================================================================
-			changeHandler(event) {
-				// console.log(event.target.dataset.direction);
-
-				if (event.target.tagName === 'IMG' && event.target.className === 'img__preview') {
-					this.clickHandler(event);
-				}
-				else if (event.target.dataset.direction === 'right') {
-					const nextSlideItem = fetchData.find(this.nextSlide.bind(this))
-					console.log(nextSlideItem);
-
-					this.changeImg(nextSlideItem);
-				}
-				else if (event.target.dataset.direction === 'left') {
-
-				}
-			},
-
-			nextSlide(el, index) {
-				if (el === this.selected) {
-					let next;
-					if (index !== fetchData.length - 1) {
-						next = fetchData[index + 1];
-					} else {
-						2
-					}
-
-					return next
-				}
-
-
-			},
-		};
-
-
-
-		app.init(fetchData);
-	</script>
+	<script src="./src/js/script.js"></script>
 </body>
 
 </html>
