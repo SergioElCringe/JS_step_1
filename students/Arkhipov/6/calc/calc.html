@@ -10,104 +10,82 @@
 </head>
 
 <body>
-	<section class="calc">
+	<section class="container">
 		<div class="output">
 			<input class="output__window" type="text" id="output" disabled>
 		</div>
-		<div class="buttons" id="numbers">
+		<div class="buttons" id="buttons">
 			<div class="buttons__row">
-				<button class="btn" data-symb="negate">
-					#
+				<button class="buttons__btn" data-event="AC">
+					AC
 				</button>
-				<button class="btn" data-symb="C">
-					C
+				<button class="buttons__btn" data-event="del">
+					del
 				</button>
-				<button class="btn" data-symb="back">
-					d
-				</button>
-				<button class="btn" data-symb="/">
+			</div>
+			<div class="buttons__row">
+				<button class="buttons__btn" data-event="/">
 					/
 				</button>
 			</div>
 			<div class="buttons__row">
-				<button class="btn" data-number="7">
+				<button class="buttons__btn" data-event="7">
 					7
 				</button>
-				<button class="btn" data-number="8">
+				<button class="buttons__btn" data-event="8">
 					8
 				</button>
-				<button class="btn" data-number="9">
+				<button class="buttons__btn" data-event="9">
 					9
 				</button>
-				<button class="btn" data-symb="*">
-					*
+				<button class="buttons__btn" data-event="x">
+					x
 				</button>
 			</div>
 			<div class="buttons__row">
-				<button class="btn" data-number="4">
+				<button class="buttons__btn" data-event="4">
 					4
 				</button>
-				<button class="btn" data-number="5">
+				<button class="buttons__btn" data-event="5">
 					5
 				</button>
-				<button class="btn" data-number="6">
+				<button class="buttons__btn" data-event="6">
 					6
 				</button>
-				<button class="btn" data-symb="-">
+				<button class="buttons__btn" data-event="-">
 					-
 				</button>
 			</div>
 			<div class="buttons__row">
-				<button class="btn" data-number="1">
+				<button class="buttons__btn" data-event="1">
 					1
 				</button>
-				<button class="btn" data-number="2">
+				<button class="buttons__btn" data-event="2">
 					2
 				</button>
-				<button class="btn" data-number="3">
+				<button class="buttons__btn" data-event="3">
 					3
 				</button>
-				<button class="btn" data-symb="+">
+				<button class="buttons__btn" data-event="+">
 					+
 				</button>
 			</div>
-
 			<div class="buttons__row">
-				<button class="btn" data-symb="negate">
+				<button class="buttons__btn" data-event="±">
 					±
 				</button>
-				<button class="btn" data-number="0">
+				<button class="buttons__btn" data-event="0">
 					0
 				</button>
-				<button class="btn" data-symb=".">
+				<button class="buttons__btn" data-event=".">
 					.
 				</button>
-				<button class="btn" data-symb="=">
+				<button class="buttons__btn" data-event="=">
 					=
 				</button>
 			</div>
 		</div>
 	</section>
-	<!-- <div class="container">
-		<div class="output">
-			<input type="text" id="output" disabled>
-		</div>
-		<div class="numbers" id="numbers">
-			<button data-number="1">
-				1
-			</button>
-			<button data-number="2">
-				2
-			</button>
-			<button data-number="3">
-				3
-			</button>
-		</div>
-		<div class="operators">
-			<button>+</button>
-		</div>
-	</div> -->
-
 	<script src="./src/js/script.js"></script>
 </body>
 
