@@ -1,0 +1,29 @@
+body {
+    margin: 0;
+    background-color: rgb(14, 219, 147);
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 600px;
+    height: 400px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    column-gap: 100px;
+    margin-top: 50px;
+} 
+
+button {
+    display: block;
+    color: aqua;
+    background-color: rgb(77, 31, 119);
+    width: 100px;
+    height: 50px;
+    border-radius: 5px;
+    cursor: pointer;
+}
