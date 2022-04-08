@@ -85,7 +85,7 @@ function play() {
 
 		renderRound() {
 			const roundWrapper = document.querySelector("#roundInfo");
-			roundWrapper.innerText = `${this.rounds} round`
+			roundWrapper.innerText = `${this.rounds} round`;
 		},
 
 		renderInfoAll() {
