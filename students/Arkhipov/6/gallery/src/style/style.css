@@ -1,0 +1,45 @@
+.conainer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.main-img {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0px 0px 50px 0px;
+}
+
+.carousel {
+	display: flex;
+	justify-content: center;
+}
+
+.img__preview {
+	cursor: pointer;
+	margin-right: 20px;
+	height: 100px;
+	opacity: 0.8;
+	transition: opacity 0.2s;
+}
+
+.img__preview:hover {
+	opacity: 1;
+	transition: opacity 0.2s;
+}
+.arrow {
+	cursor: pointer;
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+}
+.arrow_left {
+}
+.arrow_right {
+	transform: rotate(180deg);
+}
+#img__main {
+	margin: 0px 80px;
+	height: 250px;
+}
