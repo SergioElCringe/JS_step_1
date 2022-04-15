@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./src/js/script.js"></script>
+    <style>
+        
+        .form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .span {
+            margin-bottom: 10px;
+            font-size: 25px;
+        }
+        .input {
+            margin-bottom: 10px;
+        }
+        .result-round {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+            margin-right: 20px;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+        .result {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            flex-direction: column-reverse;
+            margin-left: 43%;
+        }
+        .p {
+        margin: 0;
+        margin-bottom: 10px;
+        }
+        .span-all {
+            display: block;
+        }
+        .button {
+            margin-bottom: 20px;
+        }
+        .span-number {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form">
+            <h1>Быки и Коровы</h1>
+            <span class="span">Введите четыре числа.</span>
+            <input class="input" type="text" id="input"> 
+            <button class="button" onclick="playGame.makeMove()">Играть</button>
+        </div>
+        <div class="result" id="result-attempt">
+
+        </div>
+    </div>
+</body>
+</html>
