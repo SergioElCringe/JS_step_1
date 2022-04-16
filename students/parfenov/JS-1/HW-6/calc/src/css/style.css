@@ -1,0 +1,71 @@
+body {
+    min-width: 450px;
+    font-family: sans-serif;
+    margin: 0 0;
+    padding: 0 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.wrapper {
+    height: 1000px;
+    width: 625px;
+    background-color: black;
+    border-radius: 50px;
+}
+
+button {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 60px;
+    border: none;
+    margin: 3px 2px;
+}
+
+.zero {
+    width: 49%;
+    border-radius: 100px;
+}
+
+
+
+.output {
+    padding: 0 5px;
+    height: 200px;
+}
+
+input {
+    margin: 40px 10px 20px 10px;
+    height: 100px;
+    width: 600px;
+    background-color: rgb(0, 0, 0);
+    border: none;
+    color: white;
+    font-size: 70px;
+}
+
+.line {
+    display: flex;
+    min-width: 400px;
+    flex-direction: row;
+    margin-left: 5px;
+}
+
+.number {
+    background-color: darkgrey
+}
+
+.grey {
+    background-color: grey;
+}
+
+.operator {
+    background-color: orange;
+}
