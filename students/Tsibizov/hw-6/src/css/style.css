@@ -1,0 +1,67 @@
+.conainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main-img {
+  display: flex;
+  height: 250px;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.carousel {
+  display: flex;
+  justify-content: center;
+}
+
+.slide-img {
+  width: 11%;
+}
+
+.img__preview {
+  cursor: pointer;
+  margin-right: 20px;
+  height: 100px;
+  opacity: .8;
+  transition: opacity .2s;
+}
+
+.img__preview:hover {
+  opacity: 1;
+  transition: opacity .2s;
+}
+
+.active {
+  opacity: 1;
+  transition: opacity .2s;
+  width: 13%;
+}
+
+.prev,
+.next {
+  cursor: pointer;
+  padding: 16px;
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  font-size: 38px;
+  border-radius: 0 3px 3px 0;
+}
+
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+.prev:hover,
+.next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 25px;
+  color: white;
+}
+
+.btn__carousel {
+  display: flex;
+  justify-content: space-around;
+}
